@@ -1,0 +1,14 @@
+{
+  "schema": "mcard-starterkit.emulator-notify-scenario.v1",
+  "profilePath": "examples/profiles/monicard-like.sample.json",
+  "frames": [
+    {
+      "label": "GET_VERSION",
+      "frameHex": "1f 00 02 00 14 00"
+    },
+    {
+      "label": "FILE_DATA_PACKET_1",
+      "frameHex": "04 00 0a 00 08 00 06 00 01 00 00 00 ab cd"
+    }
+  ]
+}

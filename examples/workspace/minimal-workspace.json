@@ -1,0 +1,9 @@
+{
+  "schema": "mcard-starterkit.workspace.v1",
+  "activeProfile": {
+    "id": "monicard-like.sample",
+    "title": "MoniCard-like Sample Profile"
+  },
+  "packageJson": "",
+  "latestFilePlan": null
+}

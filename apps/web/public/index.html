@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MCard-StarterKit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Electronic Badge / NFC Bluetooth Animated GIF Trendy Toy Keychain</p>
+      <h1>MCard-StarterKit</h1>
+      <p>Local-only clean-room toolkit for media package framing, transfer simulation, and opt-in Web Bluetooth experiments.</p>
+      <div class="pill-row">
+        <span>Vendor cloud: off</span>
+        <span>BLE writes: opt-in only</span>
+        <span>Firmware flashing: disabled</span>
+      </div>
+    </section>
+
+
+    <section class="panel">
+      <h2>Profile Editor</h2>
+      <p>Edit the active profile in-browser. Changes are kept in local workspace state unless exported.</p>
+      <div class="toolbar">
+        <button id="profileLoadList">Load profiles</button>
+        <button id="profileLoadSelected">Load selected</button>
+        <button id="profileValidate">Validate profile</button>
+        <button id="profileUseForParsers">Use parser list</button>
+      </div>
+      <div class="grid">
+        <label>Profile
+          <select id="profileSelect"></select>
+        </label>
+        <label>Active profile ID
+          <input id="activeProfileId" value="monicard-like.sample">
+        </label>
+      </div>
+      <textarea id="profileEditor" spellcheck="false"></textarea>
+      <pre id="profileOutput">Profile not loaded.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Browser-native Media Import</h2>
+      <p>Import GIF / APNG / WebP through browser-native ImageDecoder when available, with createImageBitmap fallback.</p>
+      <div class="grid">
+        <label>Animated/static image
+          <input id="nativeMediaFile" type="file" accept="image/gif,image/png,image/apng,image/webp,image/*">
+        </label>
+        <label>Max frames
+          <input id="nativeMediaMaxFrames" type="number" value="60">
+        </label>
+        <label>Minimum duration ms
+          <input id="nativeMediaMinDuration" type="number" value="80">
+        </label>
+      </div>
+      <div class="toolbar">
+        <button id="nativeMediaImport">Import native media</button>
+        <button id="nativeMediaUseAnimation">Use as animation package source</button>
+      </div>
+      <pre id="nativeMediaOutput">Native media importer ready.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Media Studio</h2>
+      <p>Prepare a 240×320 PNG locally using Canvas. No upload, no cloud.</p>
+      <div class="toolbar">
+        <button id="mediaFitCover">Cover</button>
+        <button id="mediaFitContain">Contain</button>
+        <button id="mediaExportPng">Export PNG</button>
+        <button id="mediaUseAsPackage">Use as package image</button>
+      </div>
+      <div class="grid">
+        <label>Image
+          <input id="mediaFile" type="file" accept="image/*">
+        </label>
+        <label>Fit mode
+          <select id="mediaFitMode">
+            <option value="cover">Cover crop</option>
+            <option value="contain">Contain letterbox</option>
+            <option value="stretch">Stretch</option>
+          </select>
+        </label>
+        <label>Background
+          <input id="mediaBg" type="color" value="#11131a">
+        </label>
+        <label>Filename
+          <input id="mediaFileName" value="badge-image.png">
+        </label>
+      </div>
+      <div class="canvas-row">
+        <canvas id="mediaCanvas" width="240" height="320"></canvas>
+        <pre id="mediaOutput">Load an image.</pre>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Animation Studio</h2>
+      <p>Turn multiple local images into a 240×320 frame manifest.</p>
+      <div class="toolbar">
+        <button id="animBuild">Build animation</button>
+        <button id="animPlay">Play</button>
+        <button id="animStop">Stop</button>
+        <button id="animUseAsPackage">Use as package animation</button>
+      </div>
+      <div class="grid">
+        <label>Frame images
+          <input id="animFiles" type="file" accept="image/*" multiple>
+        </label>
+        <label>Duration ms
+          <input id="animDuration" type="number" value="120">
+        </label>
+        <label>Fit mode
+          <select id="animFitMode">
+            <option value="cover">Cover crop</option>
+            <option value="contain">Contain letterbox</option>
+            <option value="stretch">Stretch</option>
+          </select>
+        </label>
+        <label>Background
+          <input id="animBg" type="color" value="#11131a">
+        </label>
+      </div>
+      <div class="canvas-row">
+        <canvas id="animCanvas" width="240" height="320"></canvas>
+        <pre id="animOutput">Choose images.</pre>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Media Package Builder</h2>
+      <p>Bundle a static PNG or animation manifest into <code>.mcpkg.json</code>, then send it to FILE Transfer Simulator.</p>
+      <div class="toolbar">
+        <button id="pkgBuild">Build package</button>
+        <button id="pkgExport">Export package</button>
+        <button id="pkgSendToTransfer">Send to transfer simulator</button>
+      </div>
+      <div class="grid">
+        <label>Package name
+          <input id="pkgName" value="badge-media">
+        </label>
+        <label>Package type
+          <select id="pkgType">
+            <option value="image">Static image</option>
+            <option value="animation">Animation</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="pkgSource" spellcheck="false">Use Media Studio or Animation Studio buttons to fill this.</textarea>
+      <pre id="pkgOutput">Package not built.</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Workspace</h2>
+      <p>Save and restore the current browser-side project state.</p>
+      <div class="toolbar">
+        <button id="workspaceSaveLocal">Save to localStorage</button>
+        <button id="workspaceLoadLocal">Load from localStorage</button>
+        <button id="workspaceExport">Export workspace</button>
+        <button id="workspaceImportApply">Import pasted workspace</button>
+        <button id="workspaceMigrate">Migrate pasted workspace</button>
+      </div>
+      <textarea id="workspaceImport" spellcheck="false" placeholder="Paste exported workspace JSON here"></textarea>
+      <pre id="workspaceOutput">Workspace ready.</pre>
+    </section>
+
+
+
+
+    <section class="panel">
+      <h2>OTA Local Verifier</h2>
+      <p>Build or verify local synthetic <code>.mcot</code> packages. This does not flash firmware.</p>
+      <div class="grid">
+        <label>Input mode
+          <select id="otaVerifyInputMode">
+            <option value="hex">Hex</option>
+            <option value="text">Build from text</option>
+            <option value="base64">Base64</option>
+          </select>
+        </label>
+        <label>Image ID
+          <input id="otaVerifyImageId" type="number" value="1">
+        </label>
+        <label>Local package file
+          <input id="otaVerifyFile" type="file">
+        </label>
+      </div>
+      <textarea id="otaVerifyInput" spellcheck="false">Synthetic local OTA verifier sample.</textarea>
+      <div class="toolbar">
+        <button id="otaBuildLocal">Build synthetic MCOT</button>
+        <button id="otaVerifyLocal">Verify local MCOT</button>
+        <button id="otaLoadLocalFile">Load local file as hex</button>
+        <button id="otaPlanVerified">Plan OTA frames from verified package</button>
+      </div>
+      <pre id="otaVerifyOutput">OTA verifier ready.</pre>
+    </section>
+
+
+
+
+    <section class="panel">
+      <h2>JSON Rule Parser Lab</h2>
+      <p>Import/export safe JSON parser rules and test them against notification or response hex.</p>
+      <textarea id="jsonRuleText" spellcheck="false"></textarea>
+      <textarea id="jsonRuleHex" spellcheck="false">04 00 0a 00 09 00 06 00 00 00 01 00 00 00</textarea>
+      <div class="toolbar">
+        <button id="jsonRuleLoadSample">Load sample rules</button>
+        <button id="jsonRuleParse">Parse with JSON rules</button>
+        <button id="jsonRuleExport">Export rules</button>
+      </div>
+      <pre id="jsonRuleOutput">JSON rule parser ready.</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Transport Adapter Lab</h2>
+      <p>Normalize Web Bluetooth logs or Windows bridge console logs into the common transport log shape.</p>
+      <div class="grid">
+        <label>Adapter
+          <select id="transportAdapterType">
+            <option value="windows-bridge-log">Windows bridge log</option>
+            <option value="web-bluetooth">Web Bluetooth log JSON</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="transportAdapterInput" spellcheck="false">RX 6 bytes: 1f 00 02 00 14 00
+TX notify 11 bytes (Success): 1f 00 07 00 15 00 30 2e 31 2e 30</textarea>
+      <div class="toolbar">
+        <button id="transportAdapterNormalize">Normalize log</button>
+        <button id="transportAdapterExport">Export normalized log</button>
+      </div>
+      <pre id="transportAdapterOutput">Transport adapter ready.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Emulator Notify Simulator</h2>
+      <p>Generate virtual notify frames from CONTROL / FILE / OTA request frames using the active profile.</p>
+      <div class="toolbar">
+        <button id="emulatorUseBleFrame">Use BLE frame hex</button>
+        <button id="emulatorSimulateNotify">Simulate notify</button>
+        <button id="emulatorApplyToParsers">Apply first notify to parsers/scheduler</button>
+      </div>
+      <textarea id="emulatorFrameHex" spellcheck="false">1f 00 02 00 14 00</textarea>
+      <pre id="emulatorNotifyOutput">Emulator notify result.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Transfer Log Viewer</h2>
+      <p>Inspect BLE, scheduler, notify and transfer events with simple filters.</p>
+      <div class="grid">
+        <label>Filter type/status
+          <input id="transferLogFilter" placeholder="ack, write, failed, notify">
+        </label>
+        <label>Max entries
+          <input id="transferLogMax" type="number" value="100">
+        </label>
+      </div>
+      <div class="toolbar">
+        <button id="transferLogRefresh">Refresh log</button>
+        <button id="transferLogExport">Export combined log</button>
+        <button id="transferLogClear">Clear view logs</button>
+      </div>
+      <pre id="transferLogOutput">No log rendered.</pre>
+    </section>
+
+    <section class="panel">
+      <h2>FILE / OTA Response Parser</h2>
+      <p>Parse FILE or OTA response frames with profile response mappings.</p>
+      <div class="grid">
+        <label>Group
+          <select id="mappedResponseGroup">
+            <option value="file">FILE</option>
+            <option value="ota">OTA</option>
+          </select>
+        </label>
+        <label>Sample
+          <select id="mappedResponseSample">
+            <option value="04 00 0a 00 09 00 06 00 00 00 01 00 00 00">FILE data response ACK packet 1</option>
+            <option value="01 00 0a 00 29 00 06 00 00 00 01 00 00 00">OTA data response ACK packet 1</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="mappedResponseHex" spellcheck="false">04 00 0a 00 09 00 06 00 00 00 01 00 00 00</textarea>
+      <div class="toolbar">
+        <button id="mappedResponseLoadSample">Load sample</button>
+        <button id="mappedResponseParse">Parse response</button>
+      </div>
+      <pre id="mappedResponseOutput">Response parser ready.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>CONTROL Response Parser</h2>
+      <p>Parse CONTROL response frames using the active profile's <code>controlResponses</code> map.</p>
+      <div class="toolbar">
+        <button id="controlSampleVersion">Sample VERSION_RESPONSE</button>
+        <button id="controlSampleBattery">Sample BATTERY_RESPONSE</button>
+        <button id="controlParseResponse">Parse CONTROL response</button>
+      </div>
+      <textarea id="controlResponseHex" spellcheck="false">1f 00 07 00 15 00 30 2e 31 2e 30</textarea>
+      <pre id="controlResponseOutput">CONTROL parser ready.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Profile Frame Lab</h2>
+      <p>Build CONTROL / FILE / OTA frames using the active profile command map.</p>
+      <div class="grid">
+        <label>Group
+          <select id="profileFrameGroup">
+            <option value="control">CONTROL</option>
+            <option value="file">FILE</option>
+            <option value="ota">OTA</option>
+          </select>
+        </label>
+        <label>Command name or number
+          <input id="profileFrameCommand" value="GET_VERSION">
+        </label>
+        <label>Input mode
+          <select id="profileFrameInputMode">
+            <option value="text">Text</option>
+            <option value="hex">Hex</option>
+            <option value="base64">Base64</option>
+          </select>
+        </label>
+        <label>Fragment state
+          <input id="profileFrameFragment" type="number" value="0">
+        </label>
+      </div>
+      <textarea id="profileFrameData" spellcheck="false"></textarea>
+      <div class="toolbar">
+        <button id="buildProfileFrame">Build profile frame</button>
+        <button id="useProfileFrameForBle">Use for BLE write</button>
+        <button id="buildProfileOtaPlan">Build OTA frame plan</button>
+      </div>
+      <pre id="profileFrameOutput">Profile frame result.</pre>
+    </section>
+
+
+
+    <section class="panel">
+      <h2>Package Size Estimator</h2>
+      <p>Estimate package, frame and storage impact before transfer.</p>
+      <div class="toolbar">
+        <button id="estimatePackageSize">Estimate current package</button>
+        <button id="estimateTransferTime">Estimate transfer time</button>
+      </div>
+      <pre id="sizeEstimatorOutput">Build or paste a package first.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>FILE Transfer Simulator</h2>
+      <p>Paste a <code>.mcpkg.json</code> package or load the sample. The server can build generic FILE frames or profile-driven frames using the active profile.</p>
+      <div class="toolbar">
+        <button id="loadSample">Load sample package</button>
+        <button id="buildFrames">Build frames</button>
+        <button id="buildProfiledFrames">Build profiled frames</button>
+        <button id="simulateTransfer">Simulate transfer</button>
+      </div>
+      <div class="grid">
+        <label>MTU
+          <input id="mtu" type="number" value="247">
+        </label>
+        <label>Loss every N packets
+          <input id="lossEvery" type="number" value="0">
+        </label>
+      </div>
+      <textarea id="packageJson" spellcheck="false"></textarea>
+      <pre id="output">Ready.</pre>
+    </section>
+
+
+    
+
+    <section class="panel">
+      <h2>Notify Parser Lab</h2>
+      <p>Parse raw notification hex with generic or MoniCard-like sample parsers.</p>
+      <div class="grid">
+        <label>Parser
+          <select id="notifyParser">
+            <option value="auto">Auto fallback</option>
+            <option value="monicard-like-file-ack">MoniCard-like FILE ACK sample</option>
+            <option value="monicard-like-control">MoniCard-like CONTROL sample</option>
+            <option value="length-prefixed-command">Generic length-prefixed command</option>
+            <option value="json-line">JSON notify</option>
+            <option value="raw-hex">Raw hex</option>
+          </select>
+        </label>
+        <label>Sample
+          <select id="notifySample">
+            <option value="04 00 06 00 09 00 02 00 00 00">MoniCard-like FILE ACK success</option>
+            <option value="1f 00 07 00 15 00 30 2e 31 2e 30">MoniCard-like CONTROL version</option>
+            <option value='7b 22 74 79 70 65 22 3a 22 61 63 6b 22 2c 22 70 61 63 6b 65 74 22 3a 31 7d'>JSON ACK</option>
+          </select>
+        </label>
+      </div>
+      <textarea id="notifyHex" spellcheck="false">04 00 06 00 09 00 02 00 00 00</textarea>
+      <div class="toolbar">
+        <button id="notifyLoadSample">Load sample</button>
+        <button id="notifyParse">Parse notify</button>
+      </div>
+      <pre id="notifyOutput">Parser result.</pre>
+    </section>
+
+
+
+    <section class="panel">
+      <h2>Retry Scheduler Lab</h2>
+      <p>Connect parsed ACK/NACK results to a local retry scheduler. This is the bridge from “I received bytes” to “which frame should be resent?”.</p>
+      <div class="toolbar">
+        <button id="schedulerLoadFromFrames">Load generated frames</button>
+        <button id="schedulerSendNext">Send next virtual frame</button>
+        <button id="schedulerApplyNotify">Apply Notify Parser result</button>
+        <button id="schedulerTick">Tick timeout</button>
+        <button id="schedulerExport">Export scheduler log</button>
+      </div>
+      <div class="grid">
+        <label>Retry limit
+          <input id="schedulerRetryLimit" type="number" value="2">
+        </label>
+        <label>Timeout ms
+          <input id="schedulerTimeoutMs" type="number" value="300">
+        </label>
+      </div>
+      <pre id="schedulerOutput">Build FILE frames, then load scheduler.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>ACK Retry Simulator</h2>
+      <p>Local-only simulation for notification ACKs, timeouts, and retry planning.</p>
+      <div class="grid">
+        <label>Loss every N packets
+          <input id="ackLossEvery" type="number" value="0">
+        </label>
+        <label>Retry limit
+          <input id="ackRetryLimit" type="number" value="2">
+        </label>
+        <label>ACK delay ms
+          <input id="ackDelayMs" type="number" value="30">
+        </label>
+        <label>Timeout ms
+          <input id="ackTimeoutMs" type="number" value="300">
+        </label>
+      </div>
+      <div class="toolbar">
+        <button id="simulateAckRetry">Simulate ACK retry</button>
+      </div>
+      <pre id="ackOutput">Build frames, then simulate ACK retry.</pre>
+    </section>
+
+
+    <section class="panel">
+      <h2>Web Bluetooth Transport</h2>
+      <p>
+        Fully opt-in browser transport. It never scans or writes automatically.
+        Use only with devices you own or are authorized to test.
+      </p>
+
+      <div class="safety-box">
+        <label class="checkline">
+          <input id="bleConsentOwnDevice" type="checkbox">
+          I own this device or have explicit permission to test it.
+        </label>
+        <label class="checkline">
+          <input id="bleConsentNoFirmware" type="checkbox">
+          I understand this UI does not flash firmware and should not be used for unsafe writes.
+        </label>
+      </div>
+
+      <div class="grid">
+        <label>Service UUID
+          <input id="bleServiceUuid" value="7a2f0000-2b3c-4d5e-8f90-000000000000">
+        </label>
+        <label>Write Characteristic UUID
+          <input id="bleWriteCharUuid" value="7a2f0002-2b3c-4d5e-8f90-000000000000">
+        </label>
+        <label>Notify Characteristic UUID
+          <input id="bleNotifyCharUuid" value="7a2f0002-2b3c-4d5e-8f90-000000000000">
+        </label>
+      </div>
+
+      <div class="toolbar">
+        <button id="bleCheck">Check capability</button>
+        <button id="bleConnect">Connect</button>
+        <button id="bleDisconnect">Disconnect</button>
+        <button id="bleSubscribe">Subscribe notify</button>
+        <button id="bleClearLog">Clear BLE log</button>
+      </div>
+
+      <label>Frame Hex to Write
+        <textarea id="bleFrameHex" spellcheck="false"></textarea>
+      </label>
+
+      <div class="toolbar">
+        <button id="bleUseFirstFrame">Use first generated FILE frame</button>
+        <button id="bleWriteFrame">Write single frame</button>
+        <button id="bleWriteAllFrames">Write all generated FILE frames</button>
+        <button id="bleExportLog">Export BLE log</button>
+      </div>
+
+      <pre id="bleOutput">Web Bluetooth not checked.</pre>
+    </section>
+
+
+    <section class="panel legacy-ble-stub">
+      <h2>Web Bluetooth Opt-in Stub</h2>
+      <p>This section only checks browser capability. Actual writes are not performed unless a downstream user implements transport code.</p>
+      <button id="checkBluetooth">Check Web Bluetooth</button>
+      <pre id="bluetoothOutput">Not checked.</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Docs</h2>
+      <button id="loadDocs">Load docs list</button>
+      <div id="docs"></div>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

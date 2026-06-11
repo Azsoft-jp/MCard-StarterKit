@@ -1,0 +1,12 @@
+{
+  "schema": "mcard-starterkit.media-package.v1",
+  "name": "example-image",
+  "type": "image",
+  "target": {
+    "width": 240,
+    "height": 320
+  },
+  "image": {
+    "dataUrl": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAEAAgMAAAATnZ4uAAAADFBMVEUAAP8AAP8AAP8AAP+uSxeHAAAABXRSTlMA/P4CAKgNmXwAAAFlSURBVHja7c9BCsMwFIThHGH9/7vc3N2yGhaYB1u0NoP9CyRvr+IedVbz20r06Qkwu7V2Jd6tqM5Lrhu1d3Y9pcH9riJA8hJCRAkCEJECSCArEYCpBwJGuoWLyfUoTeFHuDYG4k60EZ36QaWO/HZq0J87nXFV7t9XC65BiEF3erdyP+PfDKmYziKIr8ip+Y8y2XnXr9t0cwWzdASv8uO+aLNcHS3FViXUbejpXuHyju5xOUeAAAAAAAAAAAAAAAgNw9gSJnIQiTFAAAAAElFTkSuQmCC"
+  }
+}

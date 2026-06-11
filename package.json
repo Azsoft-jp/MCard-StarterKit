@@ -1,0 +1,12 @@
+{
+  "name": "mcard-starterkit",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node apps/web/server.js",
+    "audit:cleanroom": "node tools/repo-audit/audit-cleanroom.mjs",
+    "test": "node tests/smoke-test.js && node tests/webbluetooth-static-test.js && node tests/windows-ble-peripheral-static-test.js && node tests/notify-parser-test.mjs && node tests/retry-scheduler-test.mjs && node tests/frame-builder-test.mjs && node tests/frame-builder-control-ota-test.mjs && node tests/ota-local-verifier-test.mjs && node tests/control-response-mapping-test.mjs && node tests/response-mapping-test.mjs && node tests/protocol-vectors-test.mjs && node tests/emulator-notify-test.mjs && node tests/workspace-migration-test.mjs && node tests/workspace-future-migration-test.mjs && node tests/browser-integration-smoke.mjs && node tests/ack-matcher-test.mjs && node tests/transport-test.mjs && node tests/json-rule-parser-test.mjs && node tests/media-tools-test.mjs && node tests/transfer-estimator-test.mjs && node tests/transport-adapters-test.mjs && node tests/public-release-docs-test.js && node tools/repo-audit/audit-cleanroom.mjs"
+  },
+  "license": "MIT",
+  "description": "Clean-room starter kit for local-first Bluetooth animated badge experiments."
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "mcard-starterkit.profile.v1",
+  "id": "generic-length-prefixed.sample",
+  "title": "Generic Length-prefixed BLE File Device",
+  "cleanRoomNotice": "Generic sample profile for starter-kit testing.",
+  "categories": {
+    "file": 4,
+    "control": 31,
+    "ota": 1
+  },
+  "frameModes": {
+    "control": "command-only",
+    "file": "length-prefixed-command",
+    "ota": "length-prefixed-command"
+  },
+  "notifyParsers": [
+    "length-prefixed-command",
+    "json-line",
+    "raw-hex"
+  ],
+  "fileCommands": {
+    "FILE_SEND_DATA_REQUEST": 8,
+    "FILE_SEND_DATA_RESPONSE": 9
+  },
+  "transfer": {
+    "defaultMtu": 247,
+    "minPacketSize": 256,
+    "maxPacketSize": 10240,
+    "packetFormula": "50*(mtu-7)-8",
+    "dataPacketCommandName": "FILE_SEND_DATA_REQUEST",
+    "includePacketIndex": true,
+    "packetIndexBytes": 4,
+    "packetIndexBase": 1
+  }
+}

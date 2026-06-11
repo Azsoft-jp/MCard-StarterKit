@@ -1,0 +1,6 @@
+MCard-StarterKit Windows BLE Peripheral
+Advertising started. Press Ctrl+C to stop.
+RX 6 bytes: 1f 00 02 00 14 00
+TX notify 11 bytes (Success): 1f 00 07 00 15 00 30 2e 31 2e 30
+RX 14 bytes: 04 00 0a 00 08 00 06 00 01 00 00 00 ab cd
+TX notify 14 bytes (Success): 04 00 0a 00 09 00 06 00 00 00 01 00 00 00

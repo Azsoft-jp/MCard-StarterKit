@@ -1,0 +1,214 @@
+{
+  "schema": "mcard-starterkit.profile.v1",
+  "id": "monicard-like.sample",
+  "title": "MoniCard-like Sample Profile",
+  "cleanRoomNotice": "Sample profile for user-owned MoniCard-like BLE display badges. Contains no vendor cloud data, no official assets, and no extracted app code.",
+  "categories": {
+    "ota": 1,
+    "file": 4,
+    "control": 31
+  },
+  "frameModes": {
+    "control": "command-only",
+    "file": "length-prefixed-command",
+    "ota": "length-prefixed-command"
+  },
+  "notifyParsers": [
+    "monicard-like-file-ack",
+    "monicard-like-control",
+    "json-line",
+    "raw-hex"
+  ],
+  "fileCommands": {
+    "START_REQUEST": 0,
+    "START_RESPONSE": 1,
+    "FILE_SEND_START_REQUEST": 2,
+    "FILE_SEND_START_RESPONSE": 3,
+    "FILE_SEND_DATA_REQUEST": 8,
+    "FILE_SEND_DATA_RESPONSE": 9,
+    "FILE_SEND_END_REQUEST": 6,
+    "FILE_SEND_END_RESPONSE": 7,
+    "END_REQUEST": 8,
+    "END_RESPONSE": 9,
+    "LOSE_CHECK_REQUEST": 10,
+    "LOSE_CHECK_RESPONSE": 11,
+    "FILE_INFO_REQUEST": 13,
+    "FILE_INFO_RESPONSE": 14
+  },
+  "controlCommands": {
+    "GET_SERIAL_NUMBER": 18,
+    "SERIAL_NUMBER_RESPONSE": 19,
+    "GET_VERSION": 20,
+    "VERSION_RESPONSE": 21,
+    "GET_BATTERY": 22,
+    "BATTERY_RESPONSE": 23,
+    "GET_STORAGE_INFO": 32,
+    "STORAGE_INFO_RESPONSE": 33,
+    "GET_CONTROL_INFO": 40,
+    "CONTROL_INFO_RESPONSE": 41,
+    "SET_CONTROL_INFO": 42,
+    "CONTROL_INFO_WRITE_RESPONSE": 43,
+    "GET_CARD_INFO": 50,
+    "CARD_INFO_RESPONSE": 51,
+    "SET_CARD_INFO": 52,
+    "CARD_INFO_WRITE_RESPONSE": 53,
+    "GET_CAROUSEL": 60,
+    "CAROUSEL_RESPONSE": 61,
+    "SET_CAROUSEL": 62,
+    "CAROUSEL_WRITE_RESPONSE": 63
+  },
+  "transfer": {
+    "defaultMtu": 247,
+    "minPacketSize": 256,
+    "maxPacketSize": 10240,
+    "packetFormula": "50*(mtu-7)-8",
+    "dataPacketCommandName": "FILE_SEND_DATA_REQUEST",
+    "includePacketIndex": true,
+    "packetIndexBytes": 4,
+    "packetIndexBase": 1
+  },
+  "otaCommands": {
+    "OTA_START_REQUEST": 38,
+    "OTA_START_RESPONSE": 39,
+    "OTA_DATA_REQUEST": 40,
+    "OTA_DATA_RESPONSE": 41,
+    "OTA_END_REQUEST": 42,
+    "OTA_END_RESPONSE": 43
+  },
+  "ota": {
+    "packetSize": 2048,
+    "dataPacketCommandName": "OTA_DATA_REQUEST",
+    "includePacketIndex": true,
+    "packetIndexBytes": 4,
+    "packetIndexBase": 1,
+    "transferEnabledByDefault": false
+  },
+  "controlResponses": {
+    "SERIAL_NUMBER_RESPONSE": {
+      "command": 19,
+      "request": "GET_SERIAL_NUMBER",
+      "encoding": "ascii",
+      "type": "info",
+      "message": "Serial number response."
+    },
+    "VERSION_RESPONSE": {
+      "command": 21,
+      "request": "GET_VERSION",
+      "encoding": "ascii",
+      "type": "info",
+      "message": "Firmware version response."
+    },
+    "BATTERY_RESPONSE": {
+      "command": 23,
+      "request": "GET_BATTERY",
+      "encoding": "u16le",
+      "type": "info",
+      "message": "Battery percent response."
+    },
+    "STORAGE_INFO_RESPONSE": {
+      "command": 33,
+      "request": "GET_STORAGE_INFO",
+      "encoding": "storage-info",
+      "type": "info",
+      "message": "Storage information response."
+    },
+    "CONTROL_INFO_RESPONSE": {
+      "command": 41,
+      "request": "GET_CONTROL_INFO",
+      "encoding": "settings-flags",
+      "type": "info",
+      "message": "Control settings response.",
+      "flags": [
+        "broadcast",
+        "buzzer",
+        "vibration",
+        "interestLight",
+        "interestSensing",
+        "ambient",
+        "reserved6",
+        "reserved7"
+      ]
+    },
+    "CAROUSEL_RESPONSE": {
+      "command": 61,
+      "request": "GET_CAROUSEL",
+      "encoding": "u16le",
+      "type": "info",
+      "message": "Carousel seconds response."
+    }
+  },
+  "fileResponses": {
+    "START_RESPONSE": {
+      "command": 1,
+      "request": "START_REQUEST",
+      "encoding": "status-u16le",
+      "type": "ack",
+      "message": "FILE transfer start response."
+    },
+    "FILE_SEND_START_RESPONSE": {
+      "command": 3,
+      "request": "FILE_SEND_START_REQUEST",
+      "encoding": "status-u16le",
+      "type": "ack",
+      "message": "FILE send-start response."
+    },
+    "FILE_SEND_DATA_RESPONSE": {
+      "command": 9,
+      "request": "FILE_SEND_DATA_REQUEST",
+      "encoding": "status-packet-u32le",
+      "type": "ack",
+      "message": "FILE data packet response."
+    },
+    "FILE_SEND_END_RESPONSE": {
+      "command": 7,
+      "request": "FILE_SEND_END_REQUEST",
+      "encoding": "status-u16le",
+      "type": "ack",
+      "message": "FILE send-end response."
+    },
+    "END_RESPONSE": {
+      "command": 9,
+      "request": "END_REQUEST",
+      "encoding": "status-packet-u32le",
+      "type": "ack",
+      "message": "FILE transfer end response."
+    },
+    "LOSE_CHECK_RESPONSE": {
+      "command": 11,
+      "request": "LOSE_CHECK_REQUEST",
+      "encoding": "lost-packet-list",
+      "type": "info",
+      "message": "FILE lost packet list response."
+    },
+    "FILE_INFO_RESPONSE": {
+      "command": 14,
+      "request": "FILE_INFO_REQUEST",
+      "encoding": "status-u16le",
+      "type": "info",
+      "message": "FILE info response."
+    }
+  },
+  "otaResponses": {
+    "OTA_START_RESPONSE": {
+      "command": 39,
+      "request": "OTA_START_REQUEST",
+      "encoding": "status-u16le",
+      "type": "ack",
+      "message": "OTA start response."
+    },
+    "OTA_DATA_RESPONSE": {
+      "command": 41,
+      "request": "OTA_DATA_REQUEST",
+      "encoding": "status-packet-u32le",
+      "type": "ack",
+      "message": "OTA data response."
+    },
+    "OTA_END_RESPONSE": {
+      "command": 43,
+      "request": "OTA_END_REQUEST",
+      "encoding": "status-u16le",
+      "type": "ack",
+      "message": "OTA end response."
+    }
+  }
+}

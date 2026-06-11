@@ -1,0 +1,9 @@
+Ref,Qty,Category,Example Part,Required Specs,Notes
+U1,1,BLE SoC,TBD,BLE 5.x; enough flash/RAM; GATT peripheral,Select after firmware architecture is frozen
+LCD1,1,Display,TBD,240x320 color display; SPI or parallel; low-power backlight,Match enclosure window and driver availability
+BAT1,1,Battery,TBD,LiPo; capacity based on runtime target,Add protection and certification review
+CHG1,1,Charger IC,TBD,USB-C input; LiPo charger; thermal regulation,Follow manufacturer reference design
+LED1..n,TBD,RGB LEDs,TBD,Addressable or discrete RGB,Optional ambient/interest light
+SW1..n,TBD,Buttons,TBD,Side or front tactile buttons,Optional UI controls
+J1,1,USB-C,TBD,Power and optional debug,ESD protection recommended
+TP*,TBD,Test points,TBD,SWD/UART/GND/VBAT,Required for bring-up

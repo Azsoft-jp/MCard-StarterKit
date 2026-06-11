@@ -1,0 +1,43 @@
+{
+  "schema": "mcard-starterkit.json-rule-parser.v1",
+  "id": "monicard-like-file-ack.rules",
+  "title": "MoniCard-like FILE ACK JSON rules",
+  "rules": [
+    {
+      "id": "file-data-response",
+      "when": {
+        "category": 4,
+        "commandAt4": 9
+      },
+      "type": "ack",
+      "commandName": "FILE_SEND_DATA_RESPONSE",
+      "statusField": {
+        "offset": 8,
+        "type": "u16le"
+      },
+      "packetIndexField": {
+        "offset": 10,
+        "type": "u32le"
+      },
+      "message": "FILE data response matched by JSON rule."
+    },
+    {
+      "id": "ota-data-response",
+      "when": {
+        "category": 1,
+        "commandAt4": 41
+      },
+      "type": "ack",
+      "commandName": "OTA_DATA_RESPONSE",
+      "statusField": {
+        "offset": 8,
+        "type": "u16le"
+      },
+      "packetIndexField": {
+        "offset": 10,
+        "type": "u32le"
+      },
+      "message": "OTA data response matched by JSON rule."
+    }
+  ]
+}

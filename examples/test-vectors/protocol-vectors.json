@@ -1,0 +1,46 @@
+{
+  "schema": "mcard-starterkit.protocol-vectors.v1",
+  "profile": "monicard-like.sample",
+  "vectors": [
+    {
+      "id": "control-get-version-request",
+      "kind": "control-frame",
+      "input": {
+        "group": "control",
+        "commandName": "GET_VERSION",
+        "hex": ""
+      },
+      "expect": {
+        "command": 20,
+        "prefixHex": "1f00"
+      }
+    },
+    {
+      "id": "control-version-response",
+      "kind": "control-response",
+      "hex": "1f 00 07 00 15 00 30 2e 31 2e 30",
+      "expect": {
+        "commandName": "VERSION_RESPONSE",
+        "value": "0.1.0"
+      }
+    },
+    {
+      "id": "file-data-response",
+      "kind": "file-response",
+      "hex": "04 00 0a 00 09 00 06 00 00 00 01 00 00 00",
+      "expect": {
+        "commandName": "FILE_SEND_DATA_RESPONSE",
+        "packetIndex": 1
+      }
+    },
+    {
+      "id": "ota-data-response",
+      "kind": "ota-response",
+      "hex": "01 00 0a 00 29 00 06 00 00 00 01 00 00 00",
+      "expect": {
+        "commandName": "OTA_DATA_RESPONSE",
+        "packetIndex": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "mcard-starterkit.retry-scenario.v1",
+  "description": "Example scheduler input where packet 1 is acknowledged through a parsed MoniCard-like ACK.",
+  "frames": [
+    {
+      "index": 1,
+      "frameHex": "04002c010800280189504e47"
+    }
+  ],
+  "notifications": [
+    {
+      "matched": true,
+      "type": "ack",
+      "parser": "monicard-like-file-ack",
+      "command": 9,
+      "packetIndex": 1,
+      "status": 0,
+      "message": "Packet acknowledged"
+    }
+  ],
+  "options": {
+    "retryLimit": 2,
+    "timeoutMs": 300
+  }
+}
