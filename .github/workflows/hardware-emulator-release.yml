@@ -1,0 +1,102 @@
+name: Hardware emulator release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build ${{ matrix.label }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: esp32
+            label: ESP32
+            project_dir: examples/esp32-ble-peripheral
+            environment: esp32dev
+          - id: nrf52
+            label: nRF52840 DK
+            project_dir: examples/nrf52-ble-peripheral
+            environment: nrf52840_dk_adafruit
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PlatformIO Core
+        run: python -m pip install "platformio==6.1.19"
+
+      - name: Build emulator
+        run: platformio run -d "${{ matrix.project_dir }}" -e "${{ matrix.environment }}"
+
+      - name: Stage release package
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            version="${GITHUB_REF_NAME}"
+          else
+            version="manual-${GITHUB_RUN_NUMBER}"
+          fi
+          tools/package-hardware-emulator.sh \
+            "${{ matrix.id }}" \
+            "${version}" \
+            release
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcardkit-emu-${{ matrix.id }}
+          path: release/*.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    name: Publish GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download board packages
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          pattern: mcardkit-emu-*
+          merge-multiple: true
+
+      - name: Create release checksums
+        run: |
+          cd release-assets
+          sha256sum *.zip > SHA256SUMS
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release create "${GITHUB_REF_NAME}" \
+              --title "MCardKit hardware emulator ${GITHUB_REF_NAME}" \
+              --notes "Public-safe, unofficial ESP32 and nRF52840 DK BLE emulator builds generated from this tag. These packages are not vendor firmware and do not implement real-device OTA flashing."
+          fi
+          gh release upload "${GITHUB_REF_NAME}" \
+            release-assets/*.zip \
+            release-assets/SHA256SUMS \
+            --clobber

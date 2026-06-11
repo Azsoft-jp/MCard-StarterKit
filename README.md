@@ -66,6 +66,7 @@ flowchart LR
 | **Emulator Notify Simulator** | Generate virtual notifications without hardware |
 | **Web Bluetooth Transport** | Write frames through browser BLE only after explicit user confirmation |
 | **Windows BLE Peripheral Sample** | Run a local GATT peripheral sample for transport testing on Windows |
+| **ESP32 / nRF52 BLE Emulators** | Use a physical development board as a local sample BLE peripheral |
 | **OTA Local Verifier** | Build and verify synthetic local package containers without flashing firmware |
 | **Transfer-time Estimator** | Estimate transfer duration from profile settings and packet counts |
 | **Workspace Tools** | Export/import local project state for repeatable experiments |
@@ -212,6 +213,8 @@ packages/
   json-rule-parser/            safe JSON parser rules
 
 examples/
+  esp32-ble-peripheral/         ESP32 hardware BLE emulator
+  nrf52-ble-peripheral/         nRF52840 hardware BLE emulator
   profiles/                    sample profiles
   plugins/                     JSON rule parser examples
   responses/                   response fixtures
@@ -238,6 +241,39 @@ docs-ja/
 | [Security model](docs/SECURITY.md) | Clean-room boundaries, threat model, and BLE safety rules |
 
 Japanese docs are available in [`docs-ja/`](docs-ja/README.md).
+
+## Hardware BLE emulator quickstart
+
+The ESP32 and nRF52 examples advertise as `MCardKit-Emu` with separate neutral
+write and notify characteristics. They return deterministic CONTROL responses
+and FILE/OTA planning ACKs after an explicit dashboard write.
+
+```bash
+pio run -d examples/esp32-ble-peripheral
+# or
+pio run -d examples/nrf52-ble-peripheral
+```
+
+See the example READMEs and the [transport guide](docs/TRANSPORT_GUIDE.md) for
+upload, serial monitor, and dashboard connection steps. These examples are
+public-safe compatibility emulators, not official firmware. They do not flash
+firmware to another device.
+
+### Prebuilt emulator packages
+
+Pushing a tag that starts with `v` runs
+`.github/workflows/hardware-emulator-release.yml`. The workflow builds both
+boards and attaches these packages to the matching GitHub Release:
+
+```text
+mcardkit-emu-esp32-<tag>.zip
+mcardkit-emu-nrf52-<tag>.zip
+SHA256SUMS
+```
+
+Each ZIP contains the generated emulator binary, matching public source/config,
+board-specific flashing notes, and internal checksums. A manual workflow run
+builds downloadable Actions artifacts but does not create a GitHub Release.
 
 ## Clean-room policy
 
