@@ -53,6 +53,26 @@ The Windows sample advertises a local GATT service and returns virtual notificat
 
 Build and test it on a Windows host with .NET 8, Windows SDK, and a Bluetooth adapter that supports peripheral role.
 
+### Prebuilt Windows package
+
+Tags matching `v*` run `.github/workflows/windows-emulator-release.yml` on a
+Windows GitHub Actions runner. The workflow publishes a self-contained x64 ZIP
+to the matching GitHub Release:
+
+```text
+mcardkit-windows-emulator-<tag>-win-x64.zip
+SHA256SUMS-windows
+```
+
+Extract the ZIP and run `.\run-local-test-peripheral.ps1`. The launcher supplies
+the required local-test consent flag and the neutral sample service, write, and
+notify UUIDs. A manual workflow run produces an Actions artifact without
+publishing a Release.
+
+The package is unofficial local test software for Windows 10 2004 or later. It
+requires a Bluetooth adapter and driver with peripheral-role support. It does
+not flash firmware or contact vendor services.
+
 ## ESP32 / nRF52 hardware BLE emulator
 
 The examples in `examples/esp32-ble-peripheral/` and

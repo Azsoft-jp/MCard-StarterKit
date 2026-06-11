@@ -1,8 +1,12 @@
 $ErrorActionPreference = "Stop"
 
-$Project = Join-Path $PSScriptRoot "..\MCardBlePeripheral\MCardBlePeripheral.csproj"
+$Executable = Join-Path $PSScriptRoot "app\MCardBlePeripheral.exe"
 
-dotnet run --project $Project -c Release -- `
+if (-not (Test-Path $Executable)) {
+  throw "Packaged emulator executable not found: $Executable"
+}
+
+& $Executable `
   --i-understand-this-is-local-test-peripheral `
   --service "7a2f0000-2b3c-4d5e-8f90-000000000000" `
   --write "7a2f0002-2b3c-4d5e-8f90-000000000000" `
