@@ -85,9 +85,7 @@ fi
 
 (
   cd "${package_dir}"
-  find . -type f ! -name SHA256SUMS -print0 \
-    | sort -z \
-    | xargs -0 sha256sum > SHA256SUMS
+  node "${root}/tools/generate-sha256sums.mjs" . > SHA256SUMS
 )
 
 mkdir -p "${output_dir}"

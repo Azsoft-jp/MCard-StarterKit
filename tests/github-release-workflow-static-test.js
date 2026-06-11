@@ -8,9 +8,11 @@ const workflowPath = path.join(
   '.github/workflows/hardware-emulator-release.yml'
 );
 const packagerPath = path.join(root, 'tools/package-hardware-emulator.sh');
+const checksumToolPath = path.join(root, 'tools/generate-sha256sums.mjs');
 
 assert.ok(fs.existsSync(workflowPath), 'hardware emulator release workflow missing');
 assert.ok(fs.existsSync(packagerPath), 'hardware emulator packager missing');
+assert.ok(fs.existsSync(checksumToolPath), 'portable checksum generator missing');
 assert.ok(
   fs.statSync(packagerPath).mode & 0o111,
   'hardware emulator packager must be executable'
@@ -18,6 +20,7 @@ assert.ok(
 
 const workflow = fs.readFileSync(workflowPath, 'utf8');
 const packager = fs.readFileSync(packagerPath, 'utf8');
+const checksumTool = fs.readFileSync(checksumToolPath, 'utf8');
 
 assert.match(workflow, /tags:\s*\n\s+- "v\*"/);
 assert.match(workflow, /platformio==6\.1\.19/);
@@ -38,6 +41,10 @@ assert.doesNotMatch(workflow, /OTA flashing against real devices/i);
 assert.match(packager, /boot_app0\.bin/);
 assert.match(packager, /firmware_signature\.bin/);
 assert.match(packager, /SHA256SUMS/);
+assert.match(packager, /generate-sha256sums\.mjs/);
 assert.match(packager, /not vendor firmware/i);
+assert.doesNotMatch(packager, /sort -z|\bsha256sum\b/);
+assert.match(checksumTool, /createHash\('sha256'\)/);
+assert.match(checksumTool, /\.sort\(\)/);
 
 console.log('github release workflow static test passed');

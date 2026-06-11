@@ -1,5 +1,6 @@
 const assert = require('assert');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 
 const root = path.join(__dirname, '..');
@@ -91,12 +92,14 @@ const forbiddenExtensions = new Set([
   '.wxapkg',
   '.bsdiff'
 ]);
+const generatedDirectories = new Set(['.pio']);
 
 function walk(directory) {
   const files = [];
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const fullPath = path.join(directory, entry.name);
     if (entry.isDirectory()) {
+      if (generatedDirectories.has(entry.name)) continue;
       files.push(...walk(fullPath));
     } else {
       files.push(fullPath);
@@ -104,6 +107,17 @@ function walk(directory) {
   }
   return files;
 }
+
+const walkFixture = fs.mkdtempSync(path.join(os.tmpdir(), 'mcard-hardware-scan-'));
+fs.mkdirSync(path.join(walkFixture, '.pio'));
+fs.writeFileSync(path.join(walkFixture, '.pio', 'firmware.bin'), 'generated');
+fs.writeFileSync(path.join(walkFixture, 'source.txt'), 'public source');
+assert.deepStrictEqual(
+  walk(walkFixture).map((file) => path.basename(file)),
+  ['source.txt'],
+  'generated .pio files must be excluded from artifact scans'
+);
+fs.rmSync(walkFixture, { recursive: true, force: true });
 
 for (const example of examples) {
   for (const file of walk(path.join(root, example))) {
