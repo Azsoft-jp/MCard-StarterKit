@@ -24,13 +24,15 @@ const checksumTool = fs.readFileSync(checksumToolPath, 'utf8');
 
 assert.match(workflow, /tags:\s*\n\s+- "v\*"/);
 assert.match(workflow, /platformio==6\.1\.19/);
+assert.match(workflow, /actions\/checkout@v6/);
+assert.match(workflow, /actions\/setup-python@v6/);
 assert.match(workflow, /examples\/esp32-ble-peripheral/);
 assert.match(workflow, /environment: esp32dev/);
 assert.match(workflow, /examples\/nrf52-ble-peripheral/);
 assert.match(workflow, /environment: nrf52840_dk_adafruit/);
 assert.match(workflow, /tools\/package-hardware-emulator\.sh/);
-assert.match(workflow, /actions\/upload-artifact@v4/);
-assert.match(workflow, /actions\/download-artifact@v4/);
+assert.match(workflow, /actions\/upload-artifact@v7/);
+assert.match(workflow, /actions\/download-artifact@v8/);
 assert.match(workflow, /gh release upload/);
 assert.match(workflow, /SHA256SUMS/);
 assert.match(workflow, /contents: write/);
