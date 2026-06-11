@@ -51,6 +51,25 @@ Windows sampleはlocal GATT serviceをadvertiseし、frame writeに対してvirt
 
 Windows + .NET 8 + Windows SDK + peripheral role対応Bluetooth adapter上でbuild/testしてください。
 
+### Prebuilt Windows package
+
+`v*` tagをpushすると `.github/workflows/windows-emulator-release.yml` がWindows
+GitHub Actions runner上で動作し、self-contained x64 ZIPを対応するGitHub Release
+へ公開します。
+
+```text
+mcardkit-windows-emulator-<tag>-win-x64.zip
+SHA256SUMS-windows
+```
+
+ZIPを展開して `run-local-test-peripheral.ps1` を実行します。launcherは必須の
+local-test consent flagとneutral sample service/write/notify UUIDを渡します。
+workflowを手動実行した場合はActions artifactだけを生成し、Releaseは公開しません。
+
+packageはWindows 10 2004以降向けのunofficial local test softwareです。peripheral
+role対応のBluetooth adapterとdriverが必要です。firmware flashingやvendor service
+への接続は行いません。
+
 ## Central and peripheral roles
 
 ```mermaid

@@ -15,6 +15,26 @@ This is an opt-in Windows GATT peripheral sample for MCard-StarterKit.
 apps/windows-ble-peripheral/scripts/build.ps1
 ```
 
+## Prebuilt release package
+
+Tags matching `v*` trigger
+`.github/workflows/windows-emulator-release.yml`. The workflow publishes a
+self-contained Windows x64 package:
+
+```text
+mcardkit-windows-emulator-<tag>-win-x64.zip
+```
+
+Extract the ZIP and run:
+
+```powershell
+.\run-local-test-peripheral.ps1
+```
+
+The package contains the published executable, launcher, source README,
+package notice, and per-file SHA-256 checksums. A manual workflow run creates a
+temporary Actions artifact without publishing a GitHub Release.
+
 ## Run
 
 ```powershell

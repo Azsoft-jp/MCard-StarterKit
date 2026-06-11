@@ -239,6 +239,20 @@ docs-ja/
 
 Japanese docs are available in [`docs-ja/`](docs-ja/README.md).
 
+## Windows emulator releases
+
+Pushing a `v*` tag runs the Windows emulator release workflow and attaches a
+self-contained x64 package to the matching GitHub Release:
+
+```text
+mcardkit-windows-emulator-<tag>-win-x64.zip
+SHA256SUMS-windows
+```
+
+The package includes an explicit-consent launcher, checksums, and the local
+GATT peripheral executable. It is unofficial local test software and does not
+flash firmware or contact vendor services.
+
 ## Clean-room policy
 
 Do not add:
