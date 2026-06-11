@@ -1,0 +1,19 @@
+* V1 optional vibration motor low-side NMOS estimate
+* Motor is a lumped R-L load. Verify inrush, winding values, MOSFET and diode.
+VBAT vbat 0 4.2
+VGATE gate 0 PULSE(0 3.3 1m 1u 1u 8m 15m)
+RG gate g 47
+RPD g 0 100k
+M1 drain g 0 0 NMOS
+RMOTOR vbat motor 12
+LMOTOR motor drain 1m
+DFLY drain vbat DFLY
+.model NMOS NMOS(Level=1 Vto=1.2 Kp=4 Rs=0.05 Rd=0.05)
+.model DFLY D(Is=1n Rs=0.2 N=1.2)
+.tran 5u 20m
+.measure tran IDMAX MAX i(VBAT)
+.control
+run
+print IDMAX
+.endc
+.end

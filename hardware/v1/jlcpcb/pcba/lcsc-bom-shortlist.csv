@@ -1,0 +1,8 @@
+Block,Part Family,Candidate Part,Package,Why Considered,JLC-LCSC Verification,Risk,Fallback,Official Datasheet,TODO
+MCU-BLE,ESP32-S3,ESP32-S3-WROOM-1-N16R8,Module,Preferred memory target,UNVERIFIED,Antenna and height,ESP32-S3-WROOM-1U,https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf,VERIFY LCSC number stock lifecycle and PCBA class
+MCU-BLE,ESP32-S3,ESP32-S3-MINI-1-N8,Module,Smaller module option,UNVERIFIED,Requested N8R8 variant not confirmed,WROOM-1-N16R8,https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_en.pdf,VERIFY exact supported variant
+Dynamic NFC,ST25DV,ST25DV04KC-IE6S3,TSSOP-8,Active I2C dynamic tag,UNVERIFIED,Antenna tuning,NT3H2111W0FHK,https://www.st.com/en/nfc/st25dv04kc.html,VERIFY LCSC number
+Dynamic NFC fallback,NTAG I2C plus,NT3H2111W0FHK,XQFN-8,NXP fallback,UNVERIFIED,Package and tuning,ST25DV04KC,https://www.nxp.com/products/rfid-nfc/nfc-hf/connected-nfc-tags/ntag-i2c-plus-2k-nfc-forum-type-2-tag-with-i2c-interface:NTAG_I2C,VERIFY suffix and LCSC number
+Charger,LiPo power path,BQ24074,VQFN-16,Power-path charger,UNVERIFIED,Thermal and cost,MCP73871,https://www.ti.com/product/BQ24074,VERIFY charge architecture and LCSC number
+Regulator,3.3V buck-boost,TPS63031,VSON-10,Covers LiPo range,UNVERIFIED,Layout and stock,TPS63020 family,https://www.ti.com/product/TPS63031,VERIFY load transient and LCSC number
+USB ESD,Low-cap TVS,TPD2EUSB30,SOT-23-6,USB2 protection,UNVERIFIED,Capacitance and placement,USBLC6-2SC6,https://www.ti.com/product/TPD2EUSB30,VERIFY LCSC number
