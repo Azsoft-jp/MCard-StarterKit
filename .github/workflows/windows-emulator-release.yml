@@ -86,7 +86,8 @@ jobs:
           if ! gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
             gh release create "${GITHUB_REF_NAME}" \
               --title "MCardKit ${GITHUB_REF_NAME}" \
-              --notes "Public-safe, unofficial MCard-StarterKit emulator builds generated from this tag."
+              --notes "Public-safe, unofficial MCard-StarterKit emulator builds generated from this tag." \
+              || gh release view "${GITHUB_REF_NAME}" >/dev/null
           fi
           gh release upload "${GITHUB_REF_NAME}" \
             release-assets/*.zip \

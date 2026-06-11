@@ -55,6 +55,7 @@ assert.match(workflow, /dotnet restore/);
 assert.match(workflow, /--runtime win-x64/);
 assert.match(workflow, /actions\/upload-artifact@v4/);
 assert.match(workflow, /gh release upload/);
+assert.match(workflow, /\|\| gh release view/);
 assert.match(workflow, /SHA256SUMS-windows/);
 assert.doesNotMatch(workflow, /pull_request:/);
 assert.match(transportGuide, /`\.\\run-local-test-peripheral\.ps1`/);
