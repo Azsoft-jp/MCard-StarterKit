@@ -8,8 +8,4 @@ ILOAD vout 0 PULSE(0.08 0.65 1m 2u 2u 2m 5m)
 .tran 2u 10m
 .measure tran VMIN MIN v(vout) FROM=1m TO=4m
 .measure tran VMAX MAX v(vout) FROM=0 TO=10m
-.control
-run
-print VMIN VMAX
-.endc
 .end

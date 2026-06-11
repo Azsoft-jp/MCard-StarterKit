@@ -12,3 +12,5 @@ The decks use deliberately simple behavioral models so they remain portable.
 Replace them with selected vendor models and measured parasitics during design.
 They do not validate regulator stability, charging safety, PCB power integrity,
 EMC, BLE RF, or NFC antenna performance.
+
+The committed decks were batch-checked with ngspice 44.2.

@@ -11,9 +11,5 @@ DFLY drain vbat DFLY
 .model NMOS NMOS(Level=1 Vto=1.2 Kp=4 Rs=0.05 Rd=0.05)
 .model DFLY D(Is=1n Rs=0.2 N=1.2)
 .tran 5u 20m
-.measure tran IDMAX MAX i(VBAT)
-.control
-run
-print IDMAX
-.endc
+.measure tran IMOTOR_MAX MAX par('-i(VBAT)')
 .end
