@@ -35,6 +35,9 @@ The package contains the published executable, launcher, source README,
 package notice, and per-file SHA-256 checksums. A manual workflow run creates a
 temporary Actions artifact without publishing a GitHub Release.
 
+The workflow uses `actions/setup-dotnet` with .NET 8, restores the `win-x64`
+runtime dependencies explicitly, and then publishes the self-contained app.
+
 ## Run
 
 ```powershell

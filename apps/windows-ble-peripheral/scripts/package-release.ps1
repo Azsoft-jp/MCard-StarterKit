@@ -2,7 +2,9 @@ param(
   [Parameter(Mandatory = $true)]
   [string]$Version,
 
-  [string]$OutputDirectory = "release"
+  [string]$OutputDirectory = "release",
+
+  [switch]$NoRestore
 )
 
 $ErrorActionPreference = "Stop"
@@ -24,14 +26,22 @@ if (Test-Path $ArchivePath) {
 
 New-Item $PublishDirectory -ItemType Directory -Force | Out-Null
 
-dotnet publish $Project `
-  --configuration Release `
-  --runtime win-x64 `
-  --self-contained true `
-  -p:Platform=x64 `
-  -p:DebugType=None `
-  -p:DebugSymbols=false `
-  --output $PublishDirectory
+$PublishArguments = @(
+  "publish",
+  $Project,
+  "--configuration", "Release",
+  "--runtime", "win-x64",
+  "--self-contained", "true",
+  "-p:Platform=x64",
+  "-p:DebugType=None",
+  "-p:DebugSymbols=false",
+  "--output", $PublishDirectory
+)
+if ($NoRestore) {
+  $PublishArguments += "--no-restore"
+}
+
+dotnet @PublishArguments
 
 Copy-Item (Join-Path $ProjectRoot "apps\windows-ble-peripheral\README.md") `
   (Join-Path $PackageDirectory "README.md")
