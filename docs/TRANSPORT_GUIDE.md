@@ -61,7 +61,7 @@ mcardkit-windows-emulator-<tag>-win-x64.zip
 SHA256SUMS-windows
 ```
 
-Extract the ZIP and run `run-local-test-peripheral.ps1`. The launcher supplies
+Extract the ZIP and run `.\run-local-test-peripheral.ps1`. The launcher supplies
 the required local-test consent flag and the neutral sample service, write, and
 notify UUIDs. A manual workflow run produces an Actions artifact without
 publishing a Release.

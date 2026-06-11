@@ -62,7 +62,7 @@ mcardkit-windows-emulator-<tag>-win-x64.zip
 SHA256SUMS-windows
 ```
 
-ZIPを展開して `run-local-test-peripheral.ps1` を実行します。launcherは必須の
+ZIPを展開して `.\run-local-test-peripheral.ps1` を実行します。launcherは必須の
 local-test consent flagとneutral sample service/write/notify UUIDを渡します。
 workflowを手動実行した場合はActions artifactだけを生成し、Releaseは公開しません。
 

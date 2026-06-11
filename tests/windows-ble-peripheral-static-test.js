@@ -21,6 +21,14 @@ const workflow = fs.readFileSync(
   path.join(__dirname, '../.github/workflows/windows-emulator-release.yml'),
   'utf8'
 );
+const transportGuide = fs.readFileSync(
+  path.join(__dirname, '../docs/TRANSPORT_GUIDE.md'),
+  'utf8'
+);
+const transportGuideJa = fs.readFileSync(
+  path.join(__dirname, '../docs-ja/TRANSPORT_GUIDE.md'),
+  'utf8'
+);
 
 assert.match(csproj, /net8\.0-windows10\.0\.19041\.0/);
 assert.match(program, /GattServiceProvider/);
@@ -49,5 +57,7 @@ assert.match(workflow, /actions\/upload-artifact@v4/);
 assert.match(workflow, /gh release upload/);
 assert.match(workflow, /SHA256SUMS-windows/);
 assert.doesNotMatch(workflow, /pull_request:/);
+assert.match(transportGuide, /`\.\\run-local-test-peripheral\.ps1`/);
+assert.match(transportGuideJa, /`\.\\run-local-test-peripheral\.ps1`/);
 
 console.log('windows ble peripheral static test passed');
