@@ -6,8 +6,10 @@ It is not a production-ready design or an official compatibility claim.
 ## Fixed V1 envelope
 
 - PCB: 52 x 72 mm, 0.8 mm preferred; 1.0 mm fallback.
+- Enclosure: 6.8 mm nominal LCD/body region; 8.5 mm lower LiPo pod maximum.
 - Front: 2.0 inch-class 240 x 320 IPS TFT.
 - Rear: protected LiPo and resin back case.
+- Top: integral resin strap bridge outside the PCB, with textile-only hardware.
 - Radio: ESP32-S3 module at a board edge; exact antenna keepout is mandatory.
 - NFC: dynamic tag only, with a perimeter loop and no reader/writer function.
 - I/O: USB-C power/programming, three buttons, side RGB light, piezo, optional vibration.
@@ -22,7 +24,8 @@ The current packaging proposal is defined by
 [PRODUCT_DESIGN.md](PRODUCT_DESIGN.md),
 [BOM_SELECTED_V1.md](BOM_SELECTED_V1.md), and the machine-readable
 [mechanical/v1-envelope.json](mechanical/v1-envelope.json). The display and
-LiPo keepouts are deliberately separated; run
+LiPo keepouts are deliberately separated, and the LCD region is thinner than
+the LiPo pod; run
 `python3 tools/kicad-gen/validate_v1_design.py` after changing their
 coordinates.
 

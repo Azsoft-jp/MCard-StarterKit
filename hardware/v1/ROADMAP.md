@@ -33,12 +33,16 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 ## Acceptance criteria
 
 - Overall design targets 8.5 mm, not 6.7 mm, with a documented tolerance stack.
+- The LCD region is thinner than the LiPo region; current nominal targets are
+  6.8 mm and 8.5 mm respectively.
 - Display and expanded LiPo keepouts have no XY overlap and pass the deterministic
   envelope validator.
 - Resin V1 enclosure contains no metal over BLE or NFC antenna regions.
 - PCB is 52 x 72 mm and uses 0.8 mm or explicitly approved 1.0 mm thickness.
 - Selected display, battery, USB-C, module, connector and side controls fit the
   reviewed front/rear placement zones with assembly tolerances.
+- The resin strap bridge uses no PCB hole or metal fitting, clears BLE/NFC
+  review zones, and passes defined pull/fatigue/drop tests.
 - Exact module antenna keepout, strapping pins, USB, charging, and power rules are verified.
 - Dynamic NFC tag and tuned loop are reviewed; no NFC reader/writer is implemented.
 - BOM/CPL use verified MPNs, footprints, rotations, and current JLC/LCSC status.

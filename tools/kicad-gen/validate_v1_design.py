@@ -25,6 +25,7 @@ REQUIRED = [
     "jlcpcb/pcba/lcsc-bom-selected.csv",
     "mechanical/v1-envelope.json", "mechanical/v1-floorplan.svg",
     "mechanical/v1-stackup.svg", "mechanical/v1-product-concept.png",
+    "mechanical/v1-product-concept-v2.png",
     "simulation/power_3v3_load_step.cir", "simulation/rgb_led_current_limit.cir",
     "simulation/vibration_motor_driver.cir",
 ]
@@ -105,8 +106,18 @@ def main():
         errors += fail("mechanical envelope preferred board thickness must be 0.8 mm")
     if envelope["case"]["target_external_thickness"] != 8.5:
         errors += fail("case target thickness must remain 8.5 mm")
-
     placements = {item["id"]: item for item in envelope["placements"]}
+    display_region = envelope["case"]["display_region_external_thickness"]
+    battery_region = envelope["case"]["battery_region_external_thickness"]
+    if display_region >= battery_region:
+        errors += fail("LCD region must be thinner than LiPo region")
+    if battery_region != envelope["case"]["target_external_thickness"]:
+        errors += fail("LiPo region must define the 8.5 mm maximum thickness")
+    if envelope["case"]["step_transition_y"] > placements.get(
+        "display_panel", {"y": 0}
+    )["y"]:
+        errors += fail("case thickness transition intrudes into display region")
+
     for item in placements.values():
         if (
             item["x"] < 0
@@ -127,6 +138,23 @@ def main():
                 f"gap {rule['a']} / {rule['b']} is {actual:.2f} mm, "
                 f"requires {rule['gap']:.2f} mm"
             )
+
+    features = {item["id"]: item for item in envelope["enclosure_features"]}
+    bridge = features["strap_bridge"]
+    opening = features["strap_opening"]
+    if bridge["y"] < board["height"]:
+        errors += fail("strap bridge must remain outside the PCB outline")
+    if not (
+        bridge["x"] <= opening["x"]
+        and bridge["y"] <= opening["y"]
+        and opening["x"] + opening["width"] <= bridge["x"] + bridge["width"]
+        and opening["y"] + opening["height"] <= bridge["y"] + bridge["height"]
+    ):
+        errors += fail("strap opening must remain inside strap bridge")
+    if rectangles_overlap(bridge, placements["ble_antenna_keepout"]):
+        errors += fail("strap bridge overlaps BLE antenna keepout")
+    if "non-metal" not in opening["hardware"]:
+        errors += fail("V1 strap hardware must remain non-metal")
 
     for circuit in (V1 / "simulation").glob("*.cir"):
         body = circuit.read_text(encoding="utf-8").lower()

@@ -7,18 +7,29 @@ The source of truth for planning coordinates is
 ## Product character
 
 - Portrait badge, nominal PCB envelope 52 x 72 mm.
-- Maximum target thickness: 8.5 mm.
+- Two-level enclosure: 6.8 mm nominal over the LCD region and 8.5 mm maximum
+  only over the lower LiPo pod.
 - Dark smoke or opaque resin back; no aluminum in V1.
 - Flush front lens over a 2.0 inch-class portrait display.
 - Three left-side buttons with distinguishable cap geometry.
 - Diffused RGB light pipe on the right edge, outside the BLE antenna window.
 - USB-C opening offset to the bottom-right so it does not occupy the battery
   volume.
-- Rounded outside corners suitable for resin printing and hand finishing.
+- Integrated top-center strap bridge made from the enclosure resin, using a
+  textile strap with no metal eyelet or ring.
+- Original industrial science-fiction access-credential styling: segmented
+  protective frame, restrained safety-orange accents, and abstract technical
+  markings. Do not copy game logos, faction marks, UI, typography, characters,
+  or proprietary assets.
+- Rounded and chamfered features suitable for resin printing and hand
+  finishing.
 
-The generated [concept image](mechanical/v1-product-concept.png) communicates
-appearance only. It is not dimensionally accurate and must not be traced for
-CAD, PCB, openings, bosses, or antenna clearances.
+The current generated
+[concept image](mechanical/v1-product-concept-v2.png) communicates appearance
+and the stepped-thickness intent only. It is not dimensionally accurate and
+must not be traced for CAD, PCB, openings, bosses, or antenna clearances. The
+earlier [concept](mechanical/v1-product-concept.png) is retained as design
+history.
 
 ## Packaging decision
 
@@ -37,13 +48,48 @@ The 0.5 mm planning gap is only enough to prove geometric separation.
 `TODO: VERIFY` increase it after the display tail, cell pouch seal, insulation,
 assembly tolerance, and swelling limits are measured.
 
+## Stepped thickness
+
+| Region | Nominal external thickness | Rule |
+|---|---:|---|
+| LCD/body, y=22.5-72 mm | 6.8 mm | Must remain thinner than the LiPo region |
+| LiPo pod, y=0-22.5 mm | 8.5 mm | V1 maximum; local lower-body expansion only |
+| Strap bridge, above PCB | 6.8 mm target | Local ribs may vary only after strength and RF review |
+
+The transition shoulder starts at the expanded battery keepout boundary. Use a
+fillet or short ramp instead of a sharp step to reduce resin stress and avoid a
+snag edge. The LCD region must not inherit the 8.5 mm battery depth merely to
+simplify the rear cover.
+
+Nominal stack allowances currently leave about 0.2-0.5 mm less margin in the
+LCD zone than the earlier uniform case concept. `TODO: VERIFY` the display,
+module shield, solder, adhesive, lens, rear wall, and assembly tolerance with
+physical samples before freezing 6.8 mm.
+
+## Strap architecture
+
+- The strap bridge is an enclosure extension above the 52 x 72 mm PCB; it does
+  not require a PCB slot or plated/mechanical hole.
+- Planning bridge envelope: x=17-35 mm, y=72-81 mm, with a 10 x 3.5 mm textile
+  opening. Coordinates remain `TODO: VERIFY` for the selected strap webbing and
+  JLC3DP resin.
+- Transfer strap load through two integral side shoulders into the case frame,
+  not through the lens, display, PCB edge, or NFC loop.
+- Use a soft woven textile loop. Metal rings, eyelets, clips, buckles, and
+  magnetic attachments are prohibited in V1 near BLE/NFC.
+- Keep the upper-right BLE no-metal volume clear. The centered bridge is
+  horizontally separated from that antenna zone.
+- Add generous internal radii and validate drop, pull, torsion, and resin aging.
+  A generated product render is not strength evidence.
+
 ## Board zoning
 
 - Upper-right rear: ESP32-S3-MINI rotated with the PCB antenna at the board
   edge. No display metal, NFC copper, battery, fastener, pigment with metal
   content, or case metal may enter the final verified antenna keepout.
 - Perimeter: NFC loop, except where it must detour around the BLE keepout,
-  USB-C shell, mounting features, and ESD return path.
+  USB-C shell, mounting features, ESD return path, and strap load-transfer
+  shoulders.
 - Lower center rear: battery only; no tall components under its keepout.
 - Bottom-right: USB-C, ESD, CC resistors, and short USB routing.
 - Lower-left: charger and power conversion, with copper area reserved for
@@ -69,10 +115,11 @@ assembly tolerance, and swelling limits are measured.
 
 1. Import the versioned PCB STEP and lock it as a referenced component.
 2. Create separate components for panel, FPC/tail, battery keepout, lens,
-   buttons, light pipe, USB plug access, and resin halves.
+   buttons, light pipe, USB plug access, strap bridge/webbing, and resin halves.
 3. Drive dimensions from `v1-envelope.json`; do not hand-measure the concept
    image.
 4. Model a removable rear or full-rear service strategy without a metal plate.
+   The service split must preserve the 6.8/8.5 mm stepped exterior.
 5. Add datum features that make the front lens, panel active area, and PCB
    origin inspectable.
 6. Export STEP and 2D opening drawings for the mechanical-envelope gate.
@@ -88,3 +135,7 @@ assembly tolerance, and swelling limits are measured.
 - `TODO: VERIFY` antenna keepout with the current Espressif datasheet revision
   and an RF reviewer.
 - `TODO: VERIFY` piezo sound path and actual stack height.
+- `TODO: VERIFY` 6.8 mm LCD-region fit using measured samples and a complete
+  tolerance stack.
+- `TODO: VERIFY` strap webbing width, bridge wall/radius, selected resin
+  strength, pull-test load, fatigue, and drop-test acceptance criteria.

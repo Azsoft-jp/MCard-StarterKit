@@ -11,9 +11,36 @@
   },
   "case": {
     "target_external_thickness": 8.5,
+    "display_region_external_thickness": 6.8,
+    "battery_region_external_thickness": 8.5,
+    "step_transition_y": 22.5,
+    "body_external_width": 54.0,
+    "body_external_height": 74.0,
+    "overall_height_with_strap_bridge": 82.0,
     "material": "resin",
     "metal_back_allowed": false
   },
+  "enclosure_features": [
+    {
+      "id": "strap_bridge",
+      "x": 17.0,
+      "y": 72.0,
+      "width": 18.0,
+      "height": 9.0,
+      "external_thickness": 6.8,
+      "material": "same resin as enclosure",
+      "load_path": "integral shoulders outside PCB outline; no PCB hole"
+    },
+    {
+      "id": "strap_opening",
+      "x": 21.0,
+      "y": 75.0,
+      "width": 10.0,
+      "height": 3.5,
+      "material": "void",
+      "hardware": "non-metal textile strap only"
+    }
+  ],
   "placements": [
     {
       "id": "display_panel",

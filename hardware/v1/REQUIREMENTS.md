@@ -12,8 +12,12 @@
 
 - PCB outline: 52 x 72 mm.
 - PCB thickness: 0.8 mm target, 1.0 mm fallback after flex/availability review.
-- Finished thickness target: 8.5 mm class, with an explicit component stack.
+- Finished thickness: 6.8 mm nominal in the LCD/body region and 8.5 mm maximum
+  in the lower LiPo pod, with explicit regional component stacks.
 - Display faces front; battery and resin back case are rear.
+- A top-center resin strap bridge sits outside the PCB outline and uses a
+  non-metal textile strap. It must not require a PCB hole or violate BLE/NFC
+  keepouts.
 - JLCPCB PCBA-oriented; prefer current LCSC-stocked parts without sacrificing safety.
 - Fusion 360 handoff uses STEP for solids and DXF only for controlled 2D profiles.
 - JLC3DP resin is the V1 enclosure route. Aluminum is deferred to V2/V3.
@@ -22,7 +26,7 @@
 
 - BLE antenna sits at the PCB edge with the exact module keepout.
 - NFC loop follows the perimeter but must not enter the BLE keepout.
-- Battery, metal, copper pours, display frame, fast edges, and noisy power loops
+- Battery, metal, copper pours, display frame, fast edges, strap hardware, and noisy power loops
   stay away from antenna regions as required by reviewed layout rules.
 - USB-C operates as a USB 2.0 device/sink; CC resistors, ESD, D+/D- routing, and
   charger input limits must match selected parts and official references.

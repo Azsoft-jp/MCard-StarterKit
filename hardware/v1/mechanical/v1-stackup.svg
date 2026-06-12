@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="500" viewBox="0 0 980 500">
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540">
   <style>
     text { font-family: sans-serif; fill: #17202a; }
     .title { font-size: 24px; font-weight: 700; }
-    .label { font-size: 14px; }
+    .label { font-size: 15px; font-weight: 700; }
     .small { font-size: 12px; }
     .outline { fill: none; stroke: #17202a; stroke-width: 3; }
     .lens { fill: #cfe2f3; }
@@ -10,47 +10,53 @@
     .pcb { fill: #6aa84f; }
     .component { fill: #8e7cc3; }
     .battery { fill: #f6b26b; }
-    .case { fill: #777; }
+    .case { fill: #666; }
     .space { fill: #fff; stroke: #aaa; stroke-dasharray: 4 3; }
+    .step { fill: none; stroke: #cc5500; stroke-width: 4; }
   </style>
-  <text x="35" y="38" class="title">V1 thickness budgets: regions are separate, not stacked together</text>
-  <text x="35" y="62" class="small">Values are planning assumptions. Measure selected parts and printed case before release.</text>
 
-  <g transform="translate(50 100)">
-    <text x="0" y="-12" class="label">Display + rear-component region: 7.30 mm nominal</text>
-    <rect class="outline" x="0" y="0" width="400" height="190" rx="8"/>
-    <rect class="lens" x="20" y="15" width="360" height="12"/>
-    <rect class="display" x="20" y="30" width="360" height="46"/>
-    <rect class="space" x="20" y="78" width="360" height="6"/>
-    <rect class="pcb" x="20" y="86" width="360" height="18"/>
-    <rect class="component" x="150" y="106" width="140" height="55"/>
-    <rect class="space" x="20" y="163" width="360" height="8"/>
-    <rect class="case" x="20" y="173" width="360" height="17"/>
-    <text x="28" y="25" class="small">lens 0.55 + adhesive 0.15</text>
-    <text x="28" y="58" class="small">TFT 2.00</text>
-    <text x="28" y="101" class="small">PCB 0.80</text>
-    <text x="165" y="139" class="small">module max 2.40</text>
-    <text x="28" y="186" class="small" fill="#fff">rear resin 0.90</text>
+  <text x="35" y="38" class="title">V1 stepped enclosure: LCD body must be thinner than LiPo pod</text>
+  <text x="35" y="62" class="small">Planning values only. The 6.8 mm LCD stack is tight and requires measured parts plus a printed fit coupon.</text>
+
+  <g transform="translate(45 110)">
+    <text x="0" y="-16" class="label">Upper LCD/body region: 6.8 mm nominal</text>
+    <rect class="outline" x="0" y="0" width="430" height="204" rx="8"/>
+    <rect class="lens" x="20" y="16" width="390" height="15"/>
+    <rect class="display" x="20" y="33" width="390" height="58"/>
+    <rect class="space" x="20" y="93" width="390" height="5"/>
+    <rect class="pcb" x="20" y="100" width="390" height="23"/>
+    <rect class="component" x="155" y="125" width="145" height="58"/>
+    <rect class="space" x="20" y="185" width="390" height="6"/>
+    <rect class="case" x="20" y="193" width="390" height="11"/>
+    <text x="28" y="28" class="small">lens 0.50 + adhesive 0.10</text>
+    <text x="28" y="66" class="small">TFT 2.00</text>
+    <text x="28" y="117" class="small">PCB 0.80</text>
+    <text x="171" y="157" class="small">module max 2.40</text>
+    <text x="28" y="202" class="small" fill="#fff">rear resin 0.70</text>
+    <text x="310" y="202" class="small" fill="#fff">clearance 0.20</text>
   </g>
 
-  <g transform="translate(530 100)">
-    <text x="0" y="-12" class="label">Battery region without display: 7.30 mm nominal</text>
-    <rect class="outline" x="0" y="0" width="400" height="190" rx="8"/>
-    <rect class="case" x="20" y="15" width="360" height="17"/>
-    <rect class="pcb" x="20" y="34" width="360" height="18"/>
-    <rect class="space" x="20" y="54" width="360" height="6"/>
-    <rect class="battery" x="70" y="62" width="260" height="92"/>
-    <rect class="space" x="20" y="156" width="360" height="14"/>
-    <rect class="case" x="20" y="172" width="360" height="18"/>
-    <text x="28" y="28" class="small" fill="#fff">front resin 0.80</text>
-    <text x="28" y="49" class="small">PCB 0.80</text>
-    <text x="125" y="112" class="small">LiPo 4.00</text>
-    <text x="28" y="167" class="small">adhesive + swelling/clearance 0.80</text>
-    <text x="28" y="186" class="small" fill="#fff">rear resin 0.90</text>
+  <g transform="translate(560 110)">
+    <text x="0" y="-16" class="label">Lower LiPo pod: 8.5 mm maximum</text>
+    <rect class="outline" x="0" y="0" width="430" height="255" rx="8"/>
+    <rect class="case" x="20" y="16" width="390" height="24"/>
+    <rect class="pcb" x="20" y="42" width="390" height="23"/>
+    <rect class="space" x="20" y="67" width="390" height="8"/>
+    <rect class="battery" x="75" y="77" width="280" height="120"/>
+    <rect class="space" x="20" y="199" width="390" height="25"/>
+    <rect class="case" x="20" y="226" width="390" height="29"/>
+    <text x="28" y="33" class="small" fill="#fff">front resin 0.80</text>
+    <text x="28" y="59" class="small">PCB 0.80</text>
+    <text x="137" y="141" class="small">LiPo 4.00</text>
+    <text x="28" y="216" class="small">insulation, swelling and clearance 1.90</text>
+    <text x="28" y="246" class="small" fill="#fff">rear resin 1.00</text>
   </g>
 
-  <text x="50" y="340" class="label">Target external maximum: 8.5 mm</text>
-  <text x="50" y="368" class="small">Display region margin: 1.20 mm. Battery region margin: 1.20 mm.</text>
-  <text x="50" y="392" class="small">TODO: VERIFY lens, adhesive, display tail, module shield, solder, cell swelling, insulation, resin warp and assembly tolerance.</text>
-  <text x="50" y="416" class="small">A display-over-battery stack is prohibited even if a nominal arithmetic stack appears to fit.</text>
+  <path class="step" d="M100 405 H455 Q485 405 485 435 H560 Q560 405 590 405 H965"/>
+  <text x="101" y="395" class="small">6.8 mm LCD body</text>
+  <text x="456" y="463" class="small">radiused transition near y=22.5 mm</text>
+  <text x="835" y="395" class="small">8.5 mm LiPo pod</text>
+
+  <text x="45" y="500" class="small">TODO: VERIFY lens, adhesive, actual TFT thickness, module shield/solder, resin minimum wall, cell swelling, warp and assembly tolerance.</text>
+  <text x="45" y="522" class="small">Display-over-battery stacking remains prohibited; the lower pod is the only region allowed to reach 8.5 mm.</text>
 </svg>
