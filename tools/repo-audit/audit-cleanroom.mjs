@@ -23,10 +23,16 @@ const ignoreFiles = new Set([
   'BUILD_REPORT.txt',
 ]);
 
+const generatedDirectories = new Set([
+  '.git',
+  '.pio',
+  'node_modules',
+]);
+
 function walk(dir) {
   const out = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name === '.git') continue;
+    if (generatedDirectories.has(entry.name)) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) out.push(...walk(full));
     else out.push(full);
