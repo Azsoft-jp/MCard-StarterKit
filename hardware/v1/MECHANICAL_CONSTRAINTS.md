@@ -1,5 +1,12 @@
 # Mechanical constraints
 
+## Current-stage baseline lock
+
+Keep the nominal 49 x 99 mm product, 46 x 84 mm PCB, and upper-display /
+lower-LiPo separation. These are accepted PR-3 inputs, not placeholders to be
+replaced by a conflicting initialization prompt. See
+`PLACEMENT_CONSTRAINTS.md` and `MECHANICAL_STACKUP.md`.
+
 ## Stack target
 
 Maintain a parameterized stack budget for front lens/bezel, display, adhesive,
@@ -62,6 +69,8 @@ charger parts, or replaceable fasteners against the pouch.
 - Provide symmetric front-visible RGB windows/light guides on both side edges.
 - Treat transparent smoke resin as an optical/mechanical requirement; review
   light leakage, internal appearance, tint, UV aging and insulation.
+- Use bare fixture-accessible test pads. Do not add pin headers to the thin
+  product.
 
 JLC3DP tolerances and minimum features vary by process/material and must be
 recorded from the quote/help page before export. Future JLCCNC notes are

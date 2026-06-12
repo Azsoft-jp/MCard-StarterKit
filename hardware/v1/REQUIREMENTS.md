@@ -29,6 +29,10 @@
 - Fusion 360 handoff uses STEP for solids and DXF only for controlled 2D profiles.
 - JLC3DP resin is the V1 enclosure route. Aluminum is deferred to V2/V3.
 
+The 49 x 99 mm product, 46 x 84 mm PCB, and upper-display/lower-battery
+separation are the accepted current-stage baseline. Conflicting initialization
+prompts are not a dimensional change request.
+
 ## Electrical and RF
 
 - BLE antenna sits at the PCB edge with the exact module keepout.

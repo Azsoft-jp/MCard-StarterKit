@@ -31,9 +31,19 @@ SECTIONS = [
         "scope": "Peak load, stability, efficiency, brownout, and power sequencing",
     },
     {
+        "title": "LiPo battery connector",
+        "candidate": "Protected single-cell LiPo and low-profile polarized connection",
+        "scope": "Polarity, harness, strain relief, cable exit, protection, and swelling volume",
+    },
+    {
         "title": "ESP32-S3 module",
         "candidate": "ESP32-S3-MINI-1-N4R2 direction from V1 BOM shortlist",
         "scope": "Power, EN/BOOT, straps, GPIO allocation, USB, and decoupling",
+    },
+    {
+        "title": "EN BOOT and strapping",
+        "candidate": "Reviewed reset, boot-mode, recovery, and strap-safe GPIO network",
+        "scope": "Power-up defaults, manual recovery, native USB, and test-pad access",
     },
     {
         "title": "USB-C / USB data / ESD",
@@ -46,9 +56,19 @@ SECTIONS = [
         "scope": "FPC contact side, SPI, reset/DC/CS, backlight, and insertion direction",
     },
     {
+        "title": "Display backlight control",
+        "candidate": "Default-off PWM control with panel-specific current regulation",
+        "scope": "LED string voltage/current, dimming, EMI, thermal behavior, and sleep state",
+    },
+    {
         "title": "Dynamic NFC tag and I2C",
         "candidate": "ST25DV04KC-class dynamic tag, I2C pull-ups, and tuning placeholders",
         "scope": "I2C address, GPO/FD, energy harvesting decision, loop, and measurement pads",
+    },
+    {
+        "title": "NFC antenna loop and tuning",
+        "candidate": "Perimeter loop, links, DNP tuning network, and measurement pads",
+        "scope": "BLE detour, assembled inductance/Q, matching, fixture access, and interoperability",
     },
     {
         "title": "Optional SPI NOR flash",
@@ -74,6 +94,11 @@ SECTIONS = [
         "title": "Optional vibration motor driver",
         "candidate": "DNP motor pads and AO3400A-class low-side switch",
         "scope": "Stall current, 3.3 V gate drive, flyback, EMI, timeout, and DNP safety",
+    },
+    {
+        "title": "Battery voltage measurement",
+        "candidate": "Low-leakage divider or switched measurement into an ESP32-S3 ADC",
+        "scope": "ADC range, source impedance, filtering, calibration, leakage, and protection",
     },
     {
         "title": "Test pads",
@@ -128,13 +153,34 @@ def build_schematic():
             1.1,
             "nfc-keepout",
         ),
+        schematic_text(
+            "PLACEMENT: keep 49 x 99 mm product, 46 x 84 mm PCB, upper display, and lower rear LiPo.",
+            20,
+            38,
+            1.1,
+            "placement-baseline",
+        ),
+        schematic_text(
+            "PLACEMENT: review FPC direction, USB-C opening, buttons, RGB guides, piezo, motor, and pogo access.",
+            20,
+            43,
+            1.1,
+            "placement-dependencies",
+        ),
+        schematic_text(
+            "TEST ACCESS: bare pogo pads only; no pin headers in the finished thin product.",
+            20,
+            48,
+            1.1,
+            "test-access",
+        ),
     ]
 
     for index, section in enumerate(SECTIONS):
         column = index // 6
         row = index % 6
-        x = 20 + (column * 195)
-        y = 47 + (row * 39)
+        x = 20 + (column * 130)
+        y = 60 + (row * 37)
         slug = section["title"].lower().replace(" ", "-").replace("/", "-")
         entries.extend(
             [
@@ -221,6 +267,13 @@ def build_project():
             "FOOTPRINT_STATUS": "TODO: VERIFY exact footprints",
             "PINOUT_STATUS": "TODO: VERIFY datasheet-confirmed pinout",
             "ASSEMBLY_STATUS": "TODO: VERIFY JLCPCB assembly status",
+            "PLACEMENT_STATUS": (
+                "TODO: VERIFY placement dependencies; keep 49 x 99 mm product, "
+                "46 x 84 mm PCB, upper display, and lower rear LiPo"
+            ),
+            "TEST_ACCESS_STATUS": (
+                "TODO: VERIFY fixture-accessible bare pogo pads; no pin headers"
+            ),
         },
     }
 
@@ -232,8 +285,15 @@ def build_manifest():
         "generated_files": [PROJECT_FILENAME, SCHEMATIC_FILENAME],
         "sections": [section["title"] for section in SECTIONS],
         "constraints": {
+            "mechanical_baseline": (
+                "49 x 99 mm product; 46 x 84 mm PCB; upper display; lower rear LiPo"
+            ),
             "ble_antenna_keepout": "TODO: VERIFY from exact module datasheet",
             "nfc_loop_keepout_and_tuning": "TODO: VERIFY on assembled hardware",
+            "placement_dependencies": (
+                "TODO: VERIFY FPC, USB-C, buttons, RGB, piezo, motor, battery, and test access"
+            ),
+            "test_access": "bare pogo pads only; no pin headers in the thin product",
         },
     }
 
