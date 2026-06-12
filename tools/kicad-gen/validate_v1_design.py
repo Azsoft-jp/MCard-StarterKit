@@ -92,19 +92,22 @@ def main():
     with (V1 / "jlcpcb" / "pcba" / "lcsc-bom-shortlist.csv").open(
         newline="", encoding="utf-8"
     ) as handle:
-        rows = list(csv.DictReader(handle))
-    required_columns = {
+        reader = csv.DictReader(handle)
+        fieldnames = reader.fieldnames
+        rows = list(reader)
+    required_columns = [
         "Block", "DesignatorHint", "PreferredPart", "AlternativePart", "Package",
         "Value", "VoltageCurrentRating", "JLCPCBStatus", "LCSCStatus", "Reason",
         "Risk", "FootprintTodo", "DatasheetUrl", "Notes",
-    }
-    if not rows or set(rows[0]) != required_columns:
+    ]
+    if not rows or fieldnames != required_columns:
         errors += fail("BOM shortlist columns are incomplete")
 
     required_blocks = {
         "MCU / BLE module", "Display panel", "Display connector",
         "Dynamic NFC tag", "NFC antenna / matching", "External SPI NOR",
-        "USB-C connector", "USB ESD", "LiPo charger / power path",
+        "USB-C connector", "USB CC resistors", "USB ESD",
+        "LiPo charger / power path",
         "Battery connector", "3.3 V regulator", "Backlight control",
         "RGB side LEDs", "Tactile switches", "Piezo buzzer",
         "Optional vibration motor", "Vibration motor NMOS", "I2C pullups",
