@@ -11,7 +11,7 @@ BLOCKS = [
     {"id": "mcu", "items": ["ESP32-S3 module", "EN/BOOT", "USB", "UART/JTAG test pads"]},
     {"id": "display", "items": ["240x320 SPI TFT", "FPC connector", "backlight control"]},
     {"id": "nfc", "items": ["dynamic NFC tag", "I2C", "perimeter loop", "tuning pads"]},
-    {"id": "ui", "items": ["three buttons", "side RGB", "piezo", "optional vibration driver"]},
+    {"id": "ui", "items": ["three rear buttons", "bilateral front-visible RGB", "piezo", "optional vibration driver"]},
 ]
 
 REVIEW_GATES = [
@@ -32,7 +32,7 @@ def build_manifest():
     return {
         "schema": "mcard-v1-schematic-plan-1",
         "notice": "Planning scaffold only. Human electrical review and KiCad ERC/DRC required.",
-        "board": {"width_mm": 52.0, "height_mm": 72.0, "thickness_mm": [0.8, 1.0]},
+        "board": {"width_mm": 46.0, "height_mm": 84.0, "thickness_mm": [0.8, 1.0]},
         "finished_thickness_target_mm": 8.5,
         "blocks": BLOCKS,
         "review_gates": REVIEW_GATES,

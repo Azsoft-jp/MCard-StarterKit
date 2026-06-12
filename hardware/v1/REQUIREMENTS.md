@@ -4,19 +4,24 @@
 
 - Local-first BLE animated badge experiment using neutral public-safe protocols.
 - ESP32-S3 module, 240 x 320 SPI TFT, dynamic NFC tag, LiPo, USB-C, three
-  buttons, RGB side light, piezo, and optional vibration footprint.
+  buttons, bilateral RGB side lights, piezo, and optional vibration footprint.
 - No vendor cloud, proprietary firmware/assets, automatic BLE writes, real OTA
   flashing, or official compatibility claim.
 
 ## Physical and manufacturing
 
-- PCB outline: 52 x 72 mm.
+- Nominal product outline: 49 x 99 mm including the strap bridge. The supplied
+  tolerance envelope is 49 +/- 10 mm by 99 +/- 30 mm.
+- PCB outline: 46 x 84 mm planning target, adjustable at the mechanical gate.
 - PCB thickness: 0.8 mm target, 1.0 mm fallback after flex/availability review.
 - Finished thickness: 6.8 mm nominal in the LCD/body region and 8.5 mm maximum
   in the lower LiPo region, with explicit regional component stacks.
-- Rear exterior is one flat plane; upper/lower body widths are equal. The
-  thickness step exists only on the front face.
+- Front exterior is one flat plane; upper/lower body widths are equal. The
+  thickness step exists only on the rear face.
 - Display faces front; battery and resin back case are rear.
+- Three buttons are horizontal on the lower rear. RGB light is visible at both
+  front-side edges.
+- V1 enclosure is transparent smoke skeleton resin.
 - A top-center resin strap bridge sits outside the PCB outline and uses a
   non-metal textile strap. It must not require a PCB hole or violate BLE/NFC
   keepouts.

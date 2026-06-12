@@ -2,7 +2,7 @@
 
 | Item | V1 rule |
 |---|---|
-| Outline | 52.0 x 72.0 mm; corner radii `TODO: VERIFY` with enclosure |
+| Outline | 46.0 x 84.0 mm planning target; corner radii `TODO: VERIFY` with enclosure |
 | Thickness | 0.8 mm preferred; 1.0 mm fallback |
 | Layers | Four layers preferred for return paths and RF control; stack-up `TODO: VERIFY` with JLCPCB |
 | BLE | Module antenna at board edge; copy exact datasheet keepout into KiCad |
@@ -21,3 +21,7 @@ The display frame/FPC, battery pouch, buzzer, motor, screws, magnets, and case
 features must not overlap the BLE keepout or NFC loop. No copper/ground/metal is
 allowed in the module keepout unless the exact module datasheet explicitly
 permits it.
+
+Reserve both long edges for front-visible RGB emitters/light-guide coupling.
+Keep the lower rear button row below the expanded battery keepout and out of
+the USB-C insertion volume.

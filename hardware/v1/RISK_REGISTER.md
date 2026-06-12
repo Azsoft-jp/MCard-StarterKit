@@ -16,3 +16,6 @@
 | R12 | Generator output treated as verified | Electrical/manufacturing defect | Human ERC/DRC and discipline reviews |
 | R13 | Resin strap bridge cracks or transfers load into PCB/display | Drop or loss of product | Integral shoulders, radii, pull/fatigue/drop tests, no PCB hole |
 | R14 | Metal strap fitting or load shoulder enters antenna region | BLE/NFC degradation | Textile-only V1 strap and RF/mechanical keepout review |
+| R15 | Transparent resin leaks RGB/backlight or exposes visually poor/unsafe internals | Poor appearance or insulation concern | Opaque masks, controlled tint, insulation, optical coupon and UV-aging review |
+| R16 | Rear lower buttons actuate against clothing or a table | Unintended input | Recessed caps, force/travel selection and wear/use testing |
+| R17 | 46 x 84 mm PCB revision changes NFC loop and BLE coupling | RF regression | Re-run loop estimate, tuning plan and BLE/NFC review after layout |

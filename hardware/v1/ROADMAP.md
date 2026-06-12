@@ -23,7 +23,7 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 2. Convert the selected direction in `BOM_SELECTED_V1.md` into exact,
    drawing-verified orderable parts.
 3. Produce and review schematic; do not release PCB from an unreviewed generator output.
-4. Review and refine the machine-checked 52 x 72 mm floorplan around the
+4. Review and refine the machine-checked 46 x 84 mm floorplan around the
    display/battery split, BLE/NFC keepouts, USB opening, and mechanical stack.
 5. Route, run ERC/DRC, review power integrity, and create tuning/test coupons if needed.
 6. Complete Fusion 360 enclosure handoff and resin prototype checks.
@@ -35,14 +35,18 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 - Overall design targets 8.5 mm, not 6.7 mm, with a documented tolerance stack.
 - The LCD region is thinner than the LiPo region; current nominal targets are
   6.8 mm and 8.5 mm respectively.
-- Rear exterior is flat, upper/lower case widths match, and the thickness
-  transition appears only on the front face.
+- Front exterior is flat, upper/lower case widths match, and the thickness
+  transition appears only on the rear face.
 - Display and expanded LiPo keepouts have no XY overlap and pass the deterministic
   envelope validator.
 - Resin V1 enclosure contains no metal over BLE or NFC antenna regions.
-- PCB is 52 x 72 mm and uses 0.8 mm or explicitly approved 1.0 mm thickness.
+- Product nominal outline is 49 x 99 mm including the strap bridge.
+- PCB is 46 x 84 mm or a mechanically approved revision, using 0.8 mm or
+  explicitly approved 1.0 mm thickness.
 - Selected display, battery, USB-C, module, connector and side controls fit the
   reviewed front/rear placement zones with assembly tolerances.
+- Rear lower buttons, bilateral front-visible RGB guides and transparent resin
+  pass fit, optical and human-factors review.
 - The resin strap bridge uses no PCB hole or metal fitting, clears BLE/NFC
   review zones, and passes defined pull/fatigue/drop tests.
 - Exact module antenna keepout, strapping pins, USB, charging, and power rules are verified.

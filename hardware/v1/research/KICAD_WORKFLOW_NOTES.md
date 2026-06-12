@@ -13,7 +13,7 @@
 2. Build schematic hierarchically by power, MCU/USB, display, NFC, UI, and test.
 3. Assign only verified symbols/footprints and attach datasheet/MPN fields.
 4. Run ERC and resolve or justify every marker.
-5. Import the reviewed 52 x 72 mm outline and mechanical keepouts.
+5. Import the reviewed 46 x 84 mm outline and mechanical keepouts.
 6. Floor-plan antennas first, then power, display/FPC, USB, and remaining I/O.
 7. Run DRC, inspect 3D, export STEP, then generate reviewed fabrication outputs.
 

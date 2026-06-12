@@ -11,8 +11,8 @@ interference inspection, drawings, and export behavior.
 
 - Treat KiCad board outline/holes and STEP assembly as electrical masters.
 - Use a named origin and units; never align by eye.
-- Keep PCB, display, FPC, battery, lens, buttons, light guide, buzzer, and case
-  as separate components with versioned parameters.
+- Keep PCB, display, FPC, battery, lens, rear buttons, bilateral light guides,
+  buzzer, and transparent case as separate components with versioned parameters.
 - Create hard no-go bodies for BLE and NFC antenna regions.
 - Run section and interference checks at nominal and tolerance extremes.
 - Return enclosure-driven outline/hole changes through an explicit review.

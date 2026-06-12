@@ -27,6 +27,7 @@ REQUIRED = [
     "mechanical/v1-stackup.svg", "mechanical/v1-product-concept.png",
     "mechanical/v1-product-concept-v2.png",
     "mechanical/v1-product-concept-v3.png",
+    "mechanical/v1-product-concept-v4.png",
     "simulation/power_3v3_load_step.cir", "simulation/rgb_led_current_limit.cir",
     "simulation/vibration_motor_driver.cir",
 ]
@@ -73,7 +74,7 @@ def main():
         for path in V1.rglob("*")
         if path.is_file() and path.suffix in {".md", ".csv", ".cir"}
     )
-    for text in ["52 x 72", "8.5 mm", "0.8 mm", "TODO: VERIFY", "human electrical review"]:
+    for text in ["46 x 84", "49 x 99", "8.5 mm", "0.8 mm", "TODO: VERIFY", "human electrical review"]:
         if text.lower() not in combined.lower():
             errors += fail(f"required planning phrase absent: {text}")
 
@@ -101,8 +102,8 @@ def main():
         (V1 / "mechanical" / "v1-envelope.json").read_text(encoding="utf-8")
     )
     board = envelope["board"]
-    if board["width"] != 52.0 or board["height"] != 72.0:
-        errors += fail("mechanical envelope board must remain 52 x 72 mm")
+    if board["width"] != 46.0 or board["height"] != 84.0:
+        errors += fail("mechanical envelope board must remain 46 x 84 mm")
     if board["thickness"] != 0.8:
         errors += fail("mechanical envelope preferred board thickness must be 0.8 mm")
     if envelope["case"]["target_external_thickness"] != 8.5:
@@ -114,10 +115,10 @@ def main():
         errors += fail("LCD region must be thinner than LiPo region")
     if battery_region != envelope["case"]["target_external_thickness"]:
         errors += fail("LiPo region must define the 8.5 mm maximum thickness")
-    if envelope["case"]["thickness_step_side"] != "front only":
-        errors += fail("thickness transition must remain on the front face only")
-    if envelope["case"]["rear_surface_profile"] != "single continuous flat datum":
-        errors += fail("rear enclosure surface must remain flat")
+    if envelope["case"]["thickness_step_side"] != "rear only":
+        errors += fail("thickness transition must remain on the rear face only")
+    if envelope["case"]["front_surface_profile"] != "single continuous flat datum":
+        errors += fail("front enclosure surface must remain flat")
     if (
         envelope["case"]["body_external_width_upper"]
         != envelope["case"]["body_external_width_lower"]
@@ -125,6 +126,10 @@ def main():
         != envelope["case"]["body_external_width"]
     ):
         errors += fail("upper and lower enclosure widths must remain identical")
+    if envelope["case"]["nominal_external_width"] != 49.0:
+        errors += fail("nominal product width must remain 49 mm")
+    if envelope["case"]["nominal_external_height_including_strap"] != 99.0:
+        errors += fail("nominal product height including strap must remain 99 mm")
     if envelope["case"]["step_transition_y"] > placements.get(
         "display_panel", {"y": 0}
     )["y"]:
@@ -167,6 +172,21 @@ def main():
         errors += fail("strap bridge overlaps BLE antenna keepout")
     if "non-metal" not in opening["hardware"]:
         errors += fail("V1 strap hardware must remain non-metal")
+
+    buttons = [
+        placements["button_left"],
+        placements["button_center"],
+        placements["button_right"],
+    ]
+    if any(button["side"] != "rear" for button in buttons):
+        errors += fail("all three buttons must remain on the rear")
+    if len({button["y"] for button in buttons}) != 1:
+        errors += fail("rear buttons must remain in one horizontal row")
+    if not (
+        placements["rgb_left"]["side"] == "front"
+        and placements["rgb_right"]["side"] == "front"
+    ):
+        errors += fail("both RGB guides must remain front-visible")
 
     for circuit in (V1 / "simulation").glob("*.cir"):
         body = circuit.read_text(encoding="utf-8").lower()

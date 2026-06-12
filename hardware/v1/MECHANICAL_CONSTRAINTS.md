@@ -12,16 +12,16 @@ The enclosure is not uniformly 8.5 mm thick. The LCD/body region targets
 maximum. The display region must remain thinner than the battery region in both
 CAD and the machine-readable envelope.
 
-The rear exterior is a single continuous flat plane. The upper and lower case
+The front exterior is a single continuous flat plane. The upper and lower case
 widths are identical and their left/right side edges align. The 1.7 mm
-thickness transition is allowed on the front face only; no rear battery bulge,
-rear step, wider lower body, waist, or taper is allowed.
+thickness transition is allowed on the rear face only; no front chin, front
+step, wider lower body, waist, or taper is allowed.
 
 The display and LiPo must not overlap in their XY projection. The current
 planning floorplan places the 34.6 x 47.8 mm display in the upper front zone and
 a rotated 25 x 20 mm 402025 battery in the lower rear zone. The expanded battery
-keepout ends at y=22.5 mm and the display starts at y=23.0 mm. This 0.5 mm gap
-proves separation but is not a released assembly tolerance.
+keepout ends at y=33.0 mm and the display starts at y=35.0 mm. This 2.0 mm gap
+remains a planning value rather than a released assembly tolerance.
 
 See:
 
@@ -54,9 +54,14 @@ charger parts, or replaceable fasteners against the pouch.
   add a PCB slot or metal eyelet for V1.
 - Keep strap shoulders, textile and any future attachment hardware out of the
   BLE keepout and reviewed NFC loop clearance.
-- Use a radiused front-face transition from the 6.8 mm LCD body to the 8.5 mm
-  battery region. Keep the rear datum flat and do not place the enclosure split
+- Use a radiused rear-face transition from the 6.8 mm LCD body to the 8.5 mm
+  battery region. Keep the front datum flat and do not place the enclosure split
   directly on the pouch edge.
+- Place all three buttons horizontally on the lower rear below the expanded
+  battery keepout.
+- Provide symmetric front-visible RGB windows/light guides on both side edges.
+- Treat transparent smoke resin as an optical/mechanical requirement; review
+  light leakage, internal appearance, tint, UV aging and insulation.
 
 JLC3DP tolerances and minimum features vary by process/material and must be
 recorded from the quote/help page before export. Future JLCCNC notes are

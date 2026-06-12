@@ -6,149 +6,129 @@ The source of truth for planning coordinates is
 
 ## Product character
 
-- Portrait badge, nominal PCB envelope 52 x 72 mm.
+- Nominal product outline: 49 x 99 mm including the top strap bridge.
+- User-provided tolerance envelope: 49 +/- 10 mm by 99 +/- 30 mm. The nominal
+  values are the V1 design datum until a tighter requirement is supplied.
+- PCB planning outline: 46 x 84 mm. This retains 1.5 mm nominal side margins
+  in the 49 mm body and uses the added height for controls and spacing.
 - Two-level enclosure: 6.8 mm nominal over the LCD region and 8.5 mm maximum
-  only over the lower LiPo region.
-- One continuous flat rear datum from top to bottom. There is no rear battery
-  bulge, raised pod, recessed battery door, or rear thickness step.
-- Uniform 54 mm planning case width through the LCD and LiPo regions, with
-  straight aligned side edges. There is no wider lower body, waist, or taper.
-- The 1.7 mm thickness difference is formed only on the front face: the lower
-  front chin projects forward while the rear stays flat.
-- Dark smoke or opaque resin back; no aluminum in V1.
+  over the lower LiPo region.
+- Entire front face is one continuous flat datum. There is no front chin,
+  display step, raised bezel plane, or front battery bulge.
+- The 1.7 mm thickness difference is formed only on the rear face as a shallow,
+  radiused lower battery bulge.
+- Uniform 49 mm body width with straight aligned side edges.
+- Transparent smoke skeleton resin; no aluminum in V1. Internal PCB, cell
+  boundary, ribs and fasteners may be visible but must remain orderly and
+  electrically insulated.
 - Flush front lens over a 2.0 inch-class portrait display.
-- Three left-side buttons with distinguishable cap geometry.
-- Diffused RGB light pipe on the right edge, outside the BLE antenna window.
-- USB-C opening offset to the bottom-right so it does not occupy the battery
-  volume.
-- Integrated top-center strap bridge made from the enclosure resin, using a
-  textile strap with no metal eyelet or ring.
-- Original industrial science-fiction access-credential styling: segmented
-  protective frame, restrained safety-orange accents, and abstract technical
-  markings. Do not copy game logos, faction marks, UI, typography, characters,
-  or proprietary assets.
-- Rounded and chamfered features suitable for resin printing and hand
-  finishing.
+- Three buttons on the lower rear face, arranged horizontally.
+- Diffused RGB light guides on both left and right front edges, visually
+  symmetric when viewed from the front.
+- USB-C opening on the lower right edge.
+- Integrated top-center resin strap bridge with non-metal textile strap.
+- Original industrial science-fiction access-credential styling. Do not copy
+  game logos, faction marks, UI, typography, characters, or proprietary assets.
 
 The current generated
-[concept image](mechanical/v1-product-concept-v3.png) communicates appearance,
-uniform width, flat rear, and front-only thickness-step intent. It is not
-dimensionally accurate; any width/height annotations rendered in the image are
-illustrative and must not be traced for CAD, PCB, openings, bosses, or antenna
-clearances. Earlier concepts are retained as design history.
+[concept image](mechanical/v1-product-concept-v4.png) communicates skeleton
+resin, flat front, rear battery depth, rear button row, and bilateral RGB
+intent. It is not dimensionally accurate and must not be traced for CAD, PCB,
+openings, bosses, or antenna clearances. Earlier concepts are design history.
 
 ## Packaging decision
 
-The display panel occupies the front upper zone. A protected 402025 LiPo is
-rotated so its 20 mm dimension runs vertically in the rear lower zone. Their
-projected keepouts do not overlap:
+The extended enclosure permits a 46 x 84 mm PCB and larger vertical separation:
 
-| Item | Planning rectangle, origin at PCB lower-left |
+| Item | Planning rectangle, PCB origin at lower-left |
 |---|---|
-| Display panel | x 8.7-43.3, y 23.0-70.8 |
-| Battery nominal | x 13.5-38.5, y 1.5-21.5 |
-| Battery keepout | x 12.5-39.5, y 0.5-22.5 |
-| Nominal display-to-battery keepout gap | 0.5 mm |
+| Display panel | x 5.7-40.3, y 35.0-82.8 |
+| Battery nominal | x 10.5-35.5, y 12.0-32.0 |
+| Battery keepout | x 9.5-36.5, y 11.0-33.0 |
+| Rear button row | x 4.0-42.0, y 3.0-8.0 |
+| Left RGB guide | x 0.5-2.0, y 39.0-67.0 |
+| Right RGB guide | x 44.0-45.5, y 39.0-67.0 |
+| Display-to-battery keepout gap | 2.0 mm |
 
-The 0.5 mm planning gap is only enough to prove geometric separation.
-`TODO: VERIFY` increase it after the display tail, cell pouch seal, insulation,
-assembly tolerance, and swelling limits are measured.
+The display, expanded battery keepout, rear buttons and USB-C insertion volume
+must remain separate. `TODO: VERIFY` all coordinates after measuring the
+display tail, pouch seal, PCM/wires, button caps and USB connector sample.
 
-## Stepped thickness
+## Regional thickness
 
 | Region | Nominal external thickness | Rule |
 |---|---:|---|
-| LCD/body, y=22.5-72 mm | 6.8 mm | Must remain thinner than the LiPo region |
-| LiPo region, y=0-22.5 mm | 8.5 mm | V1 maximum; front face projects 1.7 mm |
-| Strap bridge, above PCB | 6.8 mm target | Local ribs may vary only after strength and RF review |
+| LCD/body, y=33-84 mm | 6.8 mm | Front remains on the common flat datum |
+| LiPo region, y=0-33 mm | 8.5 mm | Rear projects by 1.7 mm maximum |
+| Strap bridge, above PCB | 6.8 mm target | Local ribs require strength/RF review |
 
-The rear wall uses one uninterrupted planar datum. The transition shoulder
-starts on the front face at the expanded battery keepout boundary. Use a fillet
-or short ramp instead of a sharp step to reduce resin stress and avoid a snag
-edge. Do not mirror this step onto the rear or widen the lower body. The LCD
-region must not inherit the 8.5 mm battery depth merely to simplify the case.
+The front lens/case uses one uninterrupted planar datum. The rear transition
+starts near the expanded battery keepout boundary and uses a broad fillet or
+short ramp. Do not mirror the step onto the front or widen the lower body.
 
-Nominal stack allowances currently leave about 0.2-0.5 mm less margin in the
-LCD zone than the earlier uniform case concept. `TODO: VERIFY` the display,
-module shield, solder, adhesive, lens, rear wall, and assembly tolerance with
-physical samples before freezing 6.8 mm.
+The 6.8 mm region remains a tight target. `TODO: VERIFY` display, module shield,
+solder, adhesive, lens, resin wall and assembly tolerance with physical parts.
 
 ## Strap architecture
 
-- The strap bridge is an enclosure extension above the 52 x 72 mm PCB; it does
-  not require a PCB slot or plated/mechanical hole.
-- Planning bridge envelope: x=17-35 mm, y=72-81 mm, with a 10 x 3.5 mm textile
-  opening. Coordinates remain `TODO: VERIFY` for the selected strap webbing and
-  JLC3DP resin.
-- Transfer strap load through two integral side shoulders into the case frame,
-  not through the lens, display, PCB edge, or NFC loop.
-- Use a soft woven textile loop. Metal rings, eyelets, clips, buckles, and
-  magnetic attachments are prohibited in V1 near BLE/NFC.
-- Keep the upper-right BLE no-metal volume clear. The centered bridge is
-  horizontally separated from that antenna zone.
-- Add generous internal radii and validate drop, pull, torsion, and resin aging.
-  A generated product render is not strength evidence.
+- The bridge extends above the 46 x 84 mm PCB without a PCB slot or plated hole.
+- Planning bridge envelope: x=13-33 mm, y=84-96 mm, with a 10 x 3.5 mm textile
+  opening.
+- The case body runs from y=-3 to y=87, giving 90 mm body height and 99 mm
+  overall height through the bridge.
+- Transfer load through integral resin shoulders, not the lens, display, PCB
+  edge or NFC loop.
+- Metal rings, eyelets, clips, buckles and magnetic attachments are prohibited
+  near BLE/NFC in V1.
+- Validate pull, torsion, fatigue, drop and resin aging.
 
 ## Board zoning
 
-- Upper-right rear: ESP32-S3-MINI rotated with the PCB antenna at the board
-  edge. No display metal, NFC copper, battery, fastener, pigment with metal
-  content, or case metal may enter the final verified antenna keepout.
-- Perimeter: NFC loop, except where it must detour around the BLE keepout,
-  USB-C shell, mounting features, ESD return path, and strap load-transfer
-  shoulders.
-- Lower center rear: battery only; no tall components under its keepout.
-- Rear exterior: flat and continuous; internal battery clearance is obtained
-  from the front-only lower thickness increase.
-- Bottom-right: USB-C, ESD, CC resistors, and short USB routing.
-- Lower-left: charger and power conversion, with copper area reserved for
-  thermal spreading and away from the cell pouch.
-- Display lower edge: 14-position 0.5 mm FPC connector and controlled bend/slot
-  region.
-- Left edge: three switches.
-- Rear display-overlap zones: low-profile logic parts and piezo are permitted
-  only when the complete stack remains below 8.5 mm.
+- Upper-right rear: ESP32-S3-MINI rotated with its antenna at the board edge.
+  No display metal, NFC copper, battery, fastener, metallic pigment or case
+  metal may enter the verified antenna keepout.
+- Perimeter: NFC loop, detouring around BLE keepout, USB-C, mounting features
+  and strap load-transfer shoulders.
+- Lower center rear: battery only.
+- Lower rear edge: three horizontal buttons below the battery keepout.
+- Front left and right edges: symmetric RGB emitters/light guides. The
+  upper-right guide must not introduce copper or metal into the BLE keepout.
+- Front exterior: flat and continuous; battery clearance comes from the
+  rear-only lower bulge.
+- Lower-right edge: USB-C, ESD, CC resistors and short USB routing.
+- Display lower edge: 14-position FPC connector and controlled bend region.
 
 ## Human factors
 
-- Button order, top to bottom: previous/back, action, next/menu.
-- Use different center-button texture or cap height for eyes-free operation.
-- Avoid accidental button actuation when the device lies face-up.
-- Keep display content inside the active area; the visual-area edge is not a
-  reliable pixel boundary.
-- Add a rear label recess for prototype ID, battery warning, and radio
-  certification status. Do not claim Japan certification without exact
-  evidence for the module and finished product.
+- Rear button order, left to right when viewing the rear: previous/back,
+  action, next/menu.
+- Use a different center-button texture or cap shape for eyes-free operation.
+- Recess caps enough to avoid accidental actuation against clothing or a table.
+- Keep display content inside the active area.
+- Transparent resin must not expose identifying production data or unsafe
+  conductive surfaces.
+- Add a restrained prototype/radio-status label without claiming certification.
 
 ## Fusion 360 handoff
 
-1. Import the versioned PCB STEP and lock it as a referenced component.
-2. Create separate components for panel, FPC/tail, battery keepout, lens,
-   buttons, light pipe, USB plug access, strap bridge/webbing, and resin halves.
-3. Drive dimensions from `v1-envelope.json`; do not hand-measure the concept
-   image.
-4. Model a removable case/service strategy without a metal plate or rear
-   battery-door recess. The rear exterior must remain a single flat plane.
-5. Constrain upper and lower case widths to the same parameter. Put the
-   6.8/8.5 mm transition on the front face only.
-6. Add datum features that make the front lens, panel active area, and PCB
-   origin inspectable.
-7. Export STEP and 2D opening drawings for the mechanical-envelope gate.
+1. Import the reviewed 46 x 84 mm PCB STEP as a referenced component.
+2. Create separate panel, FPC, battery keepout, lens, rear buttons, bilateral
+   light guides, USB access, strap bridge/webbing and case components.
+3. Drive dimensions from `v1-envelope.json`; do not trace the concept image.
+4. Keep the entire front on one datum and put battery depth on the rear only.
+5. Constrain upper and lower case widths to one 49 mm nominal parameter.
+6. Model resin tint, optical interfaces and light-blocking masks separately.
+7. Export STEP and controlled 2D opening drawings for review.
 
 ## Open verification
 
-- `TODO: VERIFY` exact ER-TFT020-3 drawing, tail direction, 14-pin pinout,
-  connector contact orientation, and bend radius.
-- `TODO: VERIFY` exact protected 402025 supplier, pouch seal, wire exit, PCM
-  location, swelling allowance, safety approvals, and realistic runtime.
-- `TODO: VERIFY` resin wall, snap, boss, button, light-pipe, and USB opening
-  tolerances against the chosen JLC3DP material/process.
-- `TODO: VERIFY` antenna keepout with the current Espressif datasheet revision
-  and an RF reviewer.
-- `TODO: VERIFY` piezo sound path and actual stack height.
-- `TODO: VERIFY` 6.8 mm LCD-region fit using measured samples and a complete
-  tolerance stack.
-- `TODO: VERIFY` strap webbing width, bridge wall/radius, selected resin
-  strength, pull-test load, fatigue, and drop-test acceptance criteria.
-- `TODO: VERIFY` that the flat rear wall and front-only lower expansion provide
-  enough battery swelling/insulation clearance without exceeding 8.5 mm.
+- `TODO: VERIFY` exact display drawing, tail, pinout and bend radius.
+- `TODO: VERIFY` exact protected 402025 supplier, seal, PCM/wires, swelling,
+  approvals and runtime.
+- `TODO: VERIFY` resin walls, snaps, bosses, rear buttons, dual light guides and
+  USB opening against the selected JLC3DP process.
+- `TODO: VERIFY` transparent-resin optical quality, tint, UV aging, internal
+  appearance, light leakage and electrical insulation.
+- `TODO: VERIFY` 6.8 mm region fit and 8.5 mm rear battery bulge.
+- `TODO: VERIFY` BLE keepout and NFC tuning after the 46 x 84 mm PCB change.
+- `TODO: VERIFY` strap bridge strength and test acceptance criteria.
