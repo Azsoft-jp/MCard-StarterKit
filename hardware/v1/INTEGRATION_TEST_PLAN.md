@@ -12,6 +12,12 @@ power bring-up without requiring BLE hardware in the default test suite.
 | Full repository | `npm test` | Existing tests and clean-room audit pass. |
 | SPICE decks | `ngspice -b <deck>` | Each `.cir` deck parses, runs, and prints finite measurements. |
 | Firmware compile | `pio run -d firmware/v1-esp32s3` | Arduino ESP32-S3 build completes without producing committed binaries. |
+| Wokwi diagram lint, optional | `wokwi-cli lint firmware/v1-esp32s3 --warnings-as-errors` | The latest Wokwi registry accepts all part IDs, pins, and connections. |
+| Wokwi firmware boot, optional/token required | `wokwi-cli firmware/v1-esp32s3 --expect-text "Wokwi simulation ready" --vcd-file /tmp/mcard-v1-heartbeat.vcd` | Serial reaches the explicit simulation marker and the simulation-only heartbeat is exported. |
+
+Run the Wokwi checks only after the host tests, ngspice decks, and dedicated
+Wokwi PlatformIO environment build pass. The optional Wokwi project must not
+become a dependency of `npm test`.
 
 ## Bench sequence
 
@@ -38,3 +44,10 @@ power bring-up without requiring BLE hardware in the default test suite.
 - Serial RX/TX logs containing synthetic vectors only.
 - Display, battery, NFC loop, and peripheral part revisions.
 - Human electrical/RF/mechanical/manufacturing review disposition.
+- Optional Wokwi CLI version, serial assertion result, and temporary VCD timing
+  summary. Do not commit tokens, generated binaries, screenshots, or VCD files.
+
+Wokwi evidence applies only to firmware execution and explicitly connected
+virtual parts. It is not physical electrical, RF, antenna, NFC, battery,
+charger, thermal, certification, mechanical, or manufacturing validation.
+BLE radio initialization is intentionally skipped in this Wokwi environment.

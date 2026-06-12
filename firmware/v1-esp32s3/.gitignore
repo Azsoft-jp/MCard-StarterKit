@@ -1,0 +1,4 @@
+.pio/
+*.vcd
+*.log
+screenshot*.png

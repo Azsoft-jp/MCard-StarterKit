@@ -77,20 +77,20 @@ size_t makeControlResponse(
   return writer.length();
 }
 
-size_t makeLengthPrefixedAck(
+size_t makeLengthPrefixedResponse(
     uint8_t category,
     uint16_t command,
-    uint32_t packetIndex,
+    const uint8_t* data,
+    size_t dataLength,
     uint8_t* out,
     size_t capacity) {
   Writer writer(out, capacity);
   if (!writer.appendU8(category) ||
       !writer.appendU8(profile::FRAGMENT_COMPLETE) ||
-      !writer.appendU16(10) ||
+      !writer.appendU16(static_cast<uint16_t>(4 + dataLength)) ||
       !writer.appendU16(command) ||
-      !writer.appendU16(6) ||
-      !writer.appendU16(profile::STATUS_OK) ||
-      !writer.appendU32(packetIndex)) {
+      !writer.appendU16(static_cast<uint16_t>(dataLength)) ||
+      !writer.appendBytes(data, dataLength)) {
     return 0;
   }
   return writer.length();
@@ -126,6 +126,14 @@ uint16_t mapOtaPlanningResponse(uint16_t command) {
     default:
       return 0xffff;
   }
+}
+
+bool responseIncludesPacketIndex(uint8_t category, uint16_t responseCommand) {
+  return (
+      category == profile::CATEGORY_FILE &&
+      responseCommand == profile::FILE_DATA_RESPONSE) || (
+      category == profile::CATEGORY_OTA &&
+      responseCommand == profile::OTA_DATA_RESPONSE);
 }
 
 }  // namespace
@@ -254,13 +262,20 @@ size_t buildDeterministicResponse(
       : mapOtaPlanningResponse(request.command);
   if (responseCommand == 0xffff) return 0;
 
-  const uint32_t packetIndex = request.dataLength >= 4
-      ? readU32Le(request.data)
-      : profile::DEFAULT_PACKET_INDEX;
-  return makeLengthPrefixedAck(
+  uint8_t data[6] = {};
+  Writer writer(data, sizeof(data));
+  writer.appendU16(profile::STATUS_OK);
+  if (responseIncludesPacketIndex(request.category, responseCommand)) {
+    const uint32_t packetIndex = request.dataLength >= 4
+        ? readU32Le(request.data)
+        : profile::DEFAULT_PACKET_INDEX;
+    writer.appendU32(packetIndex);
+  }
+  return makeLengthPrefixedResponse(
       request.category,
       responseCommand,
-      packetIndex,
+      data,
+      writer.length(),
       out,
       capacity);
 }

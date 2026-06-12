@@ -29,7 +29,10 @@ const requiredFiles = [
   'hardware/v1/simulation/charger_thermal_estimate.md',
   'hardware/v1/simulation/nfc_loop_lumped_estimate.md',
   'firmware/v1-esp32s3/README.md',
+  'firmware/v1-esp32s3/WOKWI_PART_SUBSTITUTIONS.md',
+  'firmware/v1-esp32s3/diagram.json',
   'firmware/v1-esp32s3/platformio.ini',
+  'firmware/v1-esp32s3/wokwi.toml',
   'firmware/v1-esp32s3/src/main.cpp',
   'firmware/v1-esp32s3/include/mcard_v1_pins.h',
   'firmware/v1-esp32s3/include/mcard_v1_profile.h',
@@ -75,6 +78,18 @@ const platformio = fs.readFileSync(
   path.join(firmwareRoot, 'platformio.ini'),
   'utf8'
 );
+const diagram = JSON.parse(fs.readFileSync(
+  path.join(firmwareRoot, 'diagram.json'),
+  'utf8'
+));
+const wokwiConfig = fs.readFileSync(
+  path.join(firmwareRoot, 'wokwi.toml'),
+  'utf8'
+);
+const wokwiSubstitutions = fs.readFileSync(
+  path.join(firmwareRoot, 'WOKWI_PART_SUBSTITUTIONS.md'),
+  'utf8'
+);
 
 assert.ok(profile.includes(serviceUuid), 'neutral service UUID missing');
 assert.ok(profile.includes(writeUuid), 'neutral write UUID missing');
@@ -83,6 +98,31 @@ assert.notStrictEqual(writeUuid, notifyUuid, 'write and notify UUIDs must differ
 assert.match(profile, /MCardKit-V1/);
 assert.match(platformio, /board\s*=\s*esp32-s3-devkitc-1/);
 assert.match(platformio, /framework\s*=\s*arduino/);
+assert.match(platformio, /MCARD_WOKWI_SIM/);
+assert.match(wokwiConfig, /wokwi-esp32-s3-devkitc-1\/firmware\.bin/);
+assert.match(
+  fs.readFileSync(path.join(firmwareRoot, 'src/main.cpp'), 'utf8'),
+  /Wokwi simulation ready/
+);
+assert.ok(
+  diagram.parts.some((part) => part.type === 'board-esp32-s3-devkitc-1'),
+  'Wokwi ESP32-S3 board missing'
+);
+assert.ok(
+  diagram.parts.some((part) => part.type === 'wokwi-logic-analyzer'),
+  'Wokwi logic analyzer missing'
+);
+assert.ok(
+  diagram.connections.some(
+    (connection) => connection[0] === 'esp:4' && connection[1] === 'logic:D0'
+  ),
+  'simulation heartbeat must connect to logic analyzer D0'
+);
+assert.match(wokwiSubstitutions, /TODO: VERIFY/);
+assert.match(wokwiSubstitutions, /not represent.*RF.*power integrity/is);
+assert.match(wokwiSubstitutions, /BLE radio initialization is skipped/);
+assert.match(firmwareReadme, /WOKWI_CLI_TOKEN/);
+assert.match(firmwareReadme, /not.*physical electrical.*RF/is);
 
 for (const command of [
   'CONTROL_PING',
@@ -156,6 +196,9 @@ assert.match(ble, /PROPERTY_NOTIFY/);
 assert.match(ble, /printHex\("RX "/);
 assert.match(ble, /printHex\("TX "/);
 assert.match(ble, /notifyCharacteristic->notify\(\)/);
+assert.match(protocol, /responseIncludesPacketIndex/);
+assert.match(protocol, /FILE_DATA_RESPONSE/);
+assert.match(protocol, /OTA_DATA_RESPONSE/);
 assert.match(firmwareReadme, /planning ACK/i);
 assert.match(firmwareReadme, /does not scan/i);
 assert.match(firmwareReadme, /does not.*flash|no partition writer/is);

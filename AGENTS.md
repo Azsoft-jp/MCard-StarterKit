@@ -84,6 +84,32 @@ Preferred tests:
 - JSON fixture validation
 - protocol vector tests
 
+### Wokwi simulation rule
+
+Use Wokwi CLI and the Wokwi MCP server as an optional integration-test layer
+for supported embedded firmware and virtual circuits.
+
+- Run local compile, static checks, protocol tests, and ngspice checks first.
+- When Wokwi MCP is available, prefer it for firmware/virtual-hardware
+  interaction, serial-log assertions, automation scenarios, and repeatable
+  peripheral tests.
+- Check the Wokwi Diagram Reference for the exact part first. If unavailable,
+  use a documented interface-compatible substitute, or create a small custom
+  chip when the required behavior is simple and testable.
+- Record every real-part to simulated-part substitution and the behavior that
+  is intentionally not modeled.
+- Validate `diagram.json` with `wokwi-cli lint --warnings-as-errors`.
+- Add a Wokwi logic analyzer and export VCD when digital timing or bus activity
+  is part of the acceptance criteria.
+- Keep the default `npm test` workflow independent of Wokwi, network access,
+  and secrets.
+- Do not commit `WOKWI_CLI_TOKEN`, generated firmware binaries, screenshots,
+  VCD files, or transient Wokwi output unless a public-safe fixture is
+  intentionally required.
+- Use only synthetic/public-safe diagrams, inputs, identifiers, and firmware.
+- Treat Wokwi results as simulation evidence, not physical electrical, RF,
+  thermal, certification, or manufacturing validation.
+
 ### Style rule
 
 Keep dependencies light.
@@ -111,6 +137,14 @@ arduino-cli compile --fqbn <fqbn> examples/esp32-ble-peripheral
 ```
 
 Default `npm test` should not require PlatformIO unless CI already supports it.
+
+If a Wokwi project is present and credentials are available, optional checks
+may include:
+
+```bash
+wokwi-cli lint --warnings-as-errors
+wokwi-cli . --expect-text "<deterministic marker>"
+```
 
 ## Directory preferences
 

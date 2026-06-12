@@ -6,6 +6,12 @@
 namespace mcard_v1 {
 namespace {
 
+#if defined(MCARD_WOKWI_SIM)
+constexpr uint32_t SIM_HEARTBEAT_HALF_PERIOD_MS = 500;
+uint32_t lastHeartbeatChange = 0;
+bool heartbeatHigh = false;
+#endif
+
 void configureOffOutput(int8_t pin) {
   if (pin < 0) return;
   pinMode(pin, OUTPUT);
@@ -25,7 +31,22 @@ void initPower() {
   if (pins::BATTERY_ADC >= 0) pinMode(pins::BATTERY_ADC, INPUT);
   if (pins::CHARGER_STATUS >= 0) pinMode(pins::CHARGER_STATUS, INPUT);
 
+#if defined(MCARD_WOKWI_SIM)
+  Serial.println("Product pins are placeholders; simulation heartbeat enabled");
+#else
   Serial.println("Pins are placeholders; outputs remain disabled");
+#endif
+}
+
+void servicePower() {
+#if defined(MCARD_WOKWI_SIM)
+  const uint32_t now = millis();
+  if (now - lastHeartbeatChange < SIM_HEARTBEAT_HALF_PERIOD_MS) return;
+
+  lastHeartbeatChange = now;
+  heartbeatHigh = !heartbeatHigh;
+  digitalWrite(pins::STATUS_LED, heartbeatHigh ? HIGH : LOW);
+#endif
 }
 
 uint16_t readBatteryPercent() {

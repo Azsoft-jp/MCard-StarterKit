@@ -28,6 +28,13 @@ never initiates a BLE connection or write.
    - Replace `-1` pin placeholders only after schematic, strap, USB, display,
      and test-fixture review.
    - Verify each peripheral independently before enabling combined operation.
+6. **Optional Wokwi integration**
+   - Build the dedicated `wokwi-esp32-s3-devkitc-1` environment.
+   - Lint the diagram against the current Wokwi registry.
+   - Assert the explicit Wokwi simulation-ready serial marker.
+   - Export the simulation-only GPIO4 heartbeat to VCD.
+   - Keep substitutions and intentionally unmodeled behavior documented.
+   - Do not treat the run as BLE radio or interoperability evidence.
 
 ## Initial serial evidence
 

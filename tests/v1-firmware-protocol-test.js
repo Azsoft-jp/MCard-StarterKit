@@ -4,6 +4,7 @@ const assert = require('assert');
 const {
   CATEGORY,
   CONTROL_COMMAND,
+  FILE_COMMAND,
   OTA_COMMAND,
   SAMPLE,
   buildControlFrame,
@@ -55,6 +56,37 @@ const otaResponse = parseFrame(buildDeterministicResponse(otaRequest));
 assert.strictEqual(otaResponse.command, OTA_COMMAND.DATA_RESPONSE);
 assert.strictEqual(otaResponse.data.readUInt16LE(0), 0);
 assert.strictEqual(otaResponse.data.readUInt32LE(2), 7);
+
+const statusOnlyCases = [
+  [CATEGORY.FILE, FILE_COMMAND.START_REQUEST, FILE_COMMAND.START_RESPONSE],
+  [CATEGORY.FILE, FILE_COMMAND.SEND_START_REQUEST, FILE_COMMAND.SEND_START_RESPONSE],
+  [CATEGORY.FILE, FILE_COMMAND.SEND_END_REQUEST, FILE_COMMAND.SEND_END_RESPONSE],
+  [CATEGORY.FILE, FILE_COMMAND.LOSE_CHECK_REQUEST, FILE_COMMAND.LOSE_CHECK_RESPONSE],
+  [CATEGORY.FILE, FILE_COMMAND.INFO_REQUEST, FILE_COMMAND.INFO_RESPONSE],
+  [CATEGORY.OTA, OTA_COMMAND.START_REQUEST, OTA_COMMAND.START_RESPONSE],
+  [CATEGORY.OTA, OTA_COMMAND.END_REQUEST, OTA_COMMAND.END_RESPONSE]
+];
+
+for (const [category, requestCommand, responseCommand] of statusOnlyCases) {
+  const response = parseFrame(buildDeterministicResponse(
+    buildLengthPrefixedFrame(category, requestCommand)
+  ));
+  assert.strictEqual(response.command, responseCommand);
+  assert.strictEqual(response.data.length, 2);
+  assert.strictEqual(response.data.readUInt16LE(0), 0);
+}
+
+const fileDataResponse = parseFrame(buildDeterministicResponse(
+  buildLengthPrefixedFrame(
+    CATEGORY.FILE,
+    FILE_COMMAND.DATA_REQUEST,
+    Buffer.from([9, 0, 0, 0])
+  )
+));
+assert.strictEqual(fileDataResponse.command, FILE_COMMAND.DATA_RESPONSE);
+assert.strictEqual(fileDataResponse.data.length, 6);
+assert.strictEqual(fileDataResponse.data.readUInt16LE(0), 0);
+assert.strictEqual(fileDataResponse.data.readUInt32LE(2), 9);
 
 assert.strictEqual(
   buildDeterministicResponse(buildControlFrame(0xffff)),

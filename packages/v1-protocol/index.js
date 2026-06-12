@@ -199,6 +199,16 @@ function mapAckCommand(category, command) {
   return maps.find(([request]) => request === command)?.[1] ?? null;
 }
 
+function responseIncludesPacketIndex(category, responseCommand) {
+  return (
+    category === CATEGORY.FILE &&
+    responseCommand === FILE_COMMAND.DATA_RESPONSE
+  ) || (
+    category === CATEGORY.OTA &&
+    responseCommand === OTA_COMMAND.DATA_RESPONSE
+  );
+}
+
 function buildDeterministicResponse(input) {
   const frame = input && typeof input === 'object' && 'command' in input
     ? input
@@ -210,11 +220,15 @@ function buildDeterministicResponse(input) {
 
   const responseCommand = mapAckCommand(frame.category, frame.command);
   if (responseCommand == null) return null;
-  const packetIndex = frame.data.length >= 4 ? frame.data.readUInt32LE(0) : 1;
+  const responseData = [u16le(0)];
+  if (responseIncludesPacketIndex(frame.category, responseCommand)) {
+    const packetIndex = frame.data.length >= 4 ? frame.data.readUInt32LE(0) : 1;
+    responseData.push(u32le(packetIndex));
+  }
   return buildLengthPrefixedFrame(
     frame.category,
     responseCommand,
-    Buffer.concat([u16le(0), u32le(packetIndex)])
+    Buffer.concat(responseData)
   );
 }
 
