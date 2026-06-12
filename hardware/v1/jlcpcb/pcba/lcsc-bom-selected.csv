@@ -1,0 +1,14 @@
+Block,Selected MPN,LCSC,Package,Library Status,Assembly,Stock Observation 2026-06-12,Order Status,Blocking TODO
+MCU/BLE,ESP32-S3-MINI-1-N4R2,C3013941,SMD module,Custom verified footprint required,Extended,5196,Do not order,Verify Espressif land pattern antenna keepout and certification applicability
+Asset flash,W25Q128JVSIQ,C97521,SOIC-8-208mil,KiCad standard footprint candidate,Basic,110435,Optional,Verify secondary-flash architecture and omit if unnecessary
+Display connector,FH12-14S-0.5SH(55),C5378715,"14 pin 0.5 mm",KiCad FH12 family candidate,Extended,689,Do not order,Verify contact orientation mated height FPC thickness and drawing
+Dynamic NFC,ST25DV04KC-IE6S3,C3304276,SO-8,KiCad standard footprint candidate,Extended,18587,Do not order,Verify exact package pinout and RF tuning network
+NFC fallback,NT3H2111W0FHKH,C710403,XQFN-8 1.6x1.6,Custom/verified footprint required,Extended,7510,Fallback,Retune antenna and assess assembly yield
+USB-C,USB4105-GF-A,C3020560,Horizontal SMT,KiCad USB4105 footprint candidate,Extended,295,Do not order,Verify suffix drawing height shell pads and JLC eligibility
+Charger,BQ24074RGTR,C54313,QFN-16-EP 3x3,KiCad standard footprint candidate,Extended,736,Do not order,Complete thermal and exposed-pad review
+3V3 regulator,TPS63031DSKR,C15516,SON-10-EP 2.5x2.5,KiCad standard footprint candidate,Extended,2740,Do not order,Verify peak load inductor stability and layout
+RGB side light,SK6805-EC15,C2890035,SMD-4P 1.5x1.5,Custom/verified footprint required,Extended,161838,Do not order,Verify logic threshold current and light-pipe fit
+Button,SKRPACE010,C139797,SMD-4P 4.2x3.2,KiCad switch footprint candidate,Extended,156252,Do not order,Verify actuator direction height force and cap interface
+Piezo,PKLCS1212E4001-R1,C113159,12.2x12.2 class,KiCad Murata footprint candidate,Extended,4632,Do not order,Verify package metadata height drive and acoustic path
+Motor NMOS,AO3400A,C20917,SOT-23,KiCad standard footprint candidate,Basic,1345927,DNP baseline,Verify exact manufacturer and motor protection
+USB ESD,TPD2EUSB30DRTR,C3040102,SOT-723,KiCad standard footprint candidate,Extended,4708,Do not order,Resolve inconsistent LCSC package metadata and verify pinout

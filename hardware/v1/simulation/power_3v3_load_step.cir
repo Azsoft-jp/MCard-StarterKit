@@ -1,0 +1,11 @@
+* V1 3.3 V rail first-order load-step estimate
+* Replace source impedance, capacitance, ESR, and load with measured values.
+VREG nsrc 0 3.3
+RSRC nsrc ncap 0.12
+RESR ncap vout 0.04
+COUT vout 0 220u
+ILOAD vout 0 PULSE(0.08 0.65 1m 2u 2u 2m 5m)
+.tran 2u 10m
+.measure tran VMIN MIN v(vout) FROM=1m TO=4m
+.measure tran VMAX MAX v(vout) FROM=0 TO=10m
+.end

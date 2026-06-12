@@ -1,0 +1,9 @@
+* V1 discrete RGB LED current-limit estimate
+* Sweep a representative LED forward-voltage model; verify selected LED curves.
+VDD vdd 0 3.3
+RLED vdd led 150
+DLED led 0 D_COLOR
+.model D_COLOR D(Is=1e-20 N=2.0 Rs=8 Bv=5 Ibv=10u)
+.dc VDD 2.8 3.4 0.1
+.measure dc ILED_MAX MAX par('-i(VDD)')
+.end

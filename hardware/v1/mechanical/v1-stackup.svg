@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="540" viewBox="0 0 1040 540">
+  <style>
+    text { font-family: sans-serif; fill: #17202a; }
+    .title { font-size: 24px; font-weight: 700; }
+    .label { font-size: 15px; font-weight: 700; }
+    .small { font-size: 12px; }
+    .outline { fill: none; stroke: #17202a; stroke-width: 3; }
+    .lens { fill: #cfe2f3; }
+    .display { fill: #6fa8dc; }
+    .pcb { fill: #6aa84f; }
+    .component { fill: #8e7cc3; }
+    .battery { fill: #f6b26b; }
+    .case { fill: #9aa; fill-opacity: .55; }
+    .space { fill: #fff; stroke: #aaa; stroke-dasharray: 4 3; }
+    .rear { fill: none; stroke: #cc5500; stroke-width: 4; }
+    .front { fill: none; stroke: #17202a; stroke-width: 4; }
+  </style>
+
+  <text x="35" y="38" class="title">V1 flat-front enclosure: rear-only battery depth</text>
+  <text x="35" y="62" class="small">Transparent smoke resin is shown schematically. Validate optical and mechanical samples.</text>
+
+  <g transform="translate(45 110)">
+    <text x="0" y="-16" class="label">Upper LCD/body region: 6.8 mm nominal</text>
+    <rect class="outline" x="0" y="0" width="430" height="204" rx="8"/>
+    <rect class="lens" x="20" y="16" width="390" height="15"/>
+    <rect class="display" x="20" y="33" width="390" height="58"/>
+    <rect class="space" x="20" y="93" width="390" height="5"/>
+    <rect class="pcb" x="20" y="100" width="390" height="23"/>
+    <rect class="component" x="155" y="125" width="145" height="58"/>
+    <rect class="space" x="20" y="185" width="390" height="6"/>
+    <rect class="case" x="20" y="193" width="390" height="11"/>
+    <text x="28" y="28" class="small">flat lens/front resin 0.60</text>
+    <text x="28" y="66" class="small">TFT 2.00</text>
+    <text x="28" y="117" class="small">PCB 0.80</text>
+    <text x="171" y="157" class="small">module max 2.40</text>
+    <text x="28" y="202" class="small">rear resin + clearance 1.00</text>
+  </g>
+
+  <g transform="translate(560 110)">
+    <text x="0" y="-16" class="label">Lower LiPo region: 8.5 mm maximum</text>
+    <rect class="outline" x="0" y="0" width="430" height="255" rx="8"/>
+    <rect class="case" x="20" y="16" width="390" height="24"/>
+    <rect class="pcb" x="20" y="42" width="390" height="23"/>
+    <rect class="space" x="20" y="67" width="390" height="8"/>
+    <rect class="battery" x="75" y="77" width="280" height="120"/>
+    <rect class="space" x="20" y="199" width="390" height="25"/>
+    <rect class="case" x="20" y="226" width="390" height="29"/>
+    <text x="28" y="33" class="small">same flat front datum 0.80</text>
+    <text x="28" y="59" class="small">PCB 0.80</text>
+    <text x="137" y="141" class="small">LiPo 4.00</text>
+    <text x="28" y="216" class="small">insulation, swelling and clearance 1.90</text>
+    <text x="28" y="246" class="small">rear bulge resin 1.00</text>
+  </g>
+
+  <path class="front" d="M100 405 H965"/>
+  <path class="rear" d="M100 455 H455 Q485 455 515 485 H965"/>
+  <text x="101" y="395" class="small">front datum: one continuous flat plane</text>
+  <text x="420" y="510" class="small">rear-only radiused transition near y=33 mm</text>
+  <text x="805" y="477" class="small">8.5 mm rear depth</text>
+
+  <text x="45" y="530" class="small">Display-over-battery stacking remains prohibited. Case width stays 49 mm nominal; rear button caps require separate clearance review.</text>
+</svg>

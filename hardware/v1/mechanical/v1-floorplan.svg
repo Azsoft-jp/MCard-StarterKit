@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="820" viewBox="0 0 1040 820">
+  <style>
+    text { font-family: sans-serif; fill: #17202a; }
+    .title { font-size: 24px; font-weight: 700; }
+    .label { font-size: 14px; }
+    .small { font-size: 12px; }
+    .case { fill: #e8edf0; fill-opacity: .65; stroke: #555; stroke-width: 2; }
+    .board { fill: #d8f0df; stroke: #176b3a; stroke-width: 3; }
+    .display { fill: #26384a; stroke: #0b1824; stroke-width: 2; }
+    .active { fill: #6fa8dc; stroke: #d9ecff; stroke-width: 1; }
+    .battery { fill: #f6b26b; stroke: #a64b00; stroke-width: 2; }
+    .button { fill: #444; stroke: #111; stroke-width: 1; }
+    .rgb { fill: #d35cff; stroke: #6a1b9a; stroke-width: 1; }
+    .keepout { fill: none; stroke: #cc0000; stroke-width: 2; stroke-dasharray: 8 5; }
+    .module { fill: #9fc5e8; stroke: #134f5c; stroke-width: 2; }
+    .part { fill: #d9d2e9; stroke: #674ea7; stroke-width: 2; }
+    .nfc { fill: none; stroke: #bf9000; stroke-width: 4; }
+    .strap { fill: #777; stroke: #222; stroke-width: 2; }
+    .opening { fill: #fff; stroke: #222; stroke-width: 1; }
+    .dim { stroke: #555; stroke-width: 1; marker-start: url(#arrow); marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <text x="35" y="38" class="title">V1 floorplan: nominal product 49 x 99 mm, PCB 46 x 84 mm</text>
+  <text x="35" y="62" class="small">PCB origin is lower-left. Scale: 7 px/mm. Product height includes the resin strap bridge.</text>
+
+  <g transform="translate(95 748) scale(7 -7)">
+    <rect class="case" x="-1.5" y="-3" width="49" height="90" rx="4"/>
+    <rect class="strap" x="13" y="84" width="20" height="12" rx="2"/>
+    <rect class="opening" x="18" y="89" width="10" height="3.5" rx="1"/>
+    <rect class="board" x="0" y="0" width="46" height="84" rx="3"/>
+    <rect class="display" x="5.7" y="35" width="34.6" height="47.8"/>
+    <rect class="active" x="7.7" y="38.5" width="30.6" height="40.8"/>
+    <rect class="rgb" x=".5" y="39" width="1.5" height="28"/>
+    <rect class="rgb" x="44" y="39" width="1.5" height="28"/>
+    <rect class="keepout" x="40.8" y="64.5" width="5.2" height="19"/>
+  </g>
+  <text x="210" y="245" class="label" fill="#fff">FRONT: FLAT DATUM</text>
+  <text x="185" y="420" class="label" fill="#fff">30.6 x 40.8 active</text>
+  <text x="105" y="375" class="small">left RGB</text>
+  <text x="415" y="375" class="small">right RGB</text>
+  <text x="385" y="215" class="small" fill="#cc0000">BLE no-metal zone</text>
+  <text x="185" y="80" class="small">transparent resin strap bridge</text>
+
+  <g transform="translate(610 748) scale(7 -7)">
+    <rect class="case" x="-1.5" y="-3" width="49" height="90" rx="4"/>
+    <rect class="strap" x="13" y="84" width="20" height="12" rx="2"/>
+    <rect class="opening" x="18" y="89" width="10" height="3.5" rx="1"/>
+    <rect class="board" x="0" y="0" width="46" height="84" rx="3"/>
+    <path class="nfc" d="M3 3 H42 V61 M42 81 H3 Z"/>
+    <rect class="battery" x="10.5" y="12" width="25" height="20"/>
+    <rect class="keepout" x="9.5" y="11" width="27" height="22"/>
+    <rect class="button" x="4" y="3" width="8" height="5" rx="1"/>
+    <rect class="button" x="19" y="3" width="8" height="5" rx="1"/>
+    <rect class="button" x="34" y="3" width="8" height="5" rx="1"/>
+    <rect class="module" x="25" y="66" width="20.5" height="15.4"/>
+    <rect class="keepout" x="40.8" y="64.5" width="5.2" height="19"/>
+    <rect class="part" x="17.25" y="33.5" width="11.5" height="4"/>
+    <rect class="part" x="38.5" y="17" width="7.5" height="10"/>
+    <rect class="part" x="1" y="38" width="12.2" height="12.2"/>
+    <rect class="keepout" x="1" y="53" width="10" height="10"/>
+  </g>
+  <text x="725" y="245" class="label">REAR: LOWER BATTERY BULGE</text>
+  <text x="716" y="583" class="label">402025 LiPo, rotated</text>
+  <text x="708" y="713" class="label" fill="#fff">three rear buttons</text>
+  <text x="842" y="220" class="small">ESP32-S3-MINI</text>
+  <text x="920" y="615" class="small">USB-C right edge</text>
+  <text x="725" y="525" class="small">FPC / rear step boundary</text>
+  <text x="626" y="180" class="small" fill="#bf9000">NFC loop detours around BLE keepout</text>
+
+  <line x1="95" y1="783" x2="417" y2="783" class="dim"/>
+  <text x="224" y="804" class="label">46 mm PCB</text>
+  <line x1="66" y1="160" x2="66" y2="748" class="dim"/>
+  <text x="26" y="465" class="label">84 mm PCB</text>
+
+  <rect x="95" y="744" width="343" height="25" fill="#fff" opacity=".85"/>
+  <text x="105" y="762" class="small">49 mm case width, front remains planar</text>
+  <rect x="610" y="744" width="343" height="25" fill="#fff" opacity=".85"/>
+  <text x="620" y="762" class="small">rear buttons below 2 mm display/battery separation</text>
+</svg>

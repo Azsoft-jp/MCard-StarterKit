@@ -1,0 +1,232 @@
+{
+  "units": "mm",
+  "status": "planning geometry; not a released mechanical drawing",
+  "board": {
+    "width": 46.0,
+    "height": 84.0,
+    "thickness": 0.8,
+    "fallback_thickness": 1.0,
+    "corner_radius": 3.0,
+    "layers": 4,
+    "selection_reason": "fits nominal 49 x 99 mm product while retaining side LED and case margins"
+  },
+  "case": {
+    "nominal_external_width": 49.0,
+    "nominal_external_height_including_strap": 99.0,
+    "stated_width_tolerance": 10.0,
+    "stated_height_tolerance": 30.0,
+    "target_external_thickness": 8.5,
+    "display_region_external_thickness": 6.8,
+    "battery_region_external_thickness": 8.5,
+    "step_transition_y": 33.0,
+    "thickness_step_side": "rear only",
+    "front_surface_profile": "single continuous flat datum",
+    "rear_surface_profile": "radiused lower battery bulge",
+    "body_external_x": -1.5,
+    "body_external_y": -3.0,
+    "body_external_width": 49.0,
+    "body_external_width_upper": 49.0,
+    "body_external_width_lower": 49.0,
+    "side_edge_profile": "straight and aligned through LCD and battery regions",
+    "body_external_height": 90.0,
+    "overall_height_with_strap_bridge": 99.0,
+    "material": "transparent smoke resin",
+    "metal_back_allowed": false
+  },
+  "enclosure_features": [
+    {
+      "id": "strap_bridge",
+      "x": 13.0,
+      "y": 84.0,
+      "width": 20.0,
+      "height": 12.0,
+      "external_thickness": 6.8,
+      "material": "transparent smoke resin",
+      "load_path": "integral shoulders outside PCB outline; no PCB hole"
+    },
+    {
+      "id": "strap_opening",
+      "x": 18.0,
+      "y": 89.0,
+      "width": 10.0,
+      "height": 3.5,
+      "material": "void",
+      "hardware": "non-metal textile strap only"
+    }
+  ],
+  "placements": [
+    {
+      "id": "display_panel",
+      "side": "front",
+      "x": 5.7,
+      "y": 35.0,
+      "width": 34.6,
+      "height": 47.8,
+      "thickness": 2.0,
+      "part": "EastRising ER-TFT020-3",
+      "verified": "supplier page; drawing and sample still required"
+    },
+    {
+      "id": "display_active_area",
+      "side": "front",
+      "x": 7.7,
+      "y": 38.5,
+      "width": 30.6,
+      "height": 40.8,
+      "thickness": 0.0,
+      "part": "ER-TFT020-3 active area"
+    },
+    {
+      "id": "battery_nominal",
+      "side": "rear",
+      "x": 10.5,
+      "y": 12.0,
+      "width": 25.0,
+      "height": 20.0,
+      "thickness": 4.0,
+      "part": "protected LiPo 402025, rotated 90 degrees",
+      "verified": "size-class only; exact cell and PCM required"
+    },
+    {
+      "id": "battery_keepout",
+      "side": "rear",
+      "x": 9.5,
+      "y": 11.0,
+      "width": 27.0,
+      "height": 22.0,
+      "thickness": 4.6,
+      "part": "battery swelling, insulation and placement keepout"
+    },
+    {
+      "id": "button_left",
+      "side": "rear",
+      "x": 4.0,
+      "y": 3.0,
+      "width": 8.0,
+      "height": 5.0,
+      "thickness": 1.6,
+      "part": "rear lower horizontal button"
+    },
+    {
+      "id": "button_center",
+      "side": "rear",
+      "x": 19.0,
+      "y": 3.0,
+      "width": 8.0,
+      "height": 5.0,
+      "thickness": 1.6,
+      "part": "rear lower horizontal button"
+    },
+    {
+      "id": "button_right",
+      "side": "rear",
+      "x": 34.0,
+      "y": 3.0,
+      "width": 8.0,
+      "height": 5.0,
+      "thickness": 1.6,
+      "part": "rear lower horizontal button"
+    },
+    {
+      "id": "rgb_left",
+      "side": "front",
+      "x": 0.5,
+      "y": 39.0,
+      "width": 1.5,
+      "height": 28.0,
+      "thickness": 1.5,
+      "part": "left front-visible RGB light guide and side emitters"
+    },
+    {
+      "id": "rgb_right",
+      "side": "front",
+      "x": 44.0,
+      "y": 39.0,
+      "width": 1.5,
+      "height": 28.0,
+      "thickness": 1.5,
+      "part": "right front-visible RGB light guide and side emitters"
+    },
+    {
+      "id": "esp32_s3_mini",
+      "side": "rear",
+      "x": 25.0,
+      "y": 66.0,
+      "width": 20.5,
+      "height": 15.4,
+      "thickness": 2.4,
+      "rotation": 90,
+      "part": "ESP32-S3-MINI-1-N4R2",
+      "verified": "official land pattern and height must be rechecked"
+    },
+    {
+      "id": "ble_antenna_keepout",
+      "side": "all",
+      "x": 40.8,
+      "y": 64.5,
+      "width": 5.2,
+      "height": 19.0,
+      "thickness": 8.5,
+      "part": "no copper, display metal, battery or case metal",
+      "verified": "conservative planning zone; replace with exact Espressif rule"
+    },
+    {
+      "id": "display_fpc_connector",
+      "side": "rear",
+      "x": 17.25,
+      "y": 33.5,
+      "width": 11.5,
+      "height": 4.0,
+      "thickness": 2.0,
+      "part": "FH12-14S-0.5SH(55)"
+    },
+    {
+      "id": "usb_c",
+      "side": "rear",
+      "x": 38.5,
+      "y": 17.0,
+      "width": 7.5,
+      "height": 10.0,
+      "thickness": 3.2,
+      "part": "GCT USB4105-GF-A, right-edge opening"
+    },
+    {
+      "id": "piezo",
+      "side": "rear",
+      "x": 1.0,
+      "y": 38.0,
+      "width": 12.2,
+      "height": 12.2,
+      "thickness": 3.0,
+      "part": "PKLCS1212E4001-R1"
+    },
+    {
+      "id": "vibration_dnp",
+      "side": "rear",
+      "x": 1.0,
+      "y": 53.0,
+      "width": 10.0,
+      "height": 10.0,
+      "thickness": 3.0,
+      "part": "optional motor pad/footprint only"
+    }
+  ],
+  "required_non_overlap": [
+    ["display_panel", "battery_keepout"],
+    ["display_panel", "ble_antenna_keepout"],
+    ["battery_keepout", "usb_c"],
+    ["battery_keepout", "button_left"],
+    ["battery_keepout", "button_center"],
+    ["battery_keepout", "button_right"],
+    ["display_panel", "rgb_left"],
+    ["display_panel", "rgb_right"]
+  ],
+  "minimum_xy_gaps": [
+    {"a": "display_panel", "b": "battery_keepout", "gap": 2.0},
+    {"a": "display_panel", "b": "ble_antenna_keepout", "gap": 0.5},
+    {"a": "battery_keepout", "b": "usb_c", "gap": 2.0},
+    {"a": "battery_keepout", "b": "button_center", "gap": 3.0},
+    {"a": "display_panel", "b": "rgb_left", "gap": 3.7},
+    {"a": "display_panel", "b": "rgb_right", "gap": 3.7}
+  ]
+}
