@@ -21,7 +21,9 @@ REQUIRED = [
     "research/FUSION360_WORKFLOW_NOTES.md", "research/ESP32S3_HARDWARE_NOTES.md",
     "research/NFC_DYNAMIC_TAG_NOTES.md", "research/RF_ANTENNA_LAYOUT_NOTES.md",
     "research/COMMUNITY_TIPS_INDEX.md", "research/CODEX_SKILLS_AND_TOOLS.md",
+    "research/BOM_SOURCE_NOTES.md", "reviews/BOM_REVIEW_CHECKLIST.md",
     "jlcpcb/pcba/lcsc-bom-shortlist.csv", "simulation/README.md",
+    "jlcpcb/pcba/pcba-selection-rules.md",
     "jlcpcb/pcba/lcsc-bom-selected.csv",
     "mechanical/v1-envelope.json", "mechanical/v1-floorplan.svg",
     "mechanical/v1-stackup.svg", "mechanical/v1-product-concept.png",
@@ -92,11 +94,26 @@ def main():
     ) as handle:
         rows = list(csv.DictReader(handle))
     required_columns = {
-        "Block", "Part Family", "Candidate Part", "Package", "Why Considered",
-        "JLC-LCSC Verification", "Risk", "Fallback", "Official Datasheet", "TODO",
+        "Block", "DesignatorHint", "PreferredPart", "AlternativePart", "Package",
+        "Value", "VoltageCurrentRating", "JLCPCBStatus", "LCSCStatus", "Reason",
+        "Risk", "FootprintTodo", "DatasheetUrl", "Notes",
     }
     if not rows or set(rows[0]) != required_columns:
         errors += fail("BOM shortlist columns are incomplete")
+
+    required_blocks = {
+        "MCU / BLE module", "Display panel", "Display connector",
+        "Dynamic NFC tag", "NFC antenna / matching", "External SPI NOR",
+        "USB-C connector", "USB ESD", "LiPo charger / power path",
+        "Battery connector", "3.3 V regulator", "Backlight control",
+        "RGB side LEDs", "Tactile switches", "Piezo buzzer",
+        "Optional vibration motor", "Vibration motor NMOS", "I2C pullups",
+        "SPI series resistors", "Test pads", "Mounting / mechanical",
+    }
+    present_blocks = {row["Block"] for row in rows}
+    missing_blocks = sorted(required_blocks - present_blocks)
+    if missing_blocks:
+        errors += fail(f"BOM shortlist blocks are incomplete: {', '.join(missing_blocks)}")
 
     envelope = json.loads(
         (V1 / "mechanical" / "v1-envelope.json").read_text(encoding="utf-8")
