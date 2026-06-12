@@ -7,9 +7,14 @@ import re
 import sys
 from pathlib import Path
 
+sys.dont_write_bytecode = True
+
+from generate_v1_schematic import planned_outputs
+
 
 ROOT = Path(__file__).resolve().parents[2]
 V1 = ROOT / "hardware" / "v1"
+KICAD = V1 / "kicad"
 REQUIRED = [
     "README.md", "ROADMAP.md", "REQUIREMENTS.md", "ARCHITECTURE.md",
     "BOM_CANDIDATES.md", "PCB_CONSTRAINTS.md", "MECHANICAL_CONSTRAINTS.md",
@@ -32,11 +37,51 @@ REQUIRED = [
     "mechanical/v1-product-concept-v4.png",
     "simulation/power_3v3_load_step.cir", "simulation/rgb_led_current_limit.cir",
     "simulation/vibration_motor_driver.cir",
+    "kicad/MCard_V1.kicad_pro", "kicad/MCard_V1.kicad_sch",
+    "kicad/README.md", "kicad/SCHEMATIC_REVIEW_CHECKLIST.md",
+    "reviews/KICAD_SCAFFOLD_REVIEW.md",
+]
+REQUIRED_ROOT_FILES = [
+    "tools/kicad-gen/README.md",
+    "tools/kicad-gen/generate_v1_schematic.py",
+    "tools/kicad-gen/validate_v1_design.py",
 ]
 GATES = [
     "Requirements", "Research/source verification", "BOM", "Schematic",
     "PCB layout", "Mechanical envelope", "Simulation", "RF/NFC antenna review",
     "Japan radio certification note", "Pre-JLC order",
+]
+KICAD_SECTIONS = [
+    "Power input and LiPo charger",
+    "3.3 V power rail",
+    "ESP32-S3 module",
+    "USB-C / USB data / ESD",
+    "240x320 TFT display connector",
+    "Dynamic NFC tag and I2C",
+    "Optional SPI NOR flash",
+    "RGB LEDs",
+    "Buttons",
+    "Piezo buzzer",
+    "Optional vibration motor driver",
+    "Test pads",
+]
+HUMAN_REVIEW_PHRASES = [
+    "starter scaffold",
+    "human electrical review",
+    "not electrically verified",
+]
+TODO_PHRASES = [
+    "TODO: VERIFY exact footprint",
+    "TODO: VERIFY datasheet-confirmed pinout",
+    "TODO: VERIFY JLCPCB assembly status",
+]
+FORBIDDEN_ASSET_SUFFIXES = {".wxapkg", ".bsdiff", ".har", ".bin"}
+FORBIDDEN_GENERATED_TERMS = [
+    "monicard",
+    "vendor cloud endpoint",
+    "firmware blob",
+    "private identifier",
+    "proprietary source dump",
 ]
 
 
@@ -64,10 +109,38 @@ def axis_gap(a, b):
     return max(gap_x, gap_y)
 
 
+def balanced_s_expression(text):
+    depth = 0
+    in_string = False
+    escaped = False
+    for character in text:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif character == "\\":
+                escaped = True
+            elif character == '"':
+                in_string = False
+            continue
+        if character == '"':
+            in_string = True
+        elif character == "(":
+            depth += 1
+        elif character == ")":
+            depth -= 1
+            if depth < 0:
+                return False
+    return depth == 0 and not in_string
+
+
 def main():
     errors = 0
     for rel in REQUIRED:
         path = V1 / rel
+        if not path.is_file() or path.stat().st_size == 0:
+            errors += fail(f"missing or empty {path.relative_to(ROOT)}")
+    for rel in REQUIRED_ROOT_FILES:
+        path = ROOT / rel
         if not path.is_file() or path.stat().st_size == 0:
             errors += fail(f"missing or empty {path.relative_to(ROOT)}")
 
@@ -79,6 +152,67 @@ def main():
     for text in ["46 x 84", "49 x 99", "8.5 mm", "0.8 mm", "TODO: VERIFY", "human electrical review"]:
         if text.lower() not in combined.lower():
             errors += fail(f"required planning phrase absent: {text}")
+
+    project_path = KICAD / "MCard_V1.kicad_pro"
+    schematic_path = KICAD / "MCard_V1.kicad_sch"
+    if project_path.is_file() and schematic_path.is_file():
+        try:
+            project = json.loads(project_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as error:
+            errors += fail(f"KiCad project JSON is invalid: {error}")
+            project = {}
+        schematic = schematic_path.read_text(encoding="utf-8")
+        generated_text = json.dumps(project) + "\n" + schematic
+
+        if not schematic.lstrip().startswith("(kicad_sch"):
+            errors += fail("generated schematic lacks kicad_sch header")
+        if not balanced_s_expression(schematic):
+            errors += fail("generated schematic S-expression is unbalanced")
+        if "(generator \"mcard_v1_scaffold_generator\")" not in schematic:
+            errors += fail("generated schematic lacks unique generator identity")
+        if "(lib_symbols)" not in schematic:
+            errors += fail("generated scaffold must remain note-only until parts are verified")
+
+        for section in KICAD_SECTIONS:
+            if f"SECTION: {section}".lower() not in schematic.lower():
+                errors += fail(f"KiCad scaffold section absent: {section}")
+        for phrase in TODO_PHRASES:
+            if phrase.lower() not in generated_text.lower():
+                errors += fail(f"KiCad scaffold verification marker absent: {phrase}")
+        for generated_path, content in [
+            (project_path, json.dumps(project)),
+            (schematic_path, schematic),
+        ]:
+            for phrase in HUMAN_REVIEW_PHRASES:
+                if phrase.lower() not in content.lower():
+                    errors += fail(
+                        f"KiCad scaffold review warning absent from "
+                        f"{generated_path.name}: {phrase}"
+                    )
+        if schematic.count("TODO: VERIFY") < len(KICAD_SECTIONS) * 3:
+            errors += fail("each KiCad section must retain footprint, pinout, and assembly TODOs")
+        for term in FORBIDDEN_GENERATED_TERMS:
+            if term in generated_text.lower():
+                errors += fail(f"forbidden term present in generated KiCad files: {term}")
+
+        for path, expected in planned_outputs(KICAD).items():
+            if not path.is_file() or path.read_text(encoding="utf-8") != expected:
+                errors += fail(
+                    f"generated KiCad file is stale; rerun generator: "
+                    f"{path.relative_to(ROOT)}"
+                )
+
+    scoped_asset_roots = [
+        KICAD,
+        ROOT / "tools" / "kicad-gen",
+        V1 / "reviews",
+    ]
+    for asset_root in scoped_asset_roots:
+        if not asset_root.exists():
+            continue
+        for path in asset_root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in FORBIDDEN_ASSET_SUFFIXES:
+                errors += fail(f"forbidden asset type present: {path.relative_to(ROOT)}")
 
     roadmap = (V1 / "ROADMAP.md").read_text(encoding="utf-8")
     for gate in GATES:
