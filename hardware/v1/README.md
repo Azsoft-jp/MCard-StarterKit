@@ -41,6 +41,14 @@ Placement-first schematic work is defined by
 [MECHANICAL_STACKUP.md](MECHANICAL_STACKUP.md), and
 [CIRCUIT_ARCHITECTURE.md](CIRCUIT_ARCHITECTURE.md).
 
+PR-4 power and firmware bring-up is defined by
+[POWER_TREE.md](POWER_TREE.md),
+[SIMULATION_PLAN.md](SIMULATION_PLAN.md),
+[FIRMWARE_BRINGUP_PLAN.md](FIRMWARE_BRINGUP_PLAN.md), and
+[INTEGRATION_TEST_PLAN.md](INTEGRATION_TEST_PLAN.md). The matching ESP32-S3
+source is under `../../firmware/v1-esp32s3/`; all product GPIOs remain
+`TODO: VERIFY` placeholders.
+
 The `kicad/`, `fusion360/`, `mechanical/`, `jlcpcb/`, `jlc3dp/`, `jlccnc/`,
 `simulation/`, `datasheets/`, `research/`, and `reviews/` directories hold the
 handoff artifacts for each discipline. Human electrical, RF, mechanical, and
