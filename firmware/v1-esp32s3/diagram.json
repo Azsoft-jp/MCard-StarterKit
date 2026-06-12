@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "MCard-StarterKit",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {
+        "env": "arduino"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "heartbeat",
+      "top": -21.6,
+      "left": 310.6,
+      "attrs": {
+        "color": "green",
+        "label": "SIM heartbeat"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 37.55,
+      "left": 239.45,
+      "rotate": 90,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "logic",
+      "top": 140,
+      "left": 300,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:4", "r1:1", "green", [] ],
+    [ "r1:2", "heartbeat:A", "green", [] ],
+    [ "heartbeat:C", "esp:GND.1", "black", [] ],
+    [ "esp:4", "logic:D0", "blue", [] ],
+    [ "logic:GND", "esp:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}

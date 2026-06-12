@@ -1,0 +1,11 @@
+* V1 synthetic TFT backlight PWM estimate
+* TODO: VERIFY ordered panel LED topology, current, voltage, driver, and PWM.
+VDD vdd 0 3.3
+VPWM gate 0 PULSE(0 3.3 0 100n 100n 500u 1m)
+SBL vdd led gate 0 SWMOD
+RPATH led 0 82
+.model SWMOD SW(Ron=0.15 Roff=1e9 Vt=1.65 Vh=0.1)
+.tran 5u 5m
+.measure tran IAVG AVG par('-i(VDD)') FROM=1m TO=5m
+.measure tran IMAX MAX par('-i(VDD)') FROM=1m TO=5m
+.end
