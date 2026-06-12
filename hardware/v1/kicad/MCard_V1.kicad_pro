@@ -32,6 +32,8 @@
     "SCAFFOLD_STATUS": "GENERATED STARTER SCAFFOLD ONLY - HUMAN ELECTRICAL REVIEW REQUIRED; NOT ELECTRICALLY VERIFIED OR APPROVED FOR FABRICATION",
     "FOOTPRINT_STATUS": "TODO: VERIFY exact footprints",
     "PINOUT_STATUS": "TODO: VERIFY datasheet-confirmed pinout",
-    "ASSEMBLY_STATUS": "TODO: VERIFY JLCPCB assembly status"
+    "ASSEMBLY_STATUS": "TODO: VERIFY JLCPCB assembly status",
+    "PLACEMENT_STATUS": "TODO: VERIFY placement dependencies; keep 49 x 99 mm product, 46 x 84 mm PCB, upper display, and lower rear LiPo",
+    "TEST_ACCESS_STATUS": "TODO: VERIFY fixture-accessible bare pogo pads; no pin headers"
   }
 }

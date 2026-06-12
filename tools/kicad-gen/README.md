@@ -5,6 +5,10 @@ It is a starter structure for human schematic capture, not an electrically
 verified design. The generated schematic contains no symbols, nets, pin
 mappings, or assigned footprints.
 
+The current PR-3 correction keeps the accepted 49 x 99 mm product, 46 x 84 mm
+PCB, and upper-display/lower-LiPo placement. It adds placement dependency notes
+without changing the mechanical baseline or renumbering the roadmap.
+
 No third-party Python package is required.
 
 ## Generate
@@ -40,8 +44,9 @@ python3 tools/kicad-gen/generate_v1_schematic.py --check
 ## Validation boundary
 
 The validator checks file presence, required section labels, review warnings,
-`TODO: VERIFY` coverage, deterministic generator output, and clean-room asset
-boundaries. When `kicad-cli` is installed, also run:
+`TODO: VERIFY` coverage, placement dependencies, the locked mechanical
+baseline, deterministic generator output, and clean-room asset boundaries.
+When `kicad-cli` is installed, also run:
 
 ```bash
 kicad-cli sch erc hardware/v1/kicad/MCard_V1.kicad_sch \
@@ -53,3 +58,6 @@ correctness because this scaffold intentionally has no circuit. Before adding
 symbols or nets, verify the exact datasheet pinout, footprint, assembly status,
 power design, RF keepouts, and DNP behavior. Any populated schematic requires
 human electrical review and a recorded ERC disposition before PCB work.
+
+Use fixture-accessible bare pogo pads for bring-up and production test. Do not
+add pin headers to the finished thin product.

@@ -43,6 +43,8 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 - Product nominal outline is 49 x 99 mm including the strap bridge.
 - PCB is 46 x 84 mm or a mechanically approved revision, using 0.8 mm or
   explicitly approved 1.0 mm thickness.
+- Conflicting initialization prompts do not constitute a mechanically approved
+  revision; the current 49 x 99 mm product and 46 x 84 mm PCB remain baseline.
 - Selected display, battery, USB-C, module, connector and side controls fit the
   reviewed front/rear placement zones with assembly tolerances.
 - Rear lower buttons, bilateral front-visible RGB guides and transparent resin

@@ -12,6 +12,11 @@
 | Assembly | Prefer one-side SMT where stack height and cost permit |
 | Test | GND, VBAT, VBUS, 3V3, EN, BOOT, UART, USB and key buses accessible |
 
+The 46 x 84 mm outline is the locked current PR-3 baseline. A 52 x 72 mm board
+is not an accepted alternative. Any future outline change requires coordinated
+updates to the envelope JSON, placement drawings, mechanical CAD, RF review,
+and validator.
+
 Do not encode guessed JLC minimums as project rules. At layout start, copy the
 current selected process limits from official JLCPCB Help/capabilities and add
 design margin. Verify annular rings, mask dams, via types, edge clearances,
@@ -25,3 +30,6 @@ permits it.
 Reserve both long edges for front-visible RGB emitters/light-guide coupling.
 Keep the lower rear button row below the expanded battery keepout and out of
 the USB-C insertion volume.
+
+Use bare ENIG pogo pads for fixture access. Do not fit pin headers in the
+finished thin product.

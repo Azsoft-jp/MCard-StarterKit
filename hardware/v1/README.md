@@ -17,6 +17,10 @@ It is not a production-ready design or an official compatibility claim.
 - I/O: USB-C power/programming, rear lower horizontal three-button row, dual
   front-visible RGB side lights, piezo, optional vibration.
 
+This is the locked current-stage baseline. Do not replace it with a 52 x 72 mm
+PCB or display-over-battery stack without an explicit mechanical change
+request, updated machine-readable envelope, and recorded mechanical/RF review.
+
 Start with [REQUIREMENTS.md](REQUIREMENTS.md), then follow the gates in
 [ROADMAP.md](ROADMAP.md). All dimensions, footprints, supplier stock, and
 manufacturing limits marked `TODO: VERIFY` must be resolved before ordering.
@@ -31,6 +35,11 @@ LiPo keepouts are deliberately separated, and the LCD region is thinner than
 the LiPo region; run
 `python3 tools/kicad-gen/validate_v1_design.py` after changing their
 coordinates.
+
+Placement-first schematic work is defined by
+[PLACEMENT_CONSTRAINTS.md](PLACEMENT_CONSTRAINTS.md),
+[MECHANICAL_STACKUP.md](MECHANICAL_STACKUP.md), and
+[CIRCUIT_ARCHITECTURE.md](CIRCUIT_ARCHITECTURE.md).
 
 The `kicad/`, `fusion360/`, `mechanical/`, `jlcpcb/`, `jlc3dp/`, `jlccnc/`,
 `simulation/`, `datasheets/`, `research/`, and `reviews/` directories hold the

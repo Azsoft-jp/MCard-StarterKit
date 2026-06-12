@@ -17,6 +17,8 @@ V1 = ROOT / "hardware" / "v1"
 KICAD = V1 / "kicad"
 REQUIRED = [
     "README.md", "ROADMAP.md", "REQUIREMENTS.md", "ARCHITECTURE.md",
+    "CIRCUIT_ARCHITECTURE.md", "PLACEMENT_CONSTRAINTS.md",
+    "MECHANICAL_STACKUP.md",
     "BOM_CANDIDATES.md", "PCB_CONSTRAINTS.md", "MECHANICAL_CONSTRAINTS.md",
     "SIMULATION_PLAN.md", "JLCPCB_PCBA_NOTES.md", "RISK_REGISTER.md",
     "PRODUCT_DESIGN.md", "BOM_SELECTED_V1.md",
@@ -39,7 +41,10 @@ REQUIRED = [
     "simulation/vibration_motor_driver.cir",
     "kicad/MCard_V1.kicad_pro", "kicad/MCard_V1.kicad_sch",
     "kicad/README.md", "kicad/SCHEMATIC_REVIEW_CHECKLIST.md",
+    "kicad/PLACEMENT_DEPENDENCIES.md",
     "reviews/KICAD_SCAFFOLD_REVIEW.md",
+    "reviews/CIRCUIT_ARCHITECTURE_REVIEW.md",
+    "reviews/MECHANICAL_PLACEMENT_REVIEW.md",
 ]
 REQUIRED_ROOT_FILES = [
     "tools/kicad-gen/README.md",
@@ -54,15 +59,20 @@ GATES = [
 KICAD_SECTIONS = [
     "Power input and LiPo charger",
     "3.3 V power rail",
+    "LiPo battery connector",
     "ESP32-S3 module",
+    "EN BOOT and strapping",
     "USB-C / USB data / ESD",
     "240x320 TFT display connector",
+    "Display backlight control",
     "Dynamic NFC tag and I2C",
+    "NFC antenna loop and tuning",
     "Optional SPI NOR flash",
     "RGB LEDs",
     "Buttons",
     "Piezo buzzer",
     "Optional vibration motor driver",
+    "Battery voltage measurement",
     "Test pads",
 ]
 HUMAN_REVIEW_PHRASES = [
@@ -82,6 +92,29 @@ FORBIDDEN_GENERATED_TERMS = [
     "firmware blob",
     "private identifier",
     "proprietary source dump",
+]
+PLACEMENT_ASSESSMENT_COLUMNS = [
+    "Package height risk",
+    "Placement impact",
+    "FPC orientation dependency",
+    "Antenna keepout impact",
+    "Battery clearance risk",
+    "JLC/LCSC verification",
+    "TODO: VERIFY",
+]
+PLACEMENT_DEPENDENCY_PHRASES = [
+    "49 x 99 mm",
+    "46 x 84 mm",
+    "upper display",
+    "lower rear LiPo",
+    "FPC",
+    "USB-C",
+    "buttons",
+    "RGB",
+    "piezo",
+    "vibration",
+    "test pads",
+    "no pin headers",
 ]
 
 
@@ -149,9 +182,86 @@ def main():
         for path in V1.rglob("*")
         if path.is_file() and path.suffix in {".md", ".csv", ".cir"}
     )
-    for text in ["46 x 84", "49 x 99", "8.5 mm", "0.8 mm", "TODO: VERIFY", "human electrical review"]:
+    for text in [
+        "46 x 84",
+        "49 x 99",
+        "8.5 mm",
+        "0.8 mm",
+        "TODO: VERIFY",
+        "human electrical review",
+    ]:
         if text.lower() not in combined.lower():
             errors += fail(f"required planning phrase absent: {text}")
+
+    required_text_by_file = {
+        "PLACEMENT_CONSTRAINTS.md": PLACEMENT_DEPENDENCY_PHRASES,
+        "MECHANICAL_STACKUP.md": [
+            "6.8 mm",
+            "8.5 mm",
+            "display-over-battery",
+            "bare ENIG pogo pads",
+        ],
+        "CIRCUIT_ARCHITECTURE.md": [
+            "USB-C input",
+            "programming/debug",
+            "USB ESD",
+            "LiPo charger",
+            "Battery connector",
+            "3.3 V rail",
+            "ESP32-S3 module",
+            "EN / BOOT / strapping",
+            "TFT connector",
+            "Backlight control",
+            "Dynamic NFC tag",
+            "NFC loop/tuning",
+            "Optional SPI NOR",
+            "RGB side lights",
+            "Buttons",
+            "Piezo",
+            "Optional vibration",
+            "Battery measurement",
+            "Test pads",
+        ],
+        "kicad/PLACEMENT_DEPENDENCIES.md": PLACEMENT_DEPENDENCY_PHRASES,
+        "reviews/CIRCUIT_ARCHITECTURE_REVIEW.md": [
+            "current PR-3 correction",
+            "HUMAN ELECTRICAL REVIEW REQUIRED",
+            "TODO: VERIFY",
+        ],
+        "reviews/MECHANICAL_PLACEMENT_REVIEW.md": [
+            "49 x 99 mm",
+            "46 x 84 mm",
+            "HUMAN MECHANICAL AND RF REVIEW REQUIRED",
+            "TODO: VERIFY",
+        ],
+    }
+    for rel, phrases in required_text_by_file.items():
+        body = (V1 / rel).read_text(encoding="utf-8")
+        for phrase in phrases:
+            if phrase.lower() not in body.lower():
+                errors += fail(f"{rel} lacks required phrase: {phrase}")
+
+    bom_candidates = (V1 / "BOM_CANDIDATES.md").read_text(encoding="utf-8")
+    for column in PLACEMENT_ASSESSMENT_COLUMNS:
+        if column.lower() not in bom_candidates.lower():
+            errors += fail(f"placement-aware BOM column absent: {column}")
+    for block in [
+        "ESP32-S3 module",
+        "Display panel",
+        "Display FPC connector",
+        "Dynamic NFC tag and tuning",
+        "USB-C and ESD",
+        "Charger / power path",
+        "Battery and connector",
+        "3.3 V regulator",
+        "RGB side LEDs",
+        "Buttons",
+        "Piezo",
+        "Optional vibration",
+        "Test pads",
+    ]:
+        if f"| {block} |".lower() not in bom_candidates.lower():
+            errors += fail(f"placement-aware BOM row absent: {block}")
 
     project_path = KICAD / "MCard_V1.kicad_pro"
     schematic_path = KICAD / "MCard_V1.kicad_sch"
@@ -191,6 +301,16 @@ def main():
                     )
         if schematic.count("TODO: VERIFY") < len(KICAD_SECTIONS) * 3:
             errors += fail("each KiCad section must retain footprint, pinout, and assembly TODOs")
+        for phrase in [
+            "49 x 99 mm product",
+            "46 x 84 mm PCB",
+            "upper display",
+            "lower rear LiPo",
+            "no pin headers",
+            "placement dependencies",
+        ]:
+            if phrase.lower() not in generated_text.lower():
+                errors += fail(f"generated placement warning absent: {phrase}")
         for term in FORBIDDEN_GENERATED_TERMS:
             if term in generated_text.lower():
                 errors += fail(f"forbidden term present in generated KiCad files: {term}")
@@ -202,11 +322,7 @@ def main():
                     f"{path.relative_to(ROOT)}"
                 )
 
-    scoped_asset_roots = [
-        KICAD,
-        ROOT / "tools" / "kicad-gen",
-        V1 / "reviews",
-    ]
+    scoped_asset_roots = [V1, ROOT / "tools" / "kicad-gen"]
     for asset_root in scoped_asset_roots:
         if not asset_root.exists():
             continue
@@ -341,6 +457,9 @@ def main():
         and placements["rgb_right"]["side"] == "front"
     ):
         errors += fail("both RGB guides must remain front-visible")
+
+    if placements["display_panel"]["y"] <= placements["battery_keepout"]["y"]:
+        errors += fail("display must remain above the lower battery keepout")
 
     for circuit in (V1 / "simulation").glob("*.cir"):
         body = circuit.read_text(encoding="utf-8").lower()

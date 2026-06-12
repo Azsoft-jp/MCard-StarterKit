@@ -53,6 +53,8 @@ manufacturability, or regulatory compliance.
 - [ ] ESP32-S3 power pins, decoupling, EN, BOOT, strapping pins, USB pins, UART,
   and unused-pin policy match the exact module datasheet.
 - [ ] GPIO allocation avoids boot-strap conflicts and preserves recovery.
+- [ ] EN/BOOT/reset behavior and native USB programming/debug recovery are
+  explicitly represented and reviewed.
 - [ ] TFT FPC pin order, SPI signals, logic voltage, backlight current, and
   connector orientation match the ordered display sample.
 - [ ] NFC tag package pinout, I2C address, pull-ups, GPO/FD, energy-harvest
@@ -67,6 +69,8 @@ manufacturability, or regulatory compliance.
   voltage/current limits.
 - [ ] Motor flyback or clamp strategy is derived from the selected motor and
   switching mode.
+- [ ] Battery voltage measurement range, divider leakage, ADC source
+  impedance, filtering, calibration, and safe behavior are reviewed.
 
 ## Antenna and layout handoff
 
@@ -79,6 +83,11 @@ manufacturability, or regulatory compliance.
 - [ ] NFC tuning remains marked for assembled-hardware measurement.
 - [ ] Test pads cover GND, VBUS, VBAT, 3V3, EN, BOOT, UART, USB, I2C, SPI, and
   switched-load diagnostics without compromising signal integrity.
+- [ ] Test pads remain accessible to a pogo fixture after case removal and no
+  pin headers are fitted in the thin product.
+- [ ] Display FPC direction, USB-C opening, button axes, RGB light guides,
+  piezo cavity, optional motor volume, and battery keepout match
+  `PLACEMENT_DEPENDENCIES.md`.
 
 ## ERC disposition
 

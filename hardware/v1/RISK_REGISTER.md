@@ -19,3 +19,4 @@
 | R15 | Transparent resin leaks RGB/backlight or exposes visually poor/unsafe internals | Poor appearance or insulation concern | Opaque masks, controlled tint, insulation, optical coupon and UV-aging review |
 | R16 | Rear lower buttons actuate against clothing or a table | Unintended input | Recessed caps, force/travel selection and wear/use testing |
 | R17 | 46 x 84 mm PCB revision changes NFC loop and BLE coupling | RF regression | Re-run loop estimate, tuning plan and BLE/NFC review after layout |
+| R18 | A later initialization prompt silently replaces the accepted envelope | Mechanical/RF documentation divergence | Validator locks 49 x 99 mm product, 46 x 84 mm PCB, and upper-display/lower-battery separation |

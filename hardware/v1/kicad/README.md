@@ -21,6 +21,7 @@ decisions that have not passed the V1 review gates.
 - Buttons
 - Piezo buzzer
 - Optional vibration motor driver
+- Battery voltage measurement
 - Test pads
 
 Each section includes:
@@ -40,6 +41,14 @@ Each section includes:
   hardware with the display, battery, enclosure, and nearby copper present.
 - Do not use an ERC result or lumped simulation as evidence that either antenna
   is correct.
+
+## Placement boundary
+
+- Keep the nominal 49 x 99 mm product, 46 x 84 mm PCB, and upper-display /
+  lower-battery placement.
+- Align USB-C, buttons, RGB emitters, display FPC, piezo, optional motor, and
+  test pads with `PLACEMENT_DEPENDENCIES.md`.
+- Use bare pogo pads; no pin headers in the finished thin product.
 
 ## Workflow
 

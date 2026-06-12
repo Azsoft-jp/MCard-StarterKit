@@ -13,6 +13,8 @@
 - Named sections matching the V1 BOM shortlist and architecture.
 - Explicit review prompts for footprints, pinouts, assembly status, ERC, DNP
   behavior, and test access.
+- Placement dependencies for display/FPC, battery, USB-C, buttons, RGB, piezo,
+  optional vibration, antenna keepouts, and fixture-accessible test pads.
 - BLE module and NFC loop antenna keepout warnings.
 - A Python 3 generator with refusal-by-default overwrite behavior and backups
   under `--force`.
@@ -34,6 +36,8 @@
   tuning, and interoperability.
 - `TODO: VERIFY` Japan radio-certification applicability for the exact module
   and finished product.
+- `TODO: VERIFY` battery voltage measurement range/leakage and all placement
+  dependencies in `kicad/PLACEMENT_DEPENDENCIES.md`.
 
 ## Review decision
 

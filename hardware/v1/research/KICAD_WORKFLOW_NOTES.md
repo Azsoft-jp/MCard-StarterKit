@@ -23,3 +23,6 @@ Generated S-expressions are not trusted without opening, ERC/DRC, and human revi
 
 Unresolved: `TODO: VERIFY` final KiCad version, official library revisions,
 custom symbol/footprint ownership, and CI availability of `kicad-cli`.
+
+The current 46 x 84 mm outline is locked for the PR-3 correction. A conflicting
+initialization prompt is not approval to change the mechanical baseline.
