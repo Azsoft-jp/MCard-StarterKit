@@ -1,0 +1,702 @@
+(kicad_sch
+  (version 20250114)
+  (generator "mcard_v1_scaffold_generator")
+  (generator_version "1.0")
+  (uuid "225ab8be-1876-5e7e-ae0b-bd38ec555e86")
+  (paper "A3")
+  (title_block
+    (title "MCard V1 generated schematic scaffold")
+    (company "MCard-StarterKit clean-room hardware study")
+    (comment 1 "Starter/scaffold requiring human electrical review")
+    (comment 2 "No electrical verification or fabrication approval")
+  )
+  (lib_symbols)
+  (text "GENERATED STARTER SCAFFOLD ONLY - HUMAN ELECTRICAL REVIEW REQUIRED; NOT ELECTRICALLY VERIFIED OR APPROVED FOR FABRICATION"
+    (exclude_from_sim no)
+    (at 20.00 18.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "67e1ae3b-0176-53e1-9e84-a2696ac2226f")
+  )
+  (text "Generated notes only: no symbols, nets, footprints, or pin mappings are approved."
+    (exclude_from_sim no)
+    (at 20.00 23.00 0)
+    (effects
+      (font (size 1.10 1.10))
+      (justify left bottom)
+    )
+    (uuid "35556424-5853-54df-85d9-62c825072f5e")
+  )
+  (text "BLE antenna: TODO: VERIFY exact ESP32-S3 module edge placement and datasheet keepout."
+    (exclude_from_sim no)
+    (at 20.00 28.00 0)
+    (effects
+      (font (size 1.10 1.10))
+      (justify left bottom)
+    )
+    (uuid "7361e355-8bd0-518b-9adb-569e7b6a1e5b")
+  )
+  (text "NFC antenna: TODO: VERIFY loop geometry, metal exclusions, tuning network, and assembled measurement."
+    (exclude_from_sim no)
+    (at 20.00 33.00 0)
+    (effects
+      (font (size 1.10 1.10))
+      (justify left bottom)
+    )
+    (uuid "4a37e63a-378a-5846-a42e-4b3b28aa5437")
+  )
+  (text "SECTION: Power input and LiPo charger"
+    (exclude_from_sim no)
+    (at 20.00 47.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "d98ce6c7-deba-51ad-b92b-00644823df04")
+  )
+  (text "Candidate direction: USB-C 5 V input, protected LiPo, BQ24074-class power path"
+    (exclude_from_sim no)
+    (at 20.00 52.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "63b7ad90-3747-55ea-923f-b365263d9b57")
+  )
+  (text "Review scope: Input limits, charge current, NTC strategy, status, and thermal path"
+    (exclude_from_sim no)
+    (at 20.00 57.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "fc5b26ad-69b7-59bb-a01b-598f949f6722")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 62.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "f4775949-4ef4-5121-82c7-9024bf6e8657")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 67.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "95c87139-7acd-5fa2-a8b6-fbab33c7a465")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 72.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "cb43cbe6-4222-59d5-876e-23903daea902")
+  )
+  (text "SECTION: 3.3 V power rail"
+    (exclude_from_sim no)
+    (at 20.00 86.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "ef112732-716f-56f5-a28a-77d968774913")
+  )
+  (text "Candidate direction: TPS63031-class buck-boost with inductor and decoupling"
+    (exclude_from_sim no)
+    (at 20.00 91.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "f1fbc972-4160-5d4e-9a7f-9e53d3c763fb")
+  )
+  (text "Review scope: Peak load, stability, efficiency, brownout, and power sequencing"
+    (exclude_from_sim no)
+    (at 20.00 96.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "3c4d9a62-89b2-5567-b724-284d5d4ab9e6")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 101.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "a77d6aad-2548-553d-85ce-a78fdb5f3c02")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 106.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "2d377d72-9960-5f94-8035-86c1f0f5d1ac")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 111.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "eabfe8b2-755e-5a50-818a-66d8958e6357")
+  )
+  (text "SECTION: ESP32-S3 module"
+    (exclude_from_sim no)
+    (at 20.00 125.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "bf65362b-72ec-5686-8ec4-cd920c56447b")
+  )
+  (text "Candidate direction: ESP32-S3-MINI-1-N4R2 direction from V1 BOM shortlist"
+    (exclude_from_sim no)
+    (at 20.00 130.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "895c7ab8-0040-5324-8631-11d9ed5ad16c")
+  )
+  (text "Review scope: Power, EN/BOOT, straps, GPIO allocation, USB, and decoupling"
+    (exclude_from_sim no)
+    (at 20.00 135.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "76b4aded-a605-5de9-828a-26ae70bdae21")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 140.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "c330593c-3b58-5252-baa0-fa5bfd014f2e")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 145.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "d1e908ec-ab71-5617-a6e9-c2195b105ad3")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 150.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "7c056243-d05e-5671-b2ea-b28946b17ebe")
+  )
+  (text "SECTION: USB-C / USB data / ESD"
+    (exclude_from_sim no)
+    (at 20.00 164.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "5fa6e0f1-69a5-5dbe-84a9-f031ad9667ee")
+  )
+  (text "Candidate direction: USB4105-class receptacle and low-capacitance USB ESD"
+    (exclude_from_sim no)
+    (at 20.00 169.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "a32c8e90-0cbb-5147-954d-2cf3c86869f1")
+  )
+  (text "Review scope: CC pull-downs, D+/D-, shield, return path, and connector mechanics"
+    (exclude_from_sim no)
+    (at 20.00 174.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "7a0ec4fc-94c9-52c6-a310-e098abddc6b6")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 179.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "8fd9a95b-2c20-558e-b040-bb0363f4bf3c")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 184.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "f76ba205-eaee-5c65-a524-ba74e1d7920b")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 189.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "72f4218d-c2db-58d9-a4fc-aa84228f53a4")
+  )
+  (text "SECTION: 240x320 TFT display connector"
+    (exclude_from_sim no)
+    (at 20.00 203.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "45cb8f37-6caf-5c8f-b61b-c1f398b51734")
+  )
+  (text "Candidate direction: 14-pin 0.5 mm FPC connector for ST7789-class SPI panel"
+    (exclude_from_sim no)
+    (at 20.00 208.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "b096930e-02dc-5953-b4e7-920328ee6cb5")
+  )
+  (text "Review scope: FPC contact side, SPI, reset/DC/CS, backlight, and insertion direction"
+    (exclude_from_sim no)
+    (at 20.00 213.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "bd9777d8-d828-518e-9bbd-aeac603b54f0")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 218.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "ed8da7d7-abaa-5572-a34c-6519646943d2")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 223.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "38ff6925-1537-53ff-82ab-757f28725cb7")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 228.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "762311de-8334-5869-a601-64388fc40a7c")
+  )
+  (text "SECTION: Dynamic NFC tag and I2C"
+    (exclude_from_sim no)
+    (at 20.00 242.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "a66c1d3c-9641-5cc4-a75f-6b2db18c73fe")
+  )
+  (text "Candidate direction: ST25DV04KC-class dynamic tag, I2C pull-ups, and tuning placeholders"
+    (exclude_from_sim no)
+    (at 20.00 247.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "ac0fbf61-e587-51e8-bca4-94731f2d1583")
+  )
+  (text "Review scope: I2C address, GPO/FD, energy harvesting decision, loop, and measurement pads"
+    (exclude_from_sim no)
+    (at 20.00 252.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "71859789-b671-553f-9008-c1802de10988")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 20.00 257.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "a411d97a-2d9f-5680-bd8e-e2e9630c7fbd")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 20.00 262.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "4812cf37-c90d-5402-9883-493cb3e303ca")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 20.00 267.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "e0f004d0-acb5-53bd-b8ae-c99e14544c3f")
+  )
+  (text "SECTION: Optional SPI NOR flash"
+    (exclude_from_sim no)
+    (at 215.00 47.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "f8a5e0f7-3978-58e2-90b7-af1d90cf47ad")
+  )
+  (text "Candidate direction: W25Q128JV-class 3.3 V SPI NOR; DNP until architecture review"
+    (exclude_from_sim no)
+    (at 215.00 52.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "d06552af-999b-5dc4-b21e-b44bf68bc19e")
+  )
+  (text "Review scope: Bus sharing, chip select, hold/write protect, decoupling, and DNP safety"
+    (exclude_from_sim no)
+    (at 215.00 57.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "dc4f9ea6-724f-51c6-8c20-893771a177b5")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 62.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "a9983179-c061-5223-98b3-a4ad129f9503")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 67.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "9da9214e-0faf-5af0-a63d-983e056a7f39")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 72.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "79b22a0f-596e-5276-b69f-7b47fd61b393")
+  )
+  (text "SECTION: RGB LEDs"
+    (exclude_from_sim no)
+    (at 215.00 86.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "f85d4525-42bc-5fcc-b6b9-9123fdb49bdb")
+  )
+  (text "Candidate direction: SK6805-EC15-class side emitters with current budget controls"
+    (exclude_from_sim no)
+    (at 215.00 91.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "96ad2518-7d1d-5c1a-89e6-b52d14a2acfb")
+  )
+  (text "Review scope: Supply, 3.3 V data margin, direction, decoupling, and optical orientation"
+    (exclude_from_sim no)
+    (at 215.00 96.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "ca08a231-e53b-5a6e-b55d-a3d209098fbc")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 101.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "77dccaab-f4ff-5a2a-b18e-14a4011f2e93")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 106.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "46c6f544-fc7d-5571-abef-5db00ab5fefb")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 111.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "e7a132bb-08a2-5c25-9b8f-09d0772ba3e9")
+  )
+  (text "SECTION: Buttons"
+    (exclude_from_sim no)
+    (at 215.00 125.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "31d3915b-0f42-57aa-b396-a8e5909e5542")
+  )
+  (text "Candidate direction: Three SKRPACE010-class tactile switches"
+    (exclude_from_sim no)
+    (at 215.00 130.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "b6aa5a02-c794-590d-b589-664e78c47f7b")
+  )
+  (text "Review scope: GPIO straps, pull-ups, debounce, wake behavior, and actuator direction"
+    (exclude_from_sim no)
+    (at 215.00 135.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "5ccacac7-05f0-5e56-8f76-4d79fe0107c2")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 140.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "5a892f9f-abae-5306-b6b5-9cfc53773683")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 145.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "b0ddae40-7170-58af-9294-0c36b709837e")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 150.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "70a9525b-51a9-5c7b-a1aa-fdcc31c1aa22")
+  )
+  (text "SECTION: Piezo buzzer"
+    (exclude_from_sim no)
+    (at 215.00 164.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "f7212921-80b3-50ec-8035-ce36c215b21c")
+  )
+  (text "Candidate direction: PKLCS1212E4001-R1-class passive piezo"
+    (exclude_from_sim no)
+    (at 215.00 169.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "f2847829-80f3-524b-9ec7-b557786e5581")
+  )
+  (text "Review scope: Drive topology, voltage, resonant frequency, acoustic port, and quiet state"
+    (exclude_from_sim no)
+    (at 215.00 174.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "bee2a19e-c5d8-5101-8e1f-8ea1ed68c2d3")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 179.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "1b1c7a08-5938-5c4f-9fa0-426def75478d")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 184.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "e39ca8d5-a09a-52b6-9bb9-d219fae813f3")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 189.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "cc30d879-cd99-5f08-9b16-2acb1a0f7495")
+  )
+  (text "SECTION: Optional vibration motor driver"
+    (exclude_from_sim no)
+    (at 215.00 203.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "5ff724d3-abfc-5bae-91d1-4c28f2beeacf")
+  )
+  (text "Candidate direction: DNP motor pads and AO3400A-class low-side switch"
+    (exclude_from_sim no)
+    (at 215.00 208.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "681016f6-364d-548d-b5b6-10fc99c371e8")
+  )
+  (text "Review scope: Stall current, 3.3 V gate drive, flyback, EMI, timeout, and DNP safety"
+    (exclude_from_sim no)
+    (at 215.00 213.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "125223e4-d4a4-58f3-bb38-7533fe164716")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 218.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "548de0b7-85db-53dd-abd9-e25e1e5091bf")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 223.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "f21b0801-9542-5143-8f17-c507c7d9dae5")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 228.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "93db5284-4651-51f4-8704-ff4a39bdd627")
+  )
+  (text "SECTION: Test pads"
+    (exclude_from_sim no)
+    (at 215.00 242.00 0)
+    (effects
+      (font (size 1.50 1.50))
+      (justify left bottom)
+    )
+    (uuid "e777387c-92b5-5119-aa67-737ec83e945e")
+  )
+  (text "Candidate direction: Bare ENIG pogo pads; no unverified SMT test-point footprints"
+    (exclude_from_sim no)
+    (at 215.00 247.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "5913bae9-9df6-5957-adc9-cabbb45af2ac")
+  )
+  (text "Review scope: GND, VBUS, VBAT, 3V3, EN, BOOT, UART, USB, I2C, SPI, and switched loads"
+    (exclude_from_sim no)
+    (at 215.00 252.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "e241dcb6-769d-5f18-8fac-00acd01b6156")
+  )
+  (text "TODO: VERIFY exact footprint and land pattern before symbol placement."
+    (exclude_from_sim no)
+    (at 215.00 257.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "c8b81a0e-0530-5695-a2b5-39eb90106128")
+  )
+  (text "TODO: VERIFY datasheet-confirmed pinout and electrical limits."
+    (exclude_from_sim no)
+    (at 215.00 262.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "b1f0ae3f-f805-5622-a126-8e9e402dd99a")
+  )
+  (text "TODO: VERIFY JLCPCB assembly status, orientation, and DNP/manual-install state."
+    (exclude_from_sim no)
+    (at 215.00 267.00 0)
+    (effects
+      (font (size 1.00 1.00))
+      (justify left bottom)
+    )
+    (uuid "786e16aa-44e9-5cbb-89c9-7598b7381167")
+  )
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+  (embedded_fonts no)
+)

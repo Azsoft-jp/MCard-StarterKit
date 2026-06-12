@@ -1,0 +1,37 @@
+{
+  "board": {
+    "design_settings": {
+      "defaults": {},
+      "diff_pair_dimensions": [],
+      "drc_exclusions": [],
+      "rules": {},
+      "track_widths": [],
+      "via_dimensions": []
+    }
+  },
+  "boards": [],
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "MCard_V1.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [],
+    "meta": {
+      "version": 0
+    }
+  },
+  "pcbnew": {
+    "page_layout_descr_file": ""
+  },
+  "sheets": [],
+  "text_variables": {
+    "SCAFFOLD_STATUS": "GENERATED STARTER SCAFFOLD ONLY - HUMAN ELECTRICAL REVIEW REQUIRED; NOT ELECTRICALLY VERIFIED OR APPROVED FOR FABRICATION",
+    "FOOTPRINT_STATUS": "TODO: VERIFY exact footprints",
+    "PINOUT_STATUS": "TODO: VERIFY datasheet-confirmed pinout",
+    "ASSEMBLY_STATUS": "TODO: VERIFY JLCPCB assembly status"
+  }
+}
