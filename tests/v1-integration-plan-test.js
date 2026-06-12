@@ -118,6 +118,13 @@ assert.ok(
   ),
   'simulation heartbeat must connect to logic analyzer D0'
 );
+assert.ok(
+  diagram.connections.some(
+    (connection) => connection[0] === 'esp:TX' &&
+      connection[1] === '$serialMonitor:RX'
+  ),
+  'ESP32-S3 UART TX must connect to the Wokwi serial monitor'
+);
 assert.match(wokwiSubstitutions, /TODO: VERIFY/);
 assert.match(wokwiSubstitutions, /not represent.*RF.*power integrity/is);
 assert.match(wokwiSubstitutions, /BLE radio initialization is skipped/);

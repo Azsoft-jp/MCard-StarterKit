@@ -8,7 +8,9 @@
       "id": "esp",
       "top": 0,
       "left": 0,
-      "attrs": {}
+      "attrs": {
+        "env": "arduino"
+      }
     },
     {
       "type": "wokwi-led",
@@ -39,6 +41,8 @@
     }
   ],
   "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
     [ "esp:4", "r1:1", "green", [] ],
     [ "r1:2", "heartbeat:A", "green", [] ],
     [ "heartbeat:C", "esp:GND.1", "black", [] ],
