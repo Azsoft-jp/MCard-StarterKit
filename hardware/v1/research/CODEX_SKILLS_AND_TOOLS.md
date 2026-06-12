@@ -17,11 +17,13 @@ Accessed: 2026-06-12.
 | KiCad CLI 9.0.2 | Installed for future ERC/DRC, plotting, and export automation |
 | ngspice 44.2 | Installed and used to run the three starter simulation decks |
 | atopile 0.12.5 | Installed as the preferred future manufactured PCB-as-code option |
-| tscircuit CLI 0.1.1474 | Installed with the `tsci` compatibility command for rapid circuit prototypes |
+| tscircuit CLI 0.1.1474 | Installed with the `tsci` compatibility command; used for dated JLC/LCSC MPN, stock, package, basic/extended and price observations |
+| Built-in image generation | Used for `mechanical/v1-product-concept.png`; explicitly treated as a non-dimensional appearance reference |
 
-The skill recommends atopile for manufactured PCB-as-code flows. V1 only
-requests a roadmap and safe KiCad scaffold, so atopile/tscircuit are documented
-as future options rather than adding an unrequested dependency or fake circuit.
+The skill recommends atopile for manufactured PCB-as-code flows. The current
+task narrows the floorplan and BOM but still does not justify presenting an
+unreviewed generated schematic as buildable. Atopile/tscircuit remain candidates
+for the next schematic phase after exact pinouts and footprints are verified.
 
 ## Still unavailable
 

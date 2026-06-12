@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="760" viewBox="0 0 1040 760">
+  <style>
+    text { font-family: sans-serif; fill: #17202a; }
+    .title { font-size: 24px; font-weight: 700; }
+    .label { font-size: 14px; }
+    .small { font-size: 12px; }
+    .board { fill: #d8f0df; stroke: #176b3a; stroke-width: 3; }
+    .display { fill: #26384a; stroke: #0b1824; stroke-width: 2; }
+    .active { fill: #6fa8dc; stroke: #d9ecff; stroke-width: 1; }
+    .battery { fill: #f6b26b; stroke: #a64b00; stroke-width: 2; }
+    .keepout { fill: none; stroke: #cc0000; stroke-width: 2; stroke-dasharray: 8 5; }
+    .module { fill: #9fc5e8; stroke: #134f5c; stroke-width: 2; }
+    .part { fill: #d9d2e9; stroke: #674ea7; stroke-width: 2; }
+    .nfc { fill: none; stroke: #bf9000; stroke-width: 4; }
+    .dim { stroke: #555; stroke-width: 1; marker-start: url(#arrow); marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <text x="35" y="38" class="title">V1 dimensional floorplan (planning only, units mm)</text>
+  <text x="35" y="62" class="small">Origin is lower-left. Scale: 8 px/mm. Source: v1-envelope.json.</text>
+
+  <g transform="translate(80 650) scale(8 -8)">
+    <rect class="board" x="0" y="0" width="52" height="72" rx="3"/>
+    <rect class="display" x="8.7" y="23" width="34.6" height="47.8"/>
+    <rect class="active" x="10.7" y="26.5" width="30.6" height="40.8"/>
+    <rect class="keepout" x="44" y="53" width="8" height="18.5"/>
+  </g>
+  <text x="185" y="202" class="label" fill="#fff">FRONT</text>
+  <text x="180" y="350" class="label" fill="#fff">30.6 x 40.8 active</text>
+  <text x="160" y="480" class="small" fill="#fff">34.6 x 47.8 x 2.0 panel</text>
+  <text x="435" y="154" class="small" fill="#cc0000">BLE no-metal zone</text>
+
+  <g transform="translate(590 650) scale(8 -8)">
+    <rect class="board" x="0" y="0" width="52" height="72" rx="3"/>
+    <path class="nfc" d="M3 3 H48 V50 M48 70 H3 Z"/>
+    <rect class="battery" x="13.5" y="1.5" width="25" height="20"/>
+    <rect class="keepout" x="12.5" y="0.5" width="27" height="22"/>
+    <rect class="module" x="30.5" y="54.5" width="20.5" height="15.4"/>
+    <rect class="keepout" x="44" y="53" width="8" height="18.5"/>
+    <rect class="part" x="18" y="23.5" width="11.5" height="4"/>
+    <rect class="part" x="40.5" y="0" width="10" height="7.5"/>
+    <rect class="part" x="2" y="25" width="12.2" height="12.2"/>
+    <rect class="keepout" x="2" y="39" width="10" height="10"/>
+  </g>
+  <text x="700" y="202" class="label">REAR</text>
+  <text x="702" y="581" class="label">402025 LiPo, rotated</text>
+  <text x="846" y="125" class="small">ESP32-S3-MINI</text>
+  <text x="928" y="626" class="small">USB-C</text>
+  <text x="603" y="432" class="small">piezo</text>
+  <text x="603" y="330" class="small">motor DNP</text>
+  <text x="732" y="456" class="small">14-pin FPC</text>
+  <text x="612" y="96" class="small" fill="#bf9000">NFC loop detours around BLE keepout</text>
+
+  <line x1="80" y1="704" x2="496" y2="704" class="dim"/>
+  <text x="265" y="727" class="label">52</text>
+  <line x1="42" y1="74" x2="42" y2="650" class="dim"/>
+  <text x="18" y="368" class="label">72</text>
+
+  <rect x="80" y="688" width="416" height="24" fill="#fff" opacity="0.8"/>
+  <text x="92" y="705" class="small">Front projection: display upper zone</text>
+  <rect x="590" y="688" width="416" height="24" fill="#fff" opacity="0.8"/>
+  <text x="602" y="705" class="small">Rear projection: battery lower zone; 0.5 mm keepout gap to display</text>
+</svg>

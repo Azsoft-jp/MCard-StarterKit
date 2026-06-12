@@ -20,9 +20,11 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 ## Milestones
 
 1. Freeze requirements, source register, and candidate BOM.
-2. Select exact display, battery, module, NFC IC, charger, regulator, and connectors.
+2. Convert the selected direction in `BOM_SELECTED_V1.md` into exact,
+   drawing-verified orderable parts.
 3. Produce and review schematic; do not release PCB from an unreviewed generator output.
-4. Floor-plan the 52 x 72 mm board around BLE/NFC keepouts and mechanical stack.
+4. Review and refine the machine-checked 52 x 72 mm floorplan around the
+   display/battery split, BLE/NFC keepouts, USB opening, and mechanical stack.
 5. Route, run ERC/DRC, review power integrity, and create tuning/test coupons if needed.
 6. Complete Fusion 360 enclosure handoff and resin prototype checks.
 7. Run low-frequency simulations/calculations and document measured bring-up tests.
@@ -31,8 +33,12 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 ## Acceptance criteria
 
 - Overall design targets 8.5 mm, not 6.7 mm, with a documented tolerance stack.
+- Display and expanded LiPo keepouts have no XY overlap and pass the deterministic
+  envelope validator.
 - Resin V1 enclosure contains no metal over BLE or NFC antenna regions.
 - PCB is 52 x 72 mm and uses 0.8 mm or explicitly approved 1.0 mm thickness.
+- Selected display, battery, USB-C, module, connector and side controls fit the
+  reviewed front/rear placement zones with assembly tolerances.
 - Exact module antenna keepout, strapping pins, USB, charging, and power rules are verified.
 - Dynamic NFC tag and tuned loop are reviewed; no NFC reader/writer is implemented.
 - BOM/CPL use verified MPNs, footprints, rotations, and current JLC/LCSC status.

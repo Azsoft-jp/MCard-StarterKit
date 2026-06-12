@@ -18,6 +18,14 @@ manufacturing limits marked `TODO: VERIFY` must be resolved before ordering.
 Human electrical review is mandatory before any schematic or PCB is treated as
 buildable.
 
+The current packaging proposal is defined by
+[PRODUCT_DESIGN.md](PRODUCT_DESIGN.md),
+[BOM_SELECTED_V1.md](BOM_SELECTED_V1.md), and the machine-readable
+[mechanical/v1-envelope.json](mechanical/v1-envelope.json). The display and
+LiPo keepouts are deliberately separated; run
+`python3 tools/kicad-gen/validate_v1_design.py` after changing their
+coordinates.
+
 The `kicad/`, `fusion360/`, `mechanical/`, `jlcpcb/`, `jlc3dp/`, `jlccnc/`,
 `simulation/`, `datasheets/`, `research/`, and `reviews/` directories hold the
 handoff artifacts for each discipline. Human electrical, RF, mechanical, and

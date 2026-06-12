@@ -1,0 +1,155 @@
+{
+  "units": "mm",
+  "status": "planning geometry; not a released mechanical drawing",
+  "board": {
+    "width": 52.0,
+    "height": 72.0,
+    "thickness": 0.8,
+    "fallback_thickness": 1.0,
+    "corner_radius": 3.0,
+    "layers": 4
+  },
+  "case": {
+    "target_external_thickness": 8.5,
+    "material": "resin",
+    "metal_back_allowed": false
+  },
+  "placements": [
+    {
+      "id": "display_panel",
+      "side": "front",
+      "x": 8.7,
+      "y": 23.0,
+      "width": 34.6,
+      "height": 47.8,
+      "thickness": 2.0,
+      "part": "EastRising ER-TFT020-3",
+      "verified": "supplier page; drawing and sample still required"
+    },
+    {
+      "id": "display_active_area",
+      "side": "front",
+      "x": 10.7,
+      "y": 26.5,
+      "width": 30.6,
+      "height": 40.8,
+      "thickness": 0.0,
+      "part": "ER-TFT020-3 active area"
+    },
+    {
+      "id": "battery_nominal",
+      "side": "rear",
+      "x": 13.5,
+      "y": 1.5,
+      "width": 25.0,
+      "height": 20.0,
+      "thickness": 4.0,
+      "part": "protected LiPo 402025, rotated 90 degrees",
+      "verified": "size-class only; exact cell and PCM required"
+    },
+    {
+      "id": "battery_keepout",
+      "side": "rear",
+      "x": 12.5,
+      "y": 0.5,
+      "width": 27.0,
+      "height": 22.0,
+      "thickness": 4.6,
+      "part": "battery swelling, insulation and placement keepout"
+    },
+    {
+      "id": "esp32_s3_mini",
+      "side": "rear",
+      "x": 30.5,
+      "y": 54.5,
+      "width": 20.5,
+      "height": 15.4,
+      "thickness": 2.4,
+      "rotation": 90,
+      "part": "ESP32-S3-MINI-1-N4R2",
+      "verified": "official land pattern and height must be rechecked"
+    },
+    {
+      "id": "ble_antenna_keepout",
+      "side": "all",
+      "x": 44.0,
+      "y": 53.0,
+      "width": 8.0,
+      "height": 18.5,
+      "thickness": 8.5,
+      "part": "no copper, display metal, battery or case metal",
+      "verified": "conservative planning zone; replace with exact Espressif rule"
+    },
+    {
+      "id": "display_fpc_connector",
+      "side": "rear",
+      "x": 18.0,
+      "y": 23.5,
+      "width": 11.5,
+      "height": 4.0,
+      "thickness": 2.0,
+      "part": "FH12-14S-0.5SH(55)"
+    },
+    {
+      "id": "usb_c",
+      "side": "rear",
+      "x": 40.5,
+      "y": 0.0,
+      "width": 10.0,
+      "height": 7.5,
+      "thickness": 3.2,
+      "part": "GCT USB4105-GF-A"
+    },
+    {
+      "id": "piezo",
+      "side": "rear",
+      "x": 2.0,
+      "y": 25.0,
+      "width": 12.2,
+      "height": 12.2,
+      "thickness": 3.0,
+      "part": "PKLCS1212E4001-R1"
+    },
+    {
+      "id": "vibration_dnp",
+      "side": "rear",
+      "x": 2.0,
+      "y": 39.0,
+      "width": 10.0,
+      "height": 10.0,
+      "thickness": 3.0,
+      "part": "optional motor pad/footprint only"
+    }
+  ],
+  "required_non_overlap": [
+    [
+      "display_panel",
+      "battery_keepout"
+    ],
+    [
+      "display_panel",
+      "ble_antenna_keepout"
+    ],
+    [
+      "battery_keepout",
+      "usb_c"
+    ]
+  ],
+  "minimum_xy_gaps": [
+    {
+      "a": "display_panel",
+      "b": "battery_keepout",
+      "gap": 0.5
+    },
+    {
+      "a": "display_panel",
+      "b": "ble_antenna_keepout",
+      "gap": 0.7
+    },
+    {
+      "a": "battery_keepout",
+      "b": "usb_c",
+      "gap": 1.0
+    }
+  ]
+}

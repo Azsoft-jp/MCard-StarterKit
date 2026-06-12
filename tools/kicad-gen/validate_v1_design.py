@@ -2,6 +2,7 @@
 """Deterministically validate the V1 planning workspace."""
 
 import csv
+import json
 import re
 import sys
 from pathlib import Path
@@ -13,6 +14,7 @@ REQUIRED = [
     "README.md", "ROADMAP.md", "REQUIREMENTS.md", "ARCHITECTURE.md",
     "BOM_CANDIDATES.md", "PCB_CONSTRAINTS.md", "MECHANICAL_CONSTRAINTS.md",
     "SIMULATION_PLAN.md", "JLCPCB_PCBA_NOTES.md", "RISK_REGISTER.md",
+    "PRODUCT_DESIGN.md", "BOM_SELECTED_V1.md",
     "research/OFFICIAL_DOCS_INDEX.md", "research/JLCPCB_PCBA_RULES.md",
     "research/LCSC_BOM_RULES.md", "research/JLC3DP_RULES.md",
     "research/JLCCNC_RULES.md", "research/KICAD_WORKFLOW_NOTES.md",
@@ -20,6 +22,9 @@ REQUIRED = [
     "research/NFC_DYNAMIC_TAG_NOTES.md", "research/RF_ANTENNA_LAYOUT_NOTES.md",
     "research/COMMUNITY_TIPS_INDEX.md", "research/CODEX_SKILLS_AND_TOOLS.md",
     "jlcpcb/pcba/lcsc-bom-shortlist.csv", "simulation/README.md",
+    "jlcpcb/pcba/lcsc-bom-selected.csv",
+    "mechanical/v1-envelope.json", "mechanical/v1-floorplan.svg",
+    "mechanical/v1-stackup.svg", "mechanical/v1-product-concept.png",
     "simulation/power_3v3_load_step.cir", "simulation/rgb_led_current_limit.cir",
     "simulation/vibration_motor_driver.cir",
 ]
@@ -33,6 +38,25 @@ GATES = [
 def fail(message):
     print(f"FAIL: {message}", file=sys.stderr)
     return 1
+
+
+def rectangles_overlap(a, b):
+    return not (
+        a["x"] + a["width"] <= b["x"]
+        or b["x"] + b["width"] <= a["x"]
+        or a["y"] + a["height"] <= b["y"]
+        or b["y"] + b["height"] <= a["y"]
+    )
+
+
+def axis_gap(a, b):
+    gap_x = max(a["x"], b["x"]) - min(
+        a["x"] + a["width"], b["x"] + b["width"]
+    )
+    gap_y = max(a["y"], b["y"]) - min(
+        a["y"] + a["height"], b["y"] + b["height"]
+    )
+    return max(gap_x, gap_y)
 
 
 def main():
@@ -70,6 +94,39 @@ def main():
     }
     if not rows or set(rows[0]) != required_columns:
         errors += fail("BOM shortlist columns are incomplete")
+
+    envelope = json.loads(
+        (V1 / "mechanical" / "v1-envelope.json").read_text(encoding="utf-8")
+    )
+    board = envelope["board"]
+    if board["width"] != 52.0 or board["height"] != 72.0:
+        errors += fail("mechanical envelope board must remain 52 x 72 mm")
+    if board["thickness"] != 0.8:
+        errors += fail("mechanical envelope preferred board thickness must be 0.8 mm")
+    if envelope["case"]["target_external_thickness"] != 8.5:
+        errors += fail("case target thickness must remain 8.5 mm")
+
+    placements = {item["id"]: item for item in envelope["placements"]}
+    for item in placements.values():
+        if (
+            item["x"] < 0
+            or item["y"] < 0
+            or item["x"] + item["width"] > board["width"]
+            or item["y"] + item["height"] > board["height"]
+        ):
+            errors += fail(f"placement outside board envelope: {item['id']}")
+
+    for a_id, b_id in envelope["required_non_overlap"]:
+        if rectangles_overlap(placements[a_id], placements[b_id]):
+            errors += fail(f"required keepouts overlap: {a_id} / {b_id}")
+
+    for rule in envelope["minimum_xy_gaps"]:
+        actual = axis_gap(placements[rule["a"]], placements[rule["b"]])
+        if actual + 1e-9 < rule["gap"]:
+            errors += fail(
+                f"gap {rule['a']} / {rule['b']} is {actual:.2f} mm, "
+                f"requires {rule['gap']:.2f} mm"
+            )
 
     for circuit in (V1 / "simulation").glob("*.cir"):
         body = circuit.read_text(encoding="utf-8").lower()
