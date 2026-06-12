@@ -13,7 +13,9 @@
 - PCB outline: 52 x 72 mm.
 - PCB thickness: 0.8 mm target, 1.0 mm fallback after flex/availability review.
 - Finished thickness: 6.8 mm nominal in the LCD/body region and 8.5 mm maximum
-  in the lower LiPo pod, with explicit regional component stacks.
+  in the lower LiPo region, with explicit regional component stacks.
+- Rear exterior is one flat plane; upper/lower body widths are equal. The
+  thickness step exists only on the front face.
 - Display faces front; battery and resin back case are rear.
 - A top-center resin strap bridge sits outside the PCB outline and uses a
   non-metal textile strap. It must not require a PCB hole or violate BLE/NFC

@@ -8,7 +8,13 @@ The source of truth for planning coordinates is
 
 - Portrait badge, nominal PCB envelope 52 x 72 mm.
 - Two-level enclosure: 6.8 mm nominal over the LCD region and 8.5 mm maximum
-  only over the lower LiPo pod.
+  only over the lower LiPo region.
+- One continuous flat rear datum from top to bottom. There is no rear battery
+  bulge, raised pod, recessed battery door, or rear thickness step.
+- Uniform 54 mm planning case width through the LCD and LiPo regions, with
+  straight aligned side edges. There is no wider lower body, waist, or taper.
+- The 1.7 mm thickness difference is formed only on the front face: the lower
+  front chin projects forward while the rear stays flat.
 - Dark smoke or opaque resin back; no aluminum in V1.
 - Flush front lens over a 2.0 inch-class portrait display.
 - Three left-side buttons with distinguishable cap geometry.
@@ -25,11 +31,11 @@ The source of truth for planning coordinates is
   finishing.
 
 The current generated
-[concept image](mechanical/v1-product-concept-v2.png) communicates appearance
-and the stepped-thickness intent only. It is not dimensionally accurate and
-must not be traced for CAD, PCB, openings, bosses, or antenna clearances. The
-earlier [concept](mechanical/v1-product-concept.png) is retained as design
-history.
+[concept image](mechanical/v1-product-concept-v3.png) communicates appearance,
+uniform width, flat rear, and front-only thickness-step intent. It is not
+dimensionally accurate; any width/height annotations rendered in the image are
+illustrative and must not be traced for CAD, PCB, openings, bosses, or antenna
+clearances. Earlier concepts are retained as design history.
 
 ## Packaging decision
 
@@ -53,13 +59,14 @@ assembly tolerance, and swelling limits are measured.
 | Region | Nominal external thickness | Rule |
 |---|---:|---|
 | LCD/body, y=22.5-72 mm | 6.8 mm | Must remain thinner than the LiPo region |
-| LiPo pod, y=0-22.5 mm | 8.5 mm | V1 maximum; local lower-body expansion only |
+| LiPo region, y=0-22.5 mm | 8.5 mm | V1 maximum; front face projects 1.7 mm |
 | Strap bridge, above PCB | 6.8 mm target | Local ribs may vary only after strength and RF review |
 
-The transition shoulder starts at the expanded battery keepout boundary. Use a
-fillet or short ramp instead of a sharp step to reduce resin stress and avoid a
-snag edge. The LCD region must not inherit the 8.5 mm battery depth merely to
-simplify the rear cover.
+The rear wall uses one uninterrupted planar datum. The transition shoulder
+starts on the front face at the expanded battery keepout boundary. Use a fillet
+or short ramp instead of a sharp step to reduce resin stress and avoid a snag
+edge. Do not mirror this step onto the rear or widen the lower body. The LCD
+region must not inherit the 8.5 mm battery depth merely to simplify the case.
 
 Nominal stack allowances currently leave about 0.2-0.5 mm less margin in the
 LCD zone than the earlier uniform case concept. `TODO: VERIFY` the display,
@@ -91,6 +98,8 @@ physical samples before freezing 6.8 mm.
   USB-C shell, mounting features, ESD return path, and strap load-transfer
   shoulders.
 - Lower center rear: battery only; no tall components under its keepout.
+- Rear exterior: flat and continuous; internal battery clearance is obtained
+  from the front-only lower thickness increase.
 - Bottom-right: USB-C, ESD, CC resistors, and short USB routing.
 - Lower-left: charger and power conversion, with copper area reserved for
   thermal spreading and away from the cell pouch.
@@ -118,11 +127,13 @@ physical samples before freezing 6.8 mm.
    buttons, light pipe, USB plug access, strap bridge/webbing, and resin halves.
 3. Drive dimensions from `v1-envelope.json`; do not hand-measure the concept
    image.
-4. Model a removable rear or full-rear service strategy without a metal plate.
-   The service split must preserve the 6.8/8.5 mm stepped exterior.
-5. Add datum features that make the front lens, panel active area, and PCB
+4. Model a removable case/service strategy without a metal plate or rear
+   battery-door recess. The rear exterior must remain a single flat plane.
+5. Constrain upper and lower case widths to the same parameter. Put the
+   6.8/8.5 mm transition on the front face only.
+6. Add datum features that make the front lens, panel active area, and PCB
    origin inspectable.
-6. Export STEP and 2D opening drawings for the mechanical-envelope gate.
+7. Export STEP and 2D opening drawings for the mechanical-envelope gate.
 
 ## Open verification
 
@@ -139,3 +150,5 @@ physical samples before freezing 6.8 mm.
   tolerance stack.
 - `TODO: VERIFY` strap webbing width, bridge wall/radius, selected resin
   strength, pull-test load, fatigue, and drop-test acceptance criteria.
+- `TODO: VERIFY` that the flat rear wall and front-only lower expansion provide
+  enough battery swelling/insulation clearance without exceeding 8.5 mm.

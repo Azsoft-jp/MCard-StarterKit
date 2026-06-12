@@ -13,9 +13,10 @@
     .case { fill: #666; }
     .space { fill: #fff; stroke: #aaa; stroke-dasharray: 4 3; }
     .step { fill: none; stroke: #cc5500; stroke-width: 4; }
+    .rear { fill: none; stroke: #17202a; stroke-width: 4; }
   </style>
 
-  <text x="35" y="38" class="title">V1 stepped enclosure: LCD body must be thinner than LiPo pod</text>
+  <text x="35" y="38" class="title">V1 flat-rear enclosure: thickness step exists on front face only</text>
   <text x="35" y="62" class="small">Planning values only. The 6.8 mm LCD stack is tight and requires measured parts plus a printed fit coupon.</text>
 
   <g transform="translate(45 110)">
@@ -37,7 +38,7 @@
   </g>
 
   <g transform="translate(560 110)">
-    <text x="0" y="-16" class="label">Lower LiPo pod: 8.5 mm maximum</text>
+    <text x="0" y="-16" class="label">Lower LiPo region: 8.5 mm maximum</text>
     <rect class="outline" x="0" y="0" width="430" height="255" rx="8"/>
     <rect class="case" x="20" y="16" width="390" height="24"/>
     <rect class="pcb" x="20" y="42" width="390" height="23"/>
@@ -52,11 +53,13 @@
     <text x="28" y="246" class="small" fill="#fff">rear resin 1.00</text>
   </g>
 
-  <path class="step" d="M100 405 H455 Q485 405 485 435 H560 Q560 405 590 405 H965"/>
-  <text x="101" y="395" class="small">6.8 mm LCD body</text>
-  <text x="456" y="463" class="small">radiused transition near y=22.5 mm</text>
-  <text x="835" y="395" class="small">8.5 mm LiPo pod</text>
+  <path class="step" d="M100 425 H455 Q485 425 515 395 H965"/>
+  <path class="rear" d="M100 470 H965"/>
+  <text x="101" y="415" class="small">front face: 6.8 mm LCD body</text>
+  <text x="446" y="387" class="small">front-only radiused transition</text>
+  <text x="785" y="387" class="small">front face: 8.5 mm LiPo region</text>
+  <text x="720" y="488" class="small">rear datum: one continuous flat plane</text>
 
-  <text x="45" y="500" class="small">TODO: VERIFY lens, adhesive, actual TFT thickness, module shield/solder, resin minimum wall, cell swelling, warp and assembly tolerance.</text>
-  <text x="45" y="522" class="small">Display-over-battery stacking remains prohibited; the lower pod is the only region allowed to reach 8.5 mm.</text>
+  <text x="45" y="510" class="small">TODO: VERIFY lens, adhesive, actual TFT thickness, module shield/solder, resin minimum wall, cell swelling, warp and assembly tolerance.</text>
+  <text x="45" y="532" class="small">Display-over-battery stacking remains prohibited; case width stays constant and no rear bulge is allowed.</text>
 </svg>

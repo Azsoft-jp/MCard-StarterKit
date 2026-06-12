@@ -26,6 +26,7 @@ REQUIRED = [
     "mechanical/v1-envelope.json", "mechanical/v1-floorplan.svg",
     "mechanical/v1-stackup.svg", "mechanical/v1-product-concept.png",
     "mechanical/v1-product-concept-v2.png",
+    "mechanical/v1-product-concept-v3.png",
     "simulation/power_3v3_load_step.cir", "simulation/rgb_led_current_limit.cir",
     "simulation/vibration_motor_driver.cir",
 ]
@@ -113,6 +114,17 @@ def main():
         errors += fail("LCD region must be thinner than LiPo region")
     if battery_region != envelope["case"]["target_external_thickness"]:
         errors += fail("LiPo region must define the 8.5 mm maximum thickness")
+    if envelope["case"]["thickness_step_side"] != "front only":
+        errors += fail("thickness transition must remain on the front face only")
+    if envelope["case"]["rear_surface_profile"] != "single continuous flat datum":
+        errors += fail("rear enclosure surface must remain flat")
+    if (
+        envelope["case"]["body_external_width_upper"]
+        != envelope["case"]["body_external_width_lower"]
+        or envelope["case"]["body_external_width_upper"]
+        != envelope["case"]["body_external_width"]
+    ):
+        errors += fail("upper and lower enclosure widths must remain identical")
     if envelope["case"]["step_transition_y"] > placements.get(
         "display_panel", {"y": 0}
     )["y"]:

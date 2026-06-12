@@ -35,6 +35,8 @@ open items, and pass/fail status. A pass cannot contain unresolved blocking
 - Overall design targets 8.5 mm, not 6.7 mm, with a documented tolerance stack.
 - The LCD region is thinner than the LiPo region; current nominal targets are
   6.8 mm and 8.5 mm respectively.
+- Rear exterior is flat, upper/lower case widths match, and the thickness
+  transition appears only on the front face.
 - Display and expanded LiPo keepouts have no XY overlap and pass the deterministic
   envelope validator.
 - Resin V1 enclosure contains no metal over BLE or NFC antenna regions.

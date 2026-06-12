@@ -5,6 +5,7 @@
     .label { font-size: 14px; }
     .small { font-size: 12px; }
     .board { fill: #d8f0df; stroke: #176b3a; stroke-width: 3; }
+    .caseoutline { fill: #eeeeee; stroke: #555; stroke-width: 2; }
     .display { fill: #26384a; stroke: #0b1824; stroke-width: 2; }
     .active { fill: #6fa8dc; stroke: #d9ecff; stroke-width: 1; }
     .battery { fill: #f6b26b; stroke: #a64b00; stroke-width: 2; }
@@ -28,6 +29,7 @@
   <g transform="translate(80 720) scale(8 -8)">
     <rect class="strap" x="17" y="72" width="18" height="9" rx="2"/>
     <rect class="opening" x="21" y="75" width="10" height="3.5" rx="1"/>
+    <rect class="caseoutline" x="-1" y="-1" width="54" height="74" rx="4"/>
     <rect class="board" x="0" y="0" width="52" height="72" rx="3"/>
     <rect class="display" x="8.7" y="23" width="34.6" height="47.8"/>
     <rect class="active" x="10.7" y="26.5" width="30.6" height="40.8"/>
@@ -42,6 +44,7 @@
   <g transform="translate(590 720) scale(8 -8)">
     <rect class="strap" x="17" y="72" width="18" height="9" rx="2"/>
     <rect class="opening" x="21" y="75" width="10" height="3.5" rx="1"/>
+    <rect class="caseoutline" x="-1" y="-1" width="54" height="74" rx="4"/>
     <rect class="board" x="0" y="0" width="52" height="72" rx="3"/>
     <path class="nfc" d="M3 3 H48 V50 M48 70 H3 Z"/>
     <rect class="battery" x="13.5" y="1.5" width="25" height="20"/>
@@ -54,12 +57,12 @@
     <rect class="keepout" x="2" y="39" width="10" height="10"/>
   </g>
   <text x="700" y="272" class="label">REAR</text>
-  <text x="702" y="651" class="label">402025 LiPo, rotated / 8.5 mm pod</text>
+  <text x="702" y="651" class="label">402025 LiPo, rotated / flat rear</text>
   <text x="846" y="195" class="small">ESP32-S3-MINI</text>
   <text x="928" y="696" class="small">USB-C</text>
   <text x="603" y="502" class="small">piezo</text>
   <text x="603" y="400" class="small">motor DNP</text>
-  <text x="732" y="526" class="small">14-pin FPC / thickness step</text>
+  <text x="732" y="526" class="small">14-pin FPC / front-face step boundary</text>
   <text x="612" y="166" class="small" fill="#bf9000">NFC loop detours around BLE keepout</text>
 
   <line x1="80" y1="738" x2="496" y2="738" class="dim"/>
@@ -68,7 +71,7 @@
   <text x="8" y="438" class="label">72 mm PCB</text>
 
   <rect x="80" y="694" width="416" height="24" fill="#fff" opacity="0.8"/>
-  <text x="92" y="711" class="small">Front: 6.8 mm LCD body above y=22.5</text>
+  <text x="92" y="711" class="small">Front: uniform 54 mm case width; step only in depth</text>
   <rect x="590" y="694" width="416" height="24" fill="#fff" opacity="0.8"/>
-  <text x="602" y="711" class="small">Rear: 8.5 mm battery pod below y=22.5</text>
+  <text x="602" y="711" class="small">Rear: uniform width and one continuous flat plane</text>
 </svg>

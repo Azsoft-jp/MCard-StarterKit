@@ -8,9 +8,14 @@ clearance. The nominal total is 8.5 mm; every value remains `TODO: VERIFY` until
 measured from selected supplier drawings and samples.
 
 The enclosure is not uniformly 8.5 mm thick. The LCD/body region targets
-6.8 mm external thickness; only the lower LiPo pod may reach the 8.5 mm V1
+6.8 mm external thickness; only the lower LiPo region may reach the 8.5 mm V1
 maximum. The display region must remain thinner than the battery region in both
 CAD and the machine-readable envelope.
+
+The rear exterior is a single continuous flat plane. The upper and lower case
+widths are identical and their left/right side edges align. The 1.7 mm
+thickness transition is allowed on the front face only; no rear battery bulge,
+rear step, wider lower body, waist, or taper is allowed.
 
 The display and LiPo must not overlap in their XY projection. The current
 planning floorplan places the 34.6 x 47.8 mm display in the upper front zone and
@@ -49,8 +54,9 @@ charger parts, or replaceable fasteners against the pouch.
   add a PCB slot or metal eyelet for V1.
 - Keep strap shoulders, textile and any future attachment hardware out of the
   BLE keepout and reviewed NFC loop clearance.
-- Use a radiused transition from the 6.8 mm LCD body to the 8.5 mm battery pod.
-  Do not place the enclosure split directly on the pouch edge.
+- Use a radiused front-face transition from the 6.8 mm LCD body to the 8.5 mm
+  battery region. Keep the rear datum flat and do not place the enclosure split
+  directly on the pouch edge.
 
 JLC3DP tolerances and minimum features vary by process/material and must be
 recorded from the quote/help page before export. Future JLCCNC notes are
