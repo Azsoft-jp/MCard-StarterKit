@@ -52,6 +52,7 @@
 - 2026-06-14 extraction pass added display electrical, optical, backlight, and 14-pin pinout planning values to `DISPLAY_SELECTION_NOTES.md`.
 - 2026-06-14 external link download pass recorded source artifacts under `/tmp/mcard-source-downloads` and converted Espressif, NXP, and TI technical PDFs under `/tmp/mcard-source-md`; hashes and access classifications are recorded in `datasheets/README.md`.
 - DigiKey USB4105-GF-A is treated as trusted distributor/sourcing evidence, while GCT/manufacturer drawings remain the footprint and mechanical authority.
+- 2026-06-14 follow-up converted `/root/st25dv04kc.pdf` and captured headless Chromium DOM snapshots for DigiKey, GCT, MIC, and NXP Japan source pages. BuyDisplay remained Cloudflare-blocked and Alps remained access-denied.
 - The update reduces source-discovery uncertainty but does not clear sample measurement, RF/NFC tuning, footprint import, PCBA preview, resin-process selection, or Japan certification applicability gates.
 
 ## Open TODO: VERIFY list

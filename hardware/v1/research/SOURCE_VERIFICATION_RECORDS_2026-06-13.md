@@ -173,3 +173,40 @@ are recorded in `hardware/v1/datasheets/README.md`.
   package, inductor saturation-current selection requirement, layout-critical
   switching-current paths, and thermal considerations. V1 still must verify
   inductor choice, load transient, efficiency, and whether buck-boost is needed.
+
+## ST25DV and headless-browser source pass 2026-06-14
+
+- User-supplied `/root/st25dv04kc.pdf` was converted with Docling to
+  `/tmp/mcard-source-md/st25dv04kc.md`; hashes are recorded in
+  `hardware/v1/datasheets/README.md`.
+- ST25DV04KC extraction confirms the ST25DVxxKC family is a dynamic NFC/RFID
+  tag with 4/16/64-Kbit EEPROM options, I2C host interface, RF contactless
+  interface, NFC Forum Type 5 tag behavior, 256-byte mailbox/fast-transfer
+  buffer, configurable GPO events, optional energy harvesting, and AC0/AC1
+  antenna coil pins.
+- For 8-pin packages, extracted ST text identifies SO8N/TSSOP8/UDFPN8 package
+  options with open-drain GPO and external pull-up requirement. V1 still keeps
+  `TODO: VERIFY` for exact `ST25DV04KC-IE6S3` package/order mapping, package
+  drawing, pull-up value, energy-harvest decision, RF tuning network, and final
+  JLC/LCSC assembly preview.
+- Headless Chromium captured real DOM snapshots for DigiKey USB4105-GF-A, GCT
+  USB4105, MIC technical conformity, and NXP Japan NTAG I2C pages after earlier
+  `curl` access was blocked or incomplete. These working HTML snapshots are not
+  committed; hashes are recorded in `hardware/v1/datasheets/README.md`.
+- DigiKey USB4105-GF-A is now treated as trusted distributor/sourcing evidence
+  for ordering context. GCT remains the manufacturer source; exact footprint,
+  shell, and board-edge geometry must come from the GCT drawing/CAD and KiCad
+  footprint review.
+- GCT headless DOM confirms the USB4105 page is the manufacturer product page
+  for a USB 2.0 Type-C horizontal receptacle family with 16 contacts and 3.31 mm
+  profile evidence. Exact `USB4105-GF-A` drawing details remain `TODO: VERIFY`.
+- MIC headless DOM confirms the official conformity-certification page was
+  captured from the MIC source entry point. The project still does not claim
+  Japan radio compliance or module/finished-product certification.
+- NXP Japan headless DOM was captured as a source entry point, but the NXP
+  global `NT3H2111_2211.pdf` remains the reviewed technical datasheet for NTAG
+  I2C fallback details.
+- BuyDisplay still returned a Cloudflare challenge page under headless Chromium,
+  and Alps SKRP returned Access Denied. The local `/root` display PDF remains
+  the display content evidence; the exact SKRP model drawing remains
+  `TODO: VERIFY`.

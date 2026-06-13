@@ -53,3 +53,21 @@ are not committed because they are full converted source documents.
 |---|---|---|---|---|
 | `/root/ER-TFT020-3_Datasheet.pdf` | `6f2d4448661fdf9e6084ecc4cffb7485a95da736f938c00bd0e09d4bec0cf5c2` | `/tmp/mcard-pdf-md/ER-TFT020-3_Datasheet.md` | `93f661d363d5558dd1e883fa66aaba447700b58f463af04bee1933d4dc414c47` | Used for short V1 display evidence only; do not vendor full Markdown. |
 | `/root/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.pdf` | `893672f3428f495a521f38df519efa59457785793745fdea6621d17a6d08cf34` | `/tmp/mcard-pdf-md/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.md` | `74d3e50f91267520fc471372a4b695808b62ea43729353467eefe1a77db32dd2` | Used for short radio-certification evidence only; do not vendor full Markdown. |
+
+## ST25DV and headless-browser evidence 2026-06-14
+
+Additional user-supplied PDF and headless Chromium captures are working
+artifacts only; do not commit the full converted source documents.
+
+| Source | Local artifact | Source SHA-256 | Markdown artifact | Markdown SHA-256 | Status / use |
+|---|---|---|---|---|---|
+| ST ST25DV04KC datasheet | `/root/st25dv04kc.pdf` | `ff9155be906a32a481cdc2eada17cee912cad031d9bdfeb677e1d4411642088f` | `/tmp/mcard-source-md/st25dv04kc.md` | `84b7e646e7d7ac080041c42e0058ba64c49f16cb3a9af1093e5c3857196b1585` | Used for ST25DV dynamic NFC tag package, GPO, I2C/RF, mailbox, energy-harvest, and antenna-pin evidence. |
+
+| Source | Headless artifact | SHA-256 | Access classification |
+|---|---|---|---|
+| DigiKey USB4105-GF-A page | `/tmp/mcard-browser-html/digikey_USB4105-GF-A.html` | `6fe36cd4b7583853e4b23d2e19c16ad51a8d4116f9523fcf6d27ad3238e3abc4` | Headless Chromium captured real DigiKey product DOM. Trusted distributor/sourcing evidence; not footprint authority. |
+| GCT USB4105 page | `/tmp/mcard-browser-html/gct_usb4105.html` | `ae6c4a41416dffd1edf2c9dac3220bad029a4718f36e5dd3140af18ba07258fa` | Headless Chromium captured real GCT product DOM. Manufacturer source remains footprint/mechanical authority after drawing review. |
+| MIC technical conformity page | `/tmp/mcard-browser-html/mic_technical_conformity.html` | `9dedd5edb85d7feb11dad0d5f702b100ffa4b6a90a26a9befa3cba7cb3578201` | Headless Chromium captured real MIC page DOM. Use as official entry point; no Japan radio compliance claim. |
+| NXP Japan NTAG I2C page | `/tmp/mcard-browser-html/nxp_jp_ntag_i2c_plus.html` | `7f80a67131ad198bc86119861fa8e043aa771322a242b9bd570a43485f9f5efd` | Headless Chromium captured NXP Japan page DOM. NXP global PDF remains the reviewed technical datasheet. |
+| BuyDisplay ER-TFT020-3 product page | `/tmp/mcard-browser-html/buydisplay_ER-TFT020-3_product.html` | `74c207c63403ca7c295222401377a8a12224703610b6d190914cf542a73bd3bf` | Headless Chromium still returned Cloudflare challenge page; `/root` display PDF remains reviewed evidence. |
+| Alps SKRP series page | `/tmp/mcard-browser-html/alps_skrp_series.html` | `12754c582f6179b14a542c8988961fcc36aa7dff3ba4d1591652028c97faa242` | Headless Chromium returned Access Denied; exact switch drawing remains `TODO: VERIFY`. |
