@@ -93,6 +93,12 @@ Docling conversion command:
 | Display | `/root/ER-TFT020-3_Datasheet.pdf` | `/tmp/mcard-pdf-md/ER-TFT020-3_Datasheet.md` | Converted datasheet identifies ER-TFT020-3 Rev 1.0, preliminary release 2023-12-18; order number ER-TFT020-3; 2 inch IPS TFT, 240 x 320 pixels, no touch panel, not sunlight-readable; outline with FPC folded 34.60 x 47.80 x 2.0 mm; visual area 31.60 x 41.80 mm; active area 30.60 x 40.80 mm; ST7789 controller; 4-wire serial SPI; VDD 2.5-3.3 V, IOVDD 1.8-3.3 V; backlight typical 3.0 V and 45 mA with 60 mA maximum. | `TODO: VERIFY` drawing geometry against ordered sample, FPC contact side, connector compatibility, backlight circuit implementation, and lifecycle. |
 | Japan radio | `/root/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.pdf` | `/tmp/mcard-pdf-md/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.md` | Converted MIC page summarizes technical regulations conformity certification under Radio Act Article 38-2-2, construction design attestation under Article 38-2-24, recognized certification body system under Article 38-31, and self-confirmation under Article 38-33. | `TODO: VERIFY` exact category for selected BLE module/finished product with current MIC source or qualified reviewer. No Japan radio certification claim is made. |
 
+## Additional technical extraction 2026-06-14
+
+- ER-TFT020-3 local Markdown was reviewed for display specification, mechanical specification, electrical specification, optical specification, LCD pin configuration, absolute maximum ratings, electrical characteristics, and backlight characteristics.
+- `DISPLAY_SELECTION_NOTES.md` now records the extracted display format, temperature ranges, touch/sunlight-readable status, ST7789 controller, 4-wire serial SPI interface, VDD/IOVDD ranges, backlight planning values, optical planning values, and 14-pin LCD pinout.
+- MIC local Markdown was reviewed for technical regulations conformity certification, construction design attestation, recognized certification body system, and self-confirmation entry points. The project still does not claim Japan radio compliance.
+
 ## Items not cleared by external evidence
 
 - Display sample measurements, FPC bend/fit, lens/adhesive stack, and manual assembly yield.

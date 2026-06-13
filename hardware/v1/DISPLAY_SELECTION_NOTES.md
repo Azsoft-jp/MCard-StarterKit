@@ -32,6 +32,44 @@ outline, 31.60 x 41.80 mm visual area, 30.60 x 40.80 mm active area, VDD
 2.5-3.3 V, IOVDD 1.8-3.3 V, and backlight planning values. The full Markdown
 conversion is not committed.
 
+## Extracted technical values
+
+These values come from the local PDF-to-Markdown working copy and are design
+inputs only after footprint, FPC, and sample checks.
+
+| Area | Extracted value | V1 design impact |
+|---|---|---|
+| Display format | 240 x 320 pixels | Matches locked 2.0 inch-class portrait display target. |
+| Operating temperature | -20 to +70 deg C | Acceptable for prototype planning; product temperature validation remains separate. |
+| Storage temperature | -30 to +80 deg C | Storage note only; enclosure and battery limits may be tighter. |
+| Touch panel | No | V1 stays button-driven; no touch controller or touch FPC routing. |
+| Sunlight readable | No | UI brightness/readability must not assume outdoor sunlight performance. |
+| Controller | ST7789 | Firmware/display init can target ST7789-class behavior after pinout review. |
+| Interface | 4-wire serial SPI | Keep SPI routing and series-resistor placeholders; no parallel bus. |
+| VDD | 2.5-3.3 V, 2.8 V typical | 3.3 V rail may power panel logic only after current/thermal review. |
+| IOVDD | 1.8-3.3 V, 2.8 V typical | ESP32-S3 3.3 V GPIO compatibility still needs signal-level review. |
+| Backlight | 3-chip LED, 45 mA typical, 60 mA maximum, 3.0 V typical, 3.2 V maximum | Backlight MOSFET/current-limit design remains required; do not connect directly without current control. |
+| Optical | IPS, 800:1 typical contrast, 300 cd/m2 typical brightness, wide viewing-angle listing | Supports flat-front display target; optical result through smoke resin remains `TODO: VERIFY`. |
+
+## LCD pinout evidence
+
+| Pin | Name | V1 note |
+|---:|---|---|
+| 1 | NC | Leave unconnected unless ordered drawing differs. |
+| 2 | GND | Ground return. |
+| 3 | LED- | Backlight cathode; route to controlled driver path. |
+| 4 | LED+ | Backlight anode; route with current-limit strategy. |
+| 5 | GND | Ground return. |
+| 6 | /RESET | Active-low reset GPIO. |
+| 7 | RS | Command/data select GPIO. |
+| 8 | SDA | SPI data input/output. |
+| 9 | SCK | SPI clock. |
+| 10 | VDD | Panel power. |
+| 11 | IOVDD | I/O power. |
+| 12 | CS | Active-low chip select. |
+| 13 | GND | Ground return. |
+| 14 | NC | Leave unconnected unless ordered drawing differs. |
+
 ## Mechanical placement rules
 
 - Keep the display clear window in the upper front zone, referenced to the single flat front datum.
