@@ -90,6 +90,10 @@ const wokwiSubstitutions = fs.readFileSync(
   path.join(firmwareRoot, 'WOKWI_PART_SUBSTITUTIONS.md'),
   'utf8'
 );
+const cleanroomAudit = fs.readFileSync(
+  path.join(root, 'tools/repo-audit/audit-cleanroom.mjs'),
+  'utf8'
+);
 
 assert.ok(profile.includes(serviceUuid), 'neutral service UUID missing');
 assert.ok(profile.includes(writeUuid), 'neutral write UUID missing');
@@ -209,6 +213,11 @@ assert.match(protocol, /OTA_DATA_RESPONSE/);
 assert.match(firmwareReadme, /planning ACK/i);
 assert.match(firmwareReadme, /does not scan/i);
 assert.match(firmwareReadme, /does not.*flash|no partition writer/is);
+assert.match(
+  cleanroomAudit,
+  /generatedDirectories[\s\S]*['"]\.pio['"]/,
+  'clean-room audit must ignore transient PlatformIO build output'
+);
 
 const docs = [
   'hardware/v1/POWER_TREE.md',
