@@ -15,12 +15,22 @@ Status: planning target, not a released source-control drawing.
 
 | Item | Planning direction | Verification gate |
 |---|---|---|
-| Class | 2.0 inch-class IPS TFT | `TODO: VERIFY` final supplier drawing and sample |
-| Resolution | 240 x 320 portrait | `TODO: VERIFY` controller init, color order, rotation, active area |
+| Class | 2.0 inch IPS TFT per local ER-TFT020-3 PDF conversion | `TODO: VERIFY` ordered sample |
+| Resolution | 240 x 320 portrait per local ER-TFT020-3 PDF conversion | `TODO: VERIFY` controller init, color order, rotation |
 | Interface | SPI display, current BOM direction uses ST7789-class panel | `TODO: VERIFY` exact pinout, reset, backlight pins, signal limits |
-| Candidate | EastRising ER-TFT020-3 direction from `BOM_SELECTED_V1.md` | `TODO: VERIFY` drawing revision, lifecycle, manual assembly path |
-| Planning panel envelope | 34.6 x 47.8 x 2.0 mm from current notes | `TODO: VERIFY` measured glass, frame, adhesive, FPC stiffener, tail |
+| Candidate | EastRising ER-TFT020-3 Rev 1.0 preliminary release dated 2023-12-18 from local PDF conversion | `TODO: VERIFY` lifecycle, manual assembly path |
+| Planning panel envelope | 34.60 x 47.80 x 2.0 mm with FPC folded per local PDF conversion | `TODO: VERIFY` measured glass, frame, adhesive, FPC stiffener, tail |
 | Connector | 14-position 0.5 mm FPC direction | `TODO: VERIFY` contact side, FPC thickness, latch access, mated height |
+
+## Local PDF evidence
+
+`/root/ER-TFT020-3_Datasheet.pdf` was converted to
+`/tmp/mcard-pdf-md/ER-TFT020-3_Datasheet.md` with docling on 2026-06-13.
+The converted PDF supports the current display candidate, 240 x 320 format,
+ST7789 controller direction, 4-wire serial SPI, 34.60 x 47.80 x 2.0 mm folded
+outline, 31.60 x 41.80 mm visual area, 30.60 x 40.80 mm active area, VDD
+2.5-3.3 V, IOVDD 1.8-3.3 V, and backlight planning values. The full Markdown
+conversion is not committed.
 
 ## Mechanical placement rules
 

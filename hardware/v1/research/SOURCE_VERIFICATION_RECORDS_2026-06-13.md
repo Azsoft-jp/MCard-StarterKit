@@ -83,6 +83,16 @@ availability evidence only.
 | Japan radio | MIC technical conformity page, `https://www.tele.soumu.go.jp/e/sys/equ/tech/index.htm` | `curl -I` returned HTTP 403 from CloudFront in this environment. | Keep as official MIC source entry point but do not claim contents reviewed. | `TODO: VERIFY` page content and exact module/finished-product applicability. |
 | Japan radio law | Radio Act translation, `https://www.japaneselawtranslation.go.jp/ja/laws/view/4510` | Opened Japanese Law Translation page for Radio Act, Act No. 131 of 1950, last version Act No. 40 of 2023. | Adds legal-reference entry point for Japanese radio-law review. | `TODO: VERIFY` technical conformity applicability with current MIC guidance or qualified reviewer; this is not legal advice. |
 
+## Local PDF-to-Markdown evidence 2026-06-13
+
+Docling conversion command:
+`docling --to md --no-ocr --image-export-mode placeholder --output /tmp/mcard-pdf-md <pdf>`.
+
+| Block | Local PDF | Markdown output | Extracted evidence | Remaining gap |
+|---|---|---|---|---|
+| Display | `/root/ER-TFT020-3_Datasheet.pdf` | `/tmp/mcard-pdf-md/ER-TFT020-3_Datasheet.md` | Converted datasheet identifies ER-TFT020-3 Rev 1.0, preliminary release 2023-12-18; order number ER-TFT020-3; 2 inch IPS TFT, 240 x 320 pixels, no touch panel, not sunlight-readable; outline with FPC folded 34.60 x 47.80 x 2.0 mm; visual area 31.60 x 41.80 mm; active area 30.60 x 40.80 mm; ST7789 controller; 4-wire serial SPI; VDD 2.5-3.3 V, IOVDD 1.8-3.3 V; backlight typical 3.0 V and 45 mA with 60 mA maximum. | `TODO: VERIFY` drawing geometry against ordered sample, FPC contact side, connector compatibility, backlight circuit implementation, and lifecycle. |
+| Japan radio | `/root/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.pdf` | `/tmp/mcard-pdf-md/MIC Radio Use Portal｜Conformity Certification System｜Technical Regulations Conformity Certification System.md` | Converted MIC page summarizes technical regulations conformity certification under Radio Act Article 38-2-2, construction design attestation under Article 38-2-24, recognized certification body system under Article 38-31, and self-confirmation under Article 38-33. | `TODO: VERIFY` exact category for selected BLE module/finished product with current MIC source or qualified reviewer. No Japan radio certification claim is made. |
+
 ## Items not cleared by external evidence
 
 - Display sample measurements, FPC bend/fit, lens/adhesive stack, and manual assembly yield.
