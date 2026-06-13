@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,9 +41,35 @@ function walk(dir) {
   return out;
 }
 
-let failed = false;
+function relativePath(file) {
+  return path.relative(root, file).replaceAll('\\', '/');
+}
+
+function trackedGeneratedFiles() {
+  const result = spawnSync('git', ['ls-files', ':(glob)**/.pio/**'], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  if (result.status !== 0 && !result.stdout) {
+    return [];
+  }
+  return result.stdout
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((file) => path.join(root, file));
+}
+
+const filesToAudit = new Map();
 for (const file of walk(root)) {
-  const rel = path.relative(root, file).replaceAll('\\', '/');
+  filesToAudit.set(relativePath(file), file);
+}
+for (const file of trackedGeneratedFiles()) {
+  if (fs.existsSync(file)) filesToAudit.set(relativePath(file), file);
+}
+
+let failed = false;
+for (const file of filesToAudit.values()) {
+  const rel = relativePath(file);
   if (ignoreFiles.has(rel)) continue;
 
   const ext = path.extname(file).toLowerCase();
