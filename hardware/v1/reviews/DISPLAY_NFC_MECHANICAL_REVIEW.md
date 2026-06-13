@@ -33,6 +33,7 @@
 - `mechanical/antenna-keepout-notes.md`
 - `kicad/KEEP_OUT_LAYER_PLAN.md`
 - `research/SOURCE_VERIFICATION_CHECKLIST.md`
+- `research/SOURCE_VERIFICATION_RECORDS_2026-06-13.md`
 
 ## Safety and clean-room notes
 
@@ -41,6 +42,12 @@
 - ST25DV is preferred and NTAG I2C is fallback, but exact order code, pinout, package, and antenna tuning remain `TODO: VERIFY`.
 - BLE operation in Japan is not claimed certified. Exact module and finished-product certification applicability remain `TODO: VERIFY`.
 - ngspice is not used as RF/NFC proof.
+
+## External evidence update 2026-06-13
+
+- Manufacturer/official source records were added for ESP32-S3 MINI/WROOM, ESP32-S3 hardware design guidance, ER-TFT020-3, FH12, ST25DV, NTAG I2C, USB4105, USB-IF Type-C resources, BQ24074, TPS63031, JLCPCB, LCSC/JLCPCB sourcing, JLC3DP, and MIC source entry point.
+- Dated JLCPCB parts-library observations were recorded for the main BLE, NFC, USB-C, charger, regulator, display connector, and button candidates.
+- The update reduces source-discovery uncertainty but does not clear sample measurement, RF/NFC tuning, footprint import, PCBA preview, resin-process selection, or Japan certification applicability gates.
 
 ## Open TODO: VERIFY list
 

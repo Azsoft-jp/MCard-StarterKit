@@ -1,6 +1,7 @@
 # V1 BOM source notes
 
-Accessed: 2026-06-12.
+Accessed: 2026-06-12. External evidence refresh added 2026-06-13 in
+`SOURCE_VERIFICATION_RECORDS_2026-06-13.md`.
 
 This file records the sources used to narrow the V1 BOM. It summarizes only
 public information. Stock and assembly observations came from
