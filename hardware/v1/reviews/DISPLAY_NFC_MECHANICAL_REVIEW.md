@@ -50,6 +50,8 @@
 - User-supplied source links were recorded for BuyDisplay direct PDF/product page, Hirose FH12, ST25DV, NXP Japan NTAG I2C plus, DigiKey USB4105-GF-A, TI Japan BQ24074/TPS63031, JLCPCB capabilities, JLC3DP design guideline, MIC technical conformity entry point, and Japan Law Translation Radio Act.
 - Local PDFs for ER-TFT020-3 and MIC technical regulations conformity certification were converted to Markdown under `/tmp/mcard-pdf-md`; hashes and short evidence are recorded in `datasheets/README.md` and `SOURCE_VERIFICATION_RECORDS_2026-06-13.md`.
 - 2026-06-14 extraction pass added display electrical, optical, backlight, and 14-pin pinout planning values to `DISPLAY_SELECTION_NOTES.md`.
+- 2026-06-14 external link download pass recorded source artifacts under `/tmp/mcard-source-downloads` and converted Espressif, NXP, and TI technical PDFs under `/tmp/mcard-source-md`; hashes and access classifications are recorded in `datasheets/README.md`.
+- DigiKey USB4105-GF-A is treated as trusted distributor/sourcing evidence, while GCT/manufacturer drawings remain the footprint and mechanical authority.
 - The update reduces source-discovery uncertainty but does not clear sample measurement, RF/NFC tuning, footprint import, PCBA preview, resin-process selection, or Japan certification applicability gates.
 
 ## Open TODO: VERIFY list

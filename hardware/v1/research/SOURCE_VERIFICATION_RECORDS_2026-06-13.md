@@ -108,3 +108,68 @@ Docling conversion command:
 - USB-C plug/cable mechanical clearance against the resin case and battery volume.
 - JLC3DP transparent smoke resin optical behavior, UV aging, light leakage, and snap/boss tolerances for the final process.
 - Japan radio certification applicability for the exact module and finished product.
+
+## Downloaded source evidence and PDF2MD extraction 2026-06-14
+
+Downloaded public source links to `/tmp/mcard-source-downloads`; generated
+working Markdown from technical PDFs under `/tmp/mcard-source-md` with Docling.
+Full PDFs and generated Markdown are not committed. Hashes and access results
+are recorded in `hardware/v1/datasheets/README.md`.
+
+### Download/access classification
+
+- Espressif module, SoC, test-tools, and AES-advisory PDFs downloaded
+  successfully from `documentation.espressif.com`.
+- NXP `NT3H2111_2211.pdf`, TI `bq24074.pdf`, and TI `tps63031.pdf`
+  downloaded successfully and were converted to Markdown for extraction.
+- BuyDisplay ER-TFT020-3 direct PDF URL and product URL returned Cloudflare
+  challenge HTML in this environment. The reviewed display evidence remains the
+  user-supplied `/root/ER-TFT020-3_Datasheet.pdf` conversion.
+- GCT and DigiKey USB4105 URLs returned Cloudflare challenge HTML in this
+  environment. The DigiKey URL is still treated as trusted distributor/source
+  evidence for `USB4105-GF-A`; it does not replace the GCT/manufacturer drawing
+  for footprint, shell, or board-edge geometry.
+- MIC technical conformity URL returned an error page in this environment. The
+  reviewed MIC evidence remains the user-supplied `/root` PDF conversion.
+- ST25DV04KC direct PDF URL timed out with 0 bytes after retries. Keep the ST
+  official URL in the source list and retain `TODO: VERIFY` for order suffix,
+  package drawing, and antenna/tuning details.
+
+### Extracted technical facts
+
+- ESP32-S3-MINI-1/MINI-1U downloaded datasheet identifies version 1.7, onboard
+  PCB antenna for MINI-1, external antenna connector for MINI-1U, and
+  recommended land-pattern/module-placement sections. `TODO: VERIFY` exact
+  selected module revision, land pattern, antenna keepout, and Japan
+  certification applicability before layout release.
+- ESP32-S3-WROOM-1/WROOM-1U downloaded datasheet identifies version 1.8,
+  onboard PCB antenna for WROOM-1, external antenna connector for WROOM-1U, and
+  land-pattern/module-placement sections. It remains fallback evidence, not a
+  silent replacement for the compact V1 module direction.
+- ESP32-S3-WROOM-2 downloaded datasheet identifies version 1.7 and 18.0 x
+  25.5 x 3.1 mm module-family dimensions for listed variants. Several listed
+  WROOM-2 variants are marked EOL in the extracted table, so this remains
+  memory-rich fallback/background evidence only.
+- ESP32-S3 SoC datasheet extraction confirms chip-level Bluetooth LE, USB 2.0
+  OTG / USB Serial-JTAG, LCD interface, I2C, GPIO, strapping, power, current,
+  and RF sections. Module datasheets remain the authority for module footprint
+  and antenna placement.
+- Espressif AES voltage-fault-injection advisory extraction confirms the
+  advisory concerns the ESP32-S3 general-purpose AES peripheral and requires
+  physical fault-injection capability. V1 must avoid strong secure-key claims
+  until firmware/security requirements are separately reviewed.
+- NXP NTAG I2C plus extraction confirms a connected dynamic NFC tag family with
+  passive NFC interface plus I2C interface, Type 2 Tag behavior, field-detect
+  pin, SRAM/pass-through features, and energy-harvest option. `NT3H2111W0FHKH`
+  is XQFN8 1.6 x 1.6 x 0.5 mm with 1k memory; fallback use still requires
+  exposed-pad, package, firmware, and antenna retuning review.
+- BQ24074/BQ2407x extraction confirms single-cell Li-ion charger plus dynamic
+  power-path behavior, selectable/programmed input-current and charge-current
+  limits, TS/NTC input, safety timer pins, VQFN-16 package, and exposed thermal
+  pad requirements. V1 charge current, thermal rise, and TS policy remain
+  `TODO: VERIFY`.
+- TPS63031/TPS6303x extraction confirms a 1.8 V to 5.5 V input single-inductor
+  buck-boost family, fixed 3.3 V TPS63031 option, 10-pin VSON 2.5 x 2.5 mm
+  package, inductor saturation-current selection requirement, layout-critical
+  switching-current paths, and thermal considerations. V1 still must verify
+  inductor choice, load transient, efficiency, and whether buck-boost is needed.

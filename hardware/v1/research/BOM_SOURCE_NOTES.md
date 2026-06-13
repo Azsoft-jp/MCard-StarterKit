@@ -122,8 +122,9 @@ Important classification:
 
 - Manufacturer/supplier sources can guide candidate selection, but exact
   footprints still require model-specific drawings.
-- DigiKey is distributor evidence for USB4105-GF-A, not a replacement for the
-  GCT drawing.
+- DigiKey is trusted distributor/sourcing evidence for `USB4105-GF-A`
+  availability and ordering context, but it does not replace the GCT
+  manufacturer drawing for footprint, shell, or board-edge geometry.
 - The Japan Law Translation Radio Act page is a legal-reference entry point,
   not a finished-product certification decision.
 - BuyDisplay direct PDF and MIC technical-conformity page were not fully
