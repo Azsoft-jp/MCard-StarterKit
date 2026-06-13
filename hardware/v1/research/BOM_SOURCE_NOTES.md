@@ -88,3 +88,26 @@ No community source was used to set an electrical rating, footprint, antenna
 rule, or assembly status in this shortlist. Community libraries may be used
 later to accelerate symbol/footprint entry only after line-by-line comparison
 with official package drawings.
+
+## Espressif documentation refresh 2026-06-13
+
+The following official `documentation.espressif.com` URLs were supplied and
+recorded in `SOURCE_VERIFICATION_RECORDS_2026-06-13.md`:
+
+- ESP32-S3-WROOM-1 / WROOM-1U datasheet:
+  `https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf`
+- ESP32-S3-MINI-1 / MINI-1U datasheet:
+  `https://documentation.espressif.com/esp32-s3-mini-1_mini-1u_datasheet_en.pdf`
+- ESP32-S3-WROOM-2 datasheet:
+  `https://documentation.espressif.com/esp32-s3-wroom-2_datasheet_en.pdf`
+- ESP32-S3 Series datasheet:
+  `https://documentation.espressif.com/esp32-s3_datasheet_en.pdf`
+- ESP32-S3 test tools PDF:
+  `https://documentation.espressif.com/esp-test-tools/en/latest/esp32s3/esp-test-tools-en-master-esp32s3.pdf`
+- ESP32-S3 AES voltage-fault-injection security advisory:
+  `https://documentation.espressif.com/AR2026-005_Security_Advisory_Concerning_AES_Key_Recovery_Using_Voltage_Fault_Injection_on%20ESP32-S3_EN.pdf`
+
+Use these documentation URLs for the next source refresh where they are
+available. The module datasheet still controls module footprint and antenna
+keepout; the SoC datasheet controls chip-level electrical, peripheral, and
+security limits behind the module decision.

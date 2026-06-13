@@ -30,6 +30,22 @@ or regulatory review.
 | Resin case | Transparent smoke resin process | JLC3DP Help, `https://jlc3dp.com/help` | JLC3DP | JLC3DP help is the official process source for material/process capabilities and design constraints. | Fusion 360 model must wait for selected process limits before release. | `TODO: VERIFY` exact transparent smoke material/process, wall/rib/snap/boss limits, tolerance, tint, UV aging, and light leakage. |
 | Japan radio | BLE operation in Japan | MIC radio-equipment source index, `https://www.tele.soumu.go.jp/` | Ministry of Internal Affairs and Communications, Japan | Official source location for Japanese radio-equipment rules and technical conformity information. | Do not claim Japan radio compliance from SoC/module choice alone. | `TODO: VERIFY` exact module certificate and finished-product applicability with current MIC guidance or qualified reviewer. |
 
+## Espressif documentation URLs supplied 2026-06-13
+
+The following Espressif `documentation.espressif.com` URLs were checked as
+additional official source entry points. They supersede older mirrored
+`espressif.com/sites/default/files/documentation/...` URLs for future refreshes
+when available.
+
+| Source | Access result | Design impact | Remaining gap |
+|---|---|---|---|
+| `https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf` | Opened as PDF. Identified ESP32-S3-WROOM-1/WROOM-1U datasheet version 1.8. | Prefer this URL for WROOM-1/WROOM-1U module dimensions, ordering options, pinout, land pattern, and antenna layout review. | `TODO: VERIFY` exact selected WROOM variant before any fallback placement. |
+| `https://documentation.espressif.com/esp32-s3-mini-1_mini-1u_datasheet_en.pdf` | Opened as PDF. Identified ESP32-S3-MINI-1/MINI-1U datasheet version 1.7. | Prefer this URL for MINI-1/MINI-1U module dimensions, ordering options, pinout, land pattern, and antenna layout review. | `TODO: VERIFY` exact keepout import and GPIO/strap mapping for the selected MINI variant. |
+| `https://documentation.espressif.com/esp32-s3-wroom-2_datasheet_en.pdf` | Opened as PDF. Identified ESP32-S3-WROOM-2 datasheet version 1.7. | WROOM-2 is a separate larger-memory module family; record as a possible future reference, not V1 default. | `TODO: VERIFY` mechanical/RF fit, sourcing, and memory need before considering. |
+| `https://documentation.espressif.com/esp32-s3_datasheet_en.pdf` | Opened as PDF. Identified ESP32-S3 Series datasheet version 2.2. | Use as SoC-level source for GPIO, peripherals, USB, security features, power, and electrical limits behind module-level decisions. | `TODO: VERIFY` selected module datasheet still controls module footprint and antenna. |
+| `https://documentation.espressif.com/esp-test-tools/en/latest/esp32s3/esp-test-tools-en-master-esp32s3.pdf` | HTTP 200 PDF by `curl -I`; PDF text extraction was not available locally. | Add as official test-tools source entry point for future RF/production/test-method review. | `TODO: VERIFY` content review before adopting any test method. |
+| `https://documentation.espressif.com/AR2026-005_Security_Advisory_Concerning_AES_Key_Recovery_Using_Voltage_Fault_Injection_on%20ESP32-S3_EN.pdf` | HTTP 200 PDF by `curl -I`; PDF text extraction was not available locally. | Add as official security-advisory source entry point. V1 should avoid claims about secure key protection until advisory impact is reviewed. | `TODO: VERIFY` advisory scope, affected revisions, mitigations, and firmware/security impact. |
+
 ## JLCPCB parts-library observations
 
 Observed with `tsci search --jlcpcb` on 2026-06-13. Treat as dated
