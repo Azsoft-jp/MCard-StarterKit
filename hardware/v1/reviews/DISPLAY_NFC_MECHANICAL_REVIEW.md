@@ -22,17 +22,21 @@
 - `DISPLAY_SELECTION_NOTES.md`
 - `NFC_DYNAMIC_TAG_LAYOUT.md`
 - `ANTENNA_KEEP_OUTS.md`
+- `RF_NFC_MEASUREMENT_CHECKLIST.md`
 - `MECHANICAL_STACKUP.md`
 - `fusion360/README.md`
+- `fusion360/INTERFERENCE_CHECKLIST.md`
 - `mechanical/envelope-notes.md`
 - `mechanical/display-window-notes.md`
 - `mechanical/battery-volume-notes.md`
 - `mechanical/button-clearance-notes.md`
 - `mechanical/antenna-keepout-notes.md`
+- `kicad/KEEP_OUT_LAYER_PLAN.md`
+- `research/SOURCE_VERIFICATION_CHECKLIST.md`
 
 ## Safety and clean-room notes
 
-- No official MoniCard firmware, binary update images, app assets, captured code, HAR data, vendor cloud endpoints, or proprietary command maps are introduced.
+- No official device firmware, binary update images, app assets, captured code, HTTP archive data, nonlocal service URLs, or proprietary command maps are introduced.
 - Notes use public-safe generic behavior, neutral dynamic-tag language, and V1 planning constraints only.
 - ST25DV is preferred and NTAG I2C is fallback, but exact order code, pinout, package, and antenna tuning remain `TODO: VERIFY`.
 - BLE operation in Japan is not claimed certified. Exact module and finished-product certification applicability remain `TODO: VERIFY`.
@@ -52,6 +56,6 @@
 ## Follow-up tasks
 
 - Import exact display, battery, connector, switch, and module dimensions into `mechanical/v1-envelope.json` after source verification.
-- Add KiCad courtyard and drawing layers for BLE keepout, NFC loop/tuning access, display window, FPC bend, battery keepout, USB-C insertion, and rear button row.
-- Create an RF/NFC prototype measurement checklist with assembled-case test steps.
-- Record source links and access dates when official drawings/datasheets are rechecked before layout release.
+- Implement KiCad courtyard and drawing layers from `kicad/KEEP_OUT_LAYER_PLAN.md` after exact source dimensions are verified.
+- Execute the assembled-case RF/NFC measurement checklist when prototype hardware exists.
+- Fill `research/SOURCE_VERIFICATION_CHECKLIST.md` records when official drawings/datasheets are rechecked before layout release.
