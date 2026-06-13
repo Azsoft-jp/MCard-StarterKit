@@ -47,6 +47,7 @@
 
 - Manufacturer/official source records were added for ESP32-S3 MINI/WROOM, ESP32-S3 hardware design guidance, ER-TFT020-3, FH12, ST25DV, NTAG I2C, USB4105, USB-IF Type-C resources, BQ24074, TPS63031, JLCPCB, LCSC/JLCPCB sourcing, JLC3DP, and MIC source entry point.
 - Dated JLCPCB parts-library observations were recorded for the main BLE, NFC, USB-C, charger, regulator, display connector, and button candidates.
+- User-supplied source links were recorded for BuyDisplay direct PDF/product page, Hirose FH12, ST25DV, NXP Japan NTAG I2C plus, DigiKey USB4105-GF-A, TI Japan BQ24074/TPS63031, JLCPCB capabilities, JLC3DP design guideline, MIC technical conformity entry point, and Japan Law Translation Radio Act.
 - The update reduces source-discovery uncertainty but does not clear sample measurement, RF/NFC tuning, footprint import, PCBA preview, resin-process selection, or Japan certification applicability gates.
 
 ## Open TODO: VERIFY list

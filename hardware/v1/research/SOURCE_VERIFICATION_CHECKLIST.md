@@ -66,4 +66,5 @@ Source verification:
 
 - 2026-06-13: `SOURCE_VERIFICATION_RECORDS_2026-06-13.md` records manufacturer/official source evidence for ESP32-S3 MINI/WROOM, ESP32-S3 hardware design guidance, ER-TFT020-3, FH12, ST25DV, NTAG I2C, USB4105, USB-IF Type-C resources, BQ24074, TPS63031, JLCPCB, LCSC/JLCPCB sourcing, JLC3DP, and MIC source entry point.
 - 2026-06-13: `SOURCE_VERIFICATION_RECORDS_2026-06-13.md` records dated JLCPCB parts-library observations from `tsci search --jlcpcb`.
+- 2026-06-13: user-supplied source updates for BuyDisplay, Hirose, ST, NXP Japan, DigiKey, TI Japan, JLCPCB, JLC3DP, MIC, and Japanese Law Translation were recorded in `SOURCE_VERIFICATION_RECORDS_2026-06-13.md`.
 - External evidence reduces source-discovery uncertainty, but does not clear sample measurement, assembled RF/NFC tuning, KiCad footprint import, Fusion 360 interference review, order-time PCBA preview, resin process selection, or Japan radio applicability.

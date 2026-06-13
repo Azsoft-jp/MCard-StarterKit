@@ -111,3 +111,20 @@ Use these documentation URLs for the next source refresh where they are
 available. The module datasheet still controls module footprint and antenna
 keepout; the SoC datasheet controls chip-level electrical, peripheral, and
 security limits behind the module decision.
+
+## Additional source refresh 2026-06-13
+
+User-supplied source links for BuyDisplay, Hirose, ST, NXP Japan, DigiKey,
+TI Japan, JLCPCB, JLC3DP, MIC, and Japanese Law Translation were recorded in
+`SOURCE_VERIFICATION_RECORDS_2026-06-13.md`.
+
+Important classification:
+
+- Manufacturer/supplier sources can guide candidate selection, but exact
+  footprints still require model-specific drawings.
+- DigiKey is distributor evidence for USB4105-GF-A, not a replacement for the
+  GCT drawing.
+- The Japan Law Translation Radio Act page is a legal-reference entry point,
+  not a finished-product certification decision.
+- BuyDisplay direct PDF and MIC technical-conformity page were not fully
+  accessible in this environment and remain `TODO: VERIFY`.
