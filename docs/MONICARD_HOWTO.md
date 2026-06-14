@@ -1,5 +1,7 @@
 # How to try with a MoniCard device
 
+> 日本語版: [docs-ja/MONICARD_HOWTO.md](../docs-ja/MONICARD_HOWTO.md)
+
 This guide explains how to use MCard-StarterKit to send media frames to a physical MoniCard-like BLE display badge.
 
 It covers the path from a blank local server to a parsed notification from a real device. If you have no hardware, stop at step 6 and use the Emulator Notify Simulator instead — the rest of the flow is identical.

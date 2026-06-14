@@ -1,5 +1,7 @@
 # MoniCardデバイスで試す
 
+> English version: [docs/MONICARD_HOWTO.md](../docs/MONICARD_HOWTO.md)
+
 このガイドでは、MCard-StarterKitを使って物理的なMoniCard-like BLEディスプレイバッジにメディアフレームを送信する方法を説明します。
 
 ローカルサーバーの起動から実機からの通知パースまで、一通りの流れをカバーします。ハードウェアがない場合はステップ6で止まり、代わりにEmulator Notify Simulatorを使ってください。その後の流れは同じです。
