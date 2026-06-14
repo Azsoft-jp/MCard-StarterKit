@@ -71,6 +71,8 @@ flowchart LR
 | **Transfer-time Estimator** | Estimate transfer duration from profile settings and packet counts |
 | **Workspace Tools** | Export/import local project state for repeatable experiments |
 
+Want to try with a real MoniCard-like device? See the step-by-step guide: [English](docs/MONICARD_HOWTO.md) / [日本語](docs-ja/MONICARD_HOWTO.md).
+
 ## What it is not
 
 MCard-StarterKit is not a vendor app clone, firmware flasher, cloud client, or production hardware certification package.
