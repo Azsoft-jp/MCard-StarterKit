@@ -17,6 +17,7 @@ flowchart LR
 ## Documents
 
 - [User guide](USER_GUIDE.md)
+- [How to try with a MoniCard device](MONICARD_HOWTO.md)
 - [Developer guide](DEVELOPER_GUIDE.md)
 - [MoniCard-like profile notes](MONICARD_LIKE_PROFILE_NOTES.md)
 - [Protocol reference](PROTOCOL_REFERENCE.md)
